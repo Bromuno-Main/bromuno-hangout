@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Big Shoulders Display;
+  src: url("/fonts/BigShouldersDisplay-VariableFont_wght.ttf") format(".ttf");
+  font-weight: normal;
+  /* font-display: swap; */
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&display=swap");
+
+.bg-green {
+  background-color: #188268;
+  color: white;
+}
+.bg-yellow {
+  background-color: #FFD553;
+  color: rgb(41, 40, 40);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+p {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.play {
+  font-family: "Playfair Display", serif;
+}
+
+.display {
+  font-family: "Big Shoulders Display, sans-serif";
+  font-family: var(--big-shoulder-display);
+  transition: cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition-duration: 3s;
+  font-size: 3.5rem;
+  line-height: 5rem;
+}
+.big-shoulder {
+  font-family: "Big Shoulders Display, sans-serif";
+  font-family: var(--big-shoulder-display);
+  transition: cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition-duration: 3s;
+}
+
+h1 {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 5.5rem;
+}
+
+h2 {
+  font-size: 64px;
+  line-height: 5rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.7rem;
+}
+
+h4 {
+  font-size: 1.6rem;
+  line-height: 1.7rem;
+  font-weight: 600;
+}
+
+@media (max-width: 620px) {
+  h3 {
+    font-size: 1.2rem;
+    line-height: 38px;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: 32px;
+    line-height: 46px;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 45px;
+    line-height: 48px;
+    font-weight: bold;
+  }
+  p {
+    font-size: 1rem;
+  }
+  .masked-div {
+    min-width: 350px !important;
+    min-height: 300px;
+  }
+}
+
+h3 {
+  font-size: 2.5rem;
+  line-height: normal;
+}
+
+.hermes-box {
+  min-height: 400px;
+  max-height: 500px;
+  border-radius: 5;
+  width: 100%;
+  background-color: beige;
+  max-width: 700px;
+
+  position: relative;
+}
+
+.black {
+  color: #222020;
+}
+
+.animate-spin {
+  animation: spin 5s linear infinite;
+  /* Adjust duration here (2s for slower) */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@layer components {
+  button {
+    @apply bg-slate-50 px-6 py-2 rounded-md min-w-[120px] duration-200 hover:bg-lime-300 hover:text-black text-nowrap;
+  }
+
+  Input {
+    @apply max-w-xl  border rounded-lg focus:outline-none border-gray-300 p-2;
+  }
+  textarea {
+    @apply max-w-xl border border-gray-300 rounded-lg  py-2 focus:outline-none px-3  pl-4  placeholder:text-red-400;
+  }
+  .select {
+    @apply max-w-xl  rounded-lg border  border-gray-300 items-center flex justify-between min-w-0 hover:bg-white shadow-none focus:outline-none;
+  }
+}
+/* This class will prevent scrolling on the body */
+.modal-open {
+  overflow: hidden;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+li {
+  margin-left: 20px;
+}
+
+.masked-div {
+  width: fit-content;
+  max-width: 800px;
+  height: 100%;
+  min-width: 500px;
+  mask-image: url(../mask.svg);
+  mask-repeat: no-repeat;
+  background-color: blue;
+}
+
+
+
+/* why us scroll base animation */
+
+
+
+.scroll-sections {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-change {
+  min-height: 40vh;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 20%;
+  max-width: 450px;
+ 
+}
+
+.content-change > h4 {
+  color: rgb(21, 146, 108);
+  font-size: 2rem;
+}
+
