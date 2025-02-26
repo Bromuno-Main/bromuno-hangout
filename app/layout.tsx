@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Big_Shoulders_Display, Livvic } from "next/font/google";
+import { Roboto_Serif, Livvic } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import LeftBar from "../components/leftbar/LeftBar";
 import FormContextProvider from "../context/formContext";
@@ -7,7 +7,7 @@ import "./globals.css";
 import RightBar from "../components/right-bar/RightBar";
 import { Title } from "../components/title/Title";
 
-const bigShoulder_init = Big_Shoulders_Display({
+const robotoSerif_init = Roboto_Serif({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--big-shoulder-display",
@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${livvic.className} ${bigShoulder_init.variable} `}>
+      <body className={`${livvic.className} ${robotoSerif_init.variable} `}>
         <NextTopLoader />
 
         <main className=" flex">
