@@ -22,7 +22,7 @@ function Title(){
   }
 
   return (
-    <h1>{title()}</h1>
+    <h3 className="text-black  flex px-10 py-6 w-full ">{title()}</h3>
   )
 
 

@@ -70,7 +70,7 @@ function LeftBar() {
               return (
                 
               <Link key={index} href={route} onClick={toggleModal} className=' h-[55px] w-full justify-items-center content-center'>
-                <div className='flex-col flex'>
+                <div className='flex-col flex items-center '>
                   <div className=' overflow-hidden w-[18px] h-[20px]'>
                     <Image src={image} alt='' width={20} height={20} className='w-full h-full'/>
                   </div>

@@ -10,7 +10,7 @@ import { Title } from "../components/title/Title";
 const robotoSerif_init = Roboto_Serif({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  variable: "--big-shoulder-display",
+  variable: "--roboto-serif",
   fallback: ["inter"],
 });
 const livvic = Livvic({
@@ -32,19 +32,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${livvic.className} ${robotoSerif_init.variable} `}>
+      <body className={`${livvic.className} ${robotoSerif_init.variable} flex w-screen px-10 bg-green py-5 items-center justify-center h-screen  flex-col  `} >
         <NextTopLoader />
 
-        <main className=" flex">
+        <main className=" flex bg-white rounded-2xl w-full h-full flex-1 max-w-screen-2xl overflow-clip  ">
           <FormContextProvider>
             <LeftBar />
-            <div className="min-h-screen max-h-[200vh] h-[100vh] flex flex-col flex-1 bg-gray-50">
+            <div className="min-h-screen max-h-[200vh] h-full flex flex-col flex-1 bg-gray-50 overflow-hidden outline  outline-black  ">
               <Title/>
               {children}
             </div>
             <RightBar />
           </FormContextProvider>
         </main>
+        all rights reserved
       </body>
     </html>
   );
