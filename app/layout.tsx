@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Big_Shoulders_Display, Livvic } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
-import Footer from "../components/footer/footer";
-import NavBar from "../components/navbar/navbar";
+import LeftBar from "../components/leftbar/LeftBar";
 import FormContextProvider from "../context/formContext";
 import "./globals.css";
+import RightBar from "../components/right-bar/RightBar";
+import { Title } from "../components/title/Title";
 
 const bigShoulder_init = Big_Shoulders_Display({
   subsets: ["latin"],
@@ -18,7 +19,7 @@ const livvic = Livvic({
 });
 
 export const metadata: Metadata = {
-  title: "Bromuno",
+  title: "Bromuno-hangout",
   description: "Bromuno main",
   icons: "/fav.svg",
 
@@ -34,11 +35,14 @@ export default function RootLayout({
       <body className={`${livvic.className} ${bigShoulder_init.variable} `}>
         <NextTopLoader />
 
-        <main className=" flex flex-col">
+        <main className=" flex">
           <FormContextProvider>
-            <NavBar />
-            <div className="min-h-screen">{children}</div>
-            <Footer />
+            <LeftBar />
+            <div className="min-h-screen max-h-[200vh] h-[100vh] flex flex-col flex-1 bg-gray-50">
+              <Title/>
+              {children}
+            </div>
+            <RightBar />
           </FormContextProvider>
         </main>
       </body>

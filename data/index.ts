@@ -674,7 +674,6 @@ interface HeadersProp {
   route: string;
   icon: string;
   image: string;
-  description: string;
 }
 
 export const Headers: HeadersProp[] = [
@@ -682,23 +681,26 @@ export const Headers: HeadersProp[] = [
     label: "Home",
     route: "/",
     icon: "HomeIcon",
-    image:"/popup.png",
-    description:'We over a wide range of services that cuts across all stages of development:'
+    image:"/homeIcon.svg",
   },
   {
-    label: "Services",
-    route: "/learn-more",
+    label: "Learn",
+    route: "/learn",
     icon: "WorksIcon",
-    image:"/popup.png",
-    description:'We over a wide range of services that cuts across all stages of development:'
+    image:"/learnIcon.svg",
   },
-  // {
-  //   label: "Docs",
-  //   route: "/docs",
-  //   icon: "DocsIcon",
-  //   image:'',
-  //   description:''
-  // },
+  {
+    label: "Events",
+    route: "/events",
+    icon: "EventsIcon",
+    image:'/eventsIcon.svg'
+  },
+  {
+    label: "Project",
+    route: "/projects",
+    icon: "ProjectIcon",
+    image:'/projectsIcon.svg'
+  },
 
 
 ];
