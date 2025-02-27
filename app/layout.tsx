@@ -37,10 +37,10 @@ export default function RootLayout({
 
         <span className="uppercase">bromuno hangout</span>
 
-        <main className="relative flex bg-white rounded-2xl w-full h-full flex-1 max-w-screen-2xl overflow-clip overflow-y-scroll  ">
+        <main className="relative flex bg-white rounded-2xl w-full h-full flex-1 max-w-screen-2xl overflow-clip overflow-y-scroll  scrollbar-hide">
           <FormContextProvider>
             <LeftBar />
-            <div className="h-[200vh] flex flex-col flex-1 bg-gray-50 overflow-hidden border-[5px] ">
+            <div className="max-h-[200vh] min-h-[200vh] scrollbar-hide flex flex-col flex-1 bg-gray-50 overflow-hidden overflow-y-scroll border-[5px] ">
               <Title/>
               {children}
             </div>

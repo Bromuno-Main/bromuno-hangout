@@ -19,6 +19,7 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.4.0",
     "@types/nodemailer": "^6.4.14",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "country-list": "^2.3.0",
     "country-state-city": "^3.2.1",

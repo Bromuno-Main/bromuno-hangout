@@ -38,8 +38,8 @@ function LeftBar() {
                         <div className={`${navWidth ? "opacity-0 hidden   " : "  opacity-100"} transition-opacity px-10 duration-100`}>
                           <Image src={image} alt='' width={20} height={20} className='w-full h-full' />
                         </div>
-                        <div className={`${navWidth ? "opacity-100 px-8  flex gap-6 hover:bg-black/5 " : "absolute  right-[-50px] opacity-0"} transition-opacity duration-200`}>
-                          <div className=' overflow-hidden w-[18px] h-[20px]'>
+                        <div className={`${navWidth ? "opacity-100 px-8  flex gap-6  " : "absolute  right-[-50px] opacity-0"} transition-opacity duration-200`}>
+                          <div className={`${!navWidth?"hidden":""} overflow-hidden w-[18px] h-[20px]`}>
                             <Image src={image} alt='' width={20} height={20} className='w-full h-full' />
                           </div>
                           <p
