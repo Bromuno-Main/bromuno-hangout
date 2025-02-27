@@ -672,35 +672,50 @@ export const ProjectFor: ProjectForProp[] = [
 interface HeadersProp {
   label: string;
   route: string;
-  icon: string;
   image: string;
 }
 
 export const Headers: HeadersProp[] = [
   {
-    label: "Home",
+    label: "Daily",
     route: "/",
-    icon: "HomeIcon",
     image:"/homeIcon.svg",
   },
   {
     label: "Learn",
     route: "/learn",
-    icon: "WorksIcon",
     image:"/learnIcon.svg",
   },
   {
     label: "Events",
     route: "/events",
-    icon: "EventsIcon",
     image:'/eventsIcon.svg'
   },
   {
     label: "Project",
     route: "/projects",
-    icon: "ProjectIcon",
     image:'/projectsIcon.svg'
   },
+  {
+    label: "Jobs",
+    route: "/jobs",
+    image:'/jobIcon.svg'
+  },
+  {
+    label: "GYM",
+    route: "/gym",
+    image:'/gymIcon.svg'
+  },
+  {
+    label: "Rumble",
+    route: "/rumble",
+    image:'/rumbleIcon.svg'
+  },
+  {
+    label: "Uncover",
+    route: "/uncover",
+    image:'/uncoverIcon.svg'
+  }
 
 
 ];

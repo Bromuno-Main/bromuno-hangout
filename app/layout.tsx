@@ -32,20 +32,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${livvic.className} ${robotoSerif_init.variable} flex w-screen px-10 bg-green py-5 items-center justify-center h-screen  flex-col  `} >
+      <body className={`${livvic.className} ${robotoSerif_init.variable} flex w-screen px-10 bg-green py-5 items-center justify-center h-screen  flex-col `} >
         <NextTopLoader />
 
-        <main className=" flex bg-white rounded-2xl w-full h-full flex-1 max-w-screen-2xl overflow-clip  ">
+        <span className="uppercase">bromuno hangout</span>
+
+        <main className="relative flex bg-white rounded-2xl w-full h-full flex-1 max-w-screen-2xl overflow-clip overflow-y-scroll  ">
           <FormContextProvider>
             <LeftBar />
-            <div className="min-h-screen max-h-[200vh] h-full flex flex-col flex-1 bg-gray-50 overflow-hidden outline  outline-black  ">
+            <div className="h-[200vh] flex flex-col flex-1 bg-gray-50 overflow-hidden border-[5px] ">
               <Title/>
               {children}
             </div>
             <RightBar />
           </FormContextProvider>
         </main>
-        all rights reserved
+       <span> all rights reserved</span>
       </body>
     </html>
   );

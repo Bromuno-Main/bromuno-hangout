@@ -4,64 +4,28 @@ import React, { useEffect, useState, useCallback, useRef } from 'react';
 import Logo from '../logo';
 import Image from 'next/image';
 import { Headers } from '../../data';
-import { usePathname } from 'next/navigation';
-import Modal from "../../modals/modal";
-import useModal from "../../hooks/useModal";
-import GetStarted from "../../modals/GetStarted";
-import { useDisclosure } from "@nextui-org/react";
 
 function LeftBar() {
-  const router = usePathname()
-  const [width, setWidth] = useState(0);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [showButton, setShowButton] = useState(false);
-  const navRef = useRef<HTMLDivElement | null>(null);
-  const [modal, setModal] = useState(false);
+  const [navWidth, setNavWidth] = useState(false);
 
-  const toggleModal = () => {
-    setModal(!modal);
-  };
+  const handleNavWidth = () =>{
+    setTimeout(() => {
+      if(navWidth === false){
+        setNavWidth(true)
+      }else{
+        setNavWidth(false)
+      }
+    }, 500);
+  }
+  
 
-  const handleNav = useCallback(() => {
-    setMenuOpen((prev) => !prev);
-  }, []);
-
-  const updateWidth = useCallback(() => {
-    setWidth(window.innerWidth);
-  }, []);
-
-  const changeNavButton = useCallback(() => {
-    if (window.scrollY >= 400 && window.innerWidth < 768) {
-      setShowButton(true);
-    } else {
-      setShowButton(false);
-    }
-  }, []);
-
-  const handleClickOutside = useCallback((event: any) => {
-    if (navRef.current && !navRef.current.contains(event.target)) {
-      setMenuOpen(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("resize", updateWidth);
-    window.addEventListener("scroll", changeNavButton);
-    document.addEventListener("mousedown", handleClickOutside);
-    updateWidth();
-
-    return () => {
-      window.removeEventListener("resize", updateWidth);
-      window.removeEventListener("scroll", changeNavButton);
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [updateWidth, changeNavButton, handleClickOutside]);
+  
 
   return (
   <>
     
-    <nav className="top-0 bottom-0  h-screen z-20 sticky">
-      <div className=" h-full max-w-[90px] min-w-[90px] px-1 flex flex-col justify-between items-center">
+    <nav onMouseEnter={handleNavWidth} onMouseLeave={handleNavWidth} className="top-0 bottom-0  h-full z-20 sticky">
+      <div   className={` h-full ${navWidth?"min-w-[156px]":"min-w-[90px]"}  px-1 flex flex-col justify-between items-center  transition-width duration-500`}>
         <div className="w-full h-fit  justify-items-center content-center">
           <div  className='flex flex-col w-full py-[21px]'>
             {
@@ -69,14 +33,14 @@ function LeftBar() {
                 
               return (
                 
-              <Link key={index} href={route} onClick={toggleModal} className=' h-[55px] w-full justify-items-center content-center'>
-                <div className='flex-col flex items-center '>
+              <Link key={index} href={route}  className=' h-[55px] w-full justify-items-center content-center'>
+                <div className='relative flex items-center justify-center w-full h-full overflow-hidden gap-4'>
                   <div className=' overflow-hidden w-[18px] h-[20px]'>
                     <Image src={image} alt='' width={20} height={20} className='w-full h-full'/>
                   </div>
-                  <div className='w-full h-[91px] gap-4 flex-col hidden'>
+                  <div className={`${navWidth?"opacity-100":"absolute right-[-50px] opacity-0"} transition-opacity duration-200`}>
                     <p
-                    className={`font-bold text-[18px] leading-[22px]`}>
+                    className={`font-bold text-black text-[18px] leading-[22px]`}>
                     {label}
                     </p>
                   </div>
@@ -99,3 +63,51 @@ function LeftBar() {
 }
 
 export default LeftBar;
+
+// const [width, setWidth] = useState(0);
+// const [menuOpen, setMenuOpen] = useState(false);
+// const [showButton, setShowButton] = useState(false);
+// const navRef = useRef<HTMLDivElement | null>(null);
+// const [modal, setModal] = useState(false);
+
+// const leftbar = document.getElementById("left-bar");
+
+
+// const toggleModal = () => {
+//   setModal(!modal);
+// };
+
+// const handleNav = useCallback(() => {
+//   setMenuOpen((prev) => !prev);
+// }, []);
+
+// const updateWidth = useCallback(() => {
+//   setWidth(window.innerWidth);
+// }, []);
+
+// const changeNavButton = useCallback(() => {
+//   if (window.scrollY >= 400 && window.innerWidth < 768) {
+//     setShowButton(true);
+//   } else {
+//     setShowButton(false);
+//   }
+// }, []);
+
+// const handleClickOutside = useCallback((event: any) => {
+//   if (navRef.current && !navRef.current.contains(event.target)) {
+//     setMenuOpen(false);
+//   }
+// }, []);
+
+// useEffect(() => {
+//   window.addEventListener("resize", updateWidth);
+//   window.addEventListener("scroll", changeNavButton);
+//   document.addEventListener("mousedown", handleClickOutside);
+//   updateWidth();
+
+//   return () => {
+//     window.removeEventListener("resize", updateWidth);
+//     window.removeEventListener("scroll", changeNavButton);
+//     document.removeEventListener("mousedown", handleClickOutside);
+//   };
+// }, [updateWidth, changeNavButton, handleClickOutside]);

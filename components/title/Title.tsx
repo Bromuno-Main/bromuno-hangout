@@ -15,7 +15,14 @@ function Title(){
         return "Events"
       case "/projects": 
         return "Projects" 
-    
+      case "/jobs": 
+       return "Jobs" 
+      case "/gym": 
+       return "GYM"
+      case "/rumble":
+        return "Rumble" 
+      case "/uncover":
+        return "Uncover"   
       default:
         return ""
     }
