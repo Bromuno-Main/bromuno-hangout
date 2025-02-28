@@ -668,6 +668,45 @@ export const ProjectFor: ProjectForProp[] = [
     title: "An organisation",
   },
 ];
+export interface PostProps {
+  image: string;
+  username: string;
+  title:string;
+  description: string;
+}
+export const Posts: PostProps[] = [
+ {
+  image: "/PickyTonia.svg",
+  username: "Picky Tonia",
+  title: "Where can one learn how to do good work?",
+  description: "This project is considered an academic project, and it's goal is to design..."
+ },
+ {
+  image: "/PickyTonia.svg",
+  username: "Picky Tonia",
+  title: "Where can one learn how to do good work?",
+  description: "This project is considered an academic project, and it's goal is to design..."
+ },
+ {
+  image: "/PickyTonia.svg",
+  username: "Picky Tonia",
+  title: "Where can one learn how to do good work?",
+  description: "This project is considered an academic project, and it's goal is to design..."
+ },
+ {
+  image: "/PickyTonia.svg",
+  username: "Picky Tonia",
+  title: "Where can one learn how to do good work?",
+  description: "This project is considered an academic project, and it's goal is to design..."
+ },
+ {
+  image: "/PickyTonia.svg",
+  username: "Picky Tonia",
+  title: "Where can one learn how to do good work?",
+  description: "This project is considered an academic project, and it's goal is to design..."
+ },
+ 
+] 
 
 interface HeadersProp {
   label: string;

@@ -1,11 +1,13 @@
+"use client"
 
+import { Learn } from "../../components/learnComp/Learn"
 
-const Learn = () => {
+const page = () => {
   return (
     <div>
-      <p>Learn</p>
+      <Learn/>
     </div>
   )
 }
 
-export default Learn
+export default page

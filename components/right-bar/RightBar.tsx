@@ -33,12 +33,6 @@ function RightBar() {
             <Image src={"/Ai.svg"} height={10} width={10} alt="image" className='object-fit lg:w-[34px] lg:h-[34px]'/>
           </div>
           
-          
-
-          
-            
-          
-          
           <div className='lg:w-[64px] lg:h-[64px] justify-items-center content-center'>
             <Image src={"/addIcon.svg"} height={10} width={10} alt="image" className='object-fit lg:w-[24px] lg:h-[24px]'/>
           </div>
@@ -66,6 +60,7 @@ function RightBar() {
           </div>
           <button className='h-full p-0 w-[49px] rounded-[24px]'>Edit</button>
         </div>
+        <p className='text-green-500'>Hello</p>
 
         
       </div>

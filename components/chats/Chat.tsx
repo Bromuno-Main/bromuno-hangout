@@ -12,7 +12,7 @@ interface propType {
 function AiChat ({ setOpenChat, openChat}: propType) {
   return (
     <>
-    <div className="lg:h-[678px] lg:w-[353px] rounded-[12px] fixed top-[25%]  right-[10%]  bg-white  flex-col flex justify-between items-center">
+    <div className="lg:h-[678px] lg:w-[353px] rounded-[12px] absolute top-[25%]  right-[10%]  bg-white  flex-col flex justify-between items-center">
       <div className="w-full  lg:h-[61px] px-3 flex justify-between items-center">
         <p >Lami Ai</p>
         <div onClick={()=>{
@@ -40,7 +40,7 @@ function AiChat ({ setOpenChat, openChat}: propType) {
 function MentorChat ({openChat, setOpenChat}: propType){
 return (
   <>
-  <div className="lg:h-[678px] bg-white lg:w-[353px] rounded-[12px] fixed top-[30%] right-[10%]  ">
+  <div className="lg:h-[678px] bg-white lg:w-[353px] rounded-[12px] absolute top-[30%] right-[10%]  ">
     <div className="w-full px-3  lg:h-[61px] flex justify-between items-center">
       <p >Mentor</p>
       <div onClick={()=>{
