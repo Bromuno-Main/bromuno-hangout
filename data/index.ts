@@ -668,7 +668,7 @@ export const ProjectFor: ProjectForProp[] = [
     title: "An organisation",
   },
 ];
-export interface PostProps {
+interface PostProps {
   image: string;
   username: string;
   title:string;
