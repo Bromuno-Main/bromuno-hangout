@@ -4,6 +4,7 @@ import React from "react"
 import { Button } from "../ui/Button"
 import { Posts } from "../../data"
 import { Answer } from "./Answer"
+import { useState } from "react"
 
  
 
@@ -28,12 +29,12 @@ export function Learn() {
 
 export function Post(){
 
-  const [showAnswer, setShowAnswer] = React.useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
 
   return (
     <>
-    {showAnswer && <Answer/>}
-    <div className="w-full flex-col flex gap-4  p-2" onClick={()=>setShowAnswer(true)}>
+    {showAnswer && <Answer answer={showAnswer} setAnswer={setShowAnswer}/>}
+    <div className="w-full flex-col flex gap-4  p-2" onClick={()=>setShowAnswer(!showAnswer)}>
       
       {
         Posts.map((items,index) => {
