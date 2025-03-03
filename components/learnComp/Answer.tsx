@@ -47,7 +47,7 @@ export function Answer({answer,setAnswer}:propType){
               </div>
 
             </div>
-            <div>
+            <div className="border-t-1 rounded-xl p-3 flex flex-col gap-4">
               <h4 className="text-sm">Answers 12</h4>
               {
                 Posts.map((post, index) => {

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { AiChat, MentorChat } from '../chats/Chat';
 import { Tools } from '../notification/Notify';
+import { set } from 'react-hook-form';
 
 
 function RightBar() {
@@ -10,16 +11,55 @@ function RightBar() {
   const [aiChat, setAiChat] = useState(false);
   const [mentorChat, setMentorChat] = useState(false);
   const [tools, setTools] = useState(false);
+  const [section, setSection] = useState("");
+
+  const handleNotification = ()=>{
+    if (tools === false) {
+      setTools(true);
+      setSection("notifications");
+    } else if(tools === true && section === "notifications") {
+      setTools(false);
+      setSection("");
+    } else {
+      setSection("notifications");
+    }
+  }
+
+  const handleSchedule = ()=>{
+    if (tools === false) {
+      setTools(true);
+      setSection("schedule");
+    } else if(tools === true && section === "schedule") {
+      setTools(false);
+      setSection("");
+    } else {
+      setSection("schedule");
+    }
+  } 
+  
+  const handleNotes = ()=>{
+    if (tools === false) {
+      setTools(true);
+      setSection("notes");
+    } else if(tools === true && section === "notes") {
+      setTools(false);
+      setSection("");
+    } else {
+      setSection("notes");
+    }
+  }
 
   return ( 
   <>
-    {tools && <Tools openTools={tools} setOpenTools={setTools} />}
+    {tools && <Tools openTools={tools} setOpenTools={setTools} section={section} setSection={setSection} />}
     {mentorChat&& <MentorChat openChat={mentorChat} setOpenChat={setMentorChat} />}
     {aiChat&& <AiChat openChat={aiChat} setOpenChat={setAiChat} />}
     {menu ? <section className='sticky min-w-[90px] max-w-[90px]  h-full flex flex-col top-0 bottom-0 right-0'>
       <div className='flex flex-col items-center justify-between w-full h-full lg:pt-[22px] lg:pb-[16px] lg:px-[15px]'>
         <div className=' w-full flex flex-col items-center justify-center gap-4'>
-          <div onClick={()=>{setMenu(false)}} className='lg:w-[64px] lg:h-[64px] justify-items-center content-center '>
+          <div onClick={()=>{
+            setMenu(false)
+            }} className='lg:w-[64px] lg:h-[64px] justify-items-center content-center '>
             <Image src={"/profile.svg"} height={10} width={10} alt="image" className='object-fit lg:w-[52px] lg:h-[52px]'/>
           </div>
           
@@ -40,15 +80,13 @@ function RightBar() {
           </div>
         </div>
         <div className='flex flex-col items-center justify-center w-full'>
-          <div onClick={()=>{
-            setTools(!tools);
-          }} className='lg:w-[80px] lg:h-[64px] justify-items-center content-center'>
+          <div onClick={handleNotification} className='lg:w-[80px] lg:h-[64px] justify-items-center content-center'>
            <Image src={"/tabler.svg"} height={10} width={10} alt="image" className='object-fit lg:w-[30px] lg:h-[30px]'/>
           </div>
-          <div className='lg:w-[80px] lg:h-[64px] justify-items-center content-center'>
+          <div onClick={handleSchedule} className='lg:w-[80px] lg:h-[64px] justify-items-center content-center'>
            <Image src={"/calender.svg"} height={10} width={10} alt="image" className='object-fit lg:w-[16px] lg:h-[18px]'/>
           </div>
-          <div className='lg:w-[80px] lg:h-[64px] justify-items-center content-center'>
+          <div onClick={handleNotes} className='lg:w-[80px] lg:h-[64px] justify-items-center content-center'>
            <Image src={"/file.svg"} height={10} width={10} alt="image" className='object-fit lg:w-[18px] lg:h-[18px]'/>
           </div>
         </div>

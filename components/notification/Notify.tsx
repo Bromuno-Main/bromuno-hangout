@@ -56,11 +56,13 @@ const postArray = [
 
 interface propType {
 openTools: boolean;
+setSection: React.Dispatch<SetStateAction<string>>;
+section: string;
 setOpenTools: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export function Tools({openTools, setOpenTools}:propType) {
-  const [section, setSection] = useState("");
+export function Tools({openTools, setOpenTools, section, setSection}:propType) {
+  
 
   const body = () => {
     switch (section) {
