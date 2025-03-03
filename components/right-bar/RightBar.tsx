@@ -2,18 +2,18 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { AiChat, MentorChat } from '../chats/Chat';
-import { Notify } from '../notification/Notify';
+import { Tools } from '../notification/Notify';
 
 
 function RightBar() {
   const [menu, setMenu] = useState(true);
   const [aiChat, setAiChat] = useState(false);
   const [mentorChat, setMentorChat] = useState(false);
-  const [notify, setNotify] = useState(false);
+  const [tools, setTools] = useState(false);
 
   return ( 
   <>
-    {notify && <Notify openNotice={notify} setOpenNotice={setNotify} />}
+    {tools && <Tools openTools={tools} setOpenTools={setTools} />}
     {mentorChat&& <MentorChat openChat={mentorChat} setOpenChat={setMentorChat} />}
     {aiChat&& <AiChat openChat={aiChat} setOpenChat={setAiChat} />}
     {menu ? <section className='sticky min-w-[90px] max-w-[90px]  h-full flex flex-col top-0 bottom-0 right-0'>
@@ -41,7 +41,7 @@ function RightBar() {
         </div>
         <div className='flex flex-col items-center justify-center w-full'>
           <div onClick={()=>{
-            setNotify(!notify);
+            setTools(!tools);
           }} className='lg:w-[80px] lg:h-[64px] justify-items-center content-center'>
            <Image src={"/tabler.svg"} height={10} width={10} alt="image" className='object-fit lg:w-[30px] lg:h-[30px]'/>
           </div>
