@@ -6,7 +6,7 @@ import { Posts } from "../../data"
 import { Answer } from "./Answer"
 import { useState } from "react"
 
- 
+
 
 export function Learn() {
   return (
@@ -21,7 +21,7 @@ export function Learn() {
         <p>Crypto</p> <p>Web Design</p> <p>Coding</p> <p>Business</p>
       </div>
       <div className=" lg:w-[582px] lg:h-[1168px] text-black">
-        <Post/>
+        <Post />
       </div>
 
       <div className="fixed right-[190px] bottom-20 bg-white rounded-[18px]">
@@ -46,39 +46,42 @@ export function Learn() {
   )
 }
 
-export function Post(){
+export function Post() {
 
   const [showAnswer, setShowAnswer] = useState(false);
 
   return (
     <>
-    {showAnswer && <Answer answer={showAnswer} setAnswer={setShowAnswer}/>}
-    <div className="w-full flex-col flex gap-4  p-2" onClick={()=>setShowAnswer(!showAnswer)}>
-      
-      {
-        Posts.map((items,index) => {
-          return (
-            <div key={index} className="bg-white flex flex-col justify-start items-start w-full border rounded-2xl p-3">
-              <div className="flex text-black text-sm items-center justify-between w-full">
-                <div className="flex justify-center items-center gap-2"><Image src={items.image} alt='icon' width={10} height={10} className='bg-gray-500 w-[14.14px] h-[14.14px]'/> <p className="text-sm">{items.username}</p> <p className="text-sm">3 hours ago</p> </div>
-                <div>
-                  <Button variant={"dsn"} size={"sm"} >Dsn</Button>
-                  <Button variant={"dev"} size={"sm"}>Dev</Button>
+      {showAnswer && <Answer answer={showAnswer} setAnswer={setShowAnswer} />}
+      <div className="w-full flex-col flex gap-4  p-2" onClick={() => setShowAnswer(!showAnswer)}>
+
+        {
+          Posts.map((items, index) => {
+            return (
+              <div key={index} className="bg-white flex flex-col cursor-pointer justify-start hover:shadow-md duration-400 shadow-[#f3f3f3] items-start w-full  rounded-3xl p-5">
+                <div className="flex text-black text-sm items-center justify-between w-full">
+                  <div className="flex justify-center  items-center gap-2">
+                    <Image src={items.image} alt='icon' width={15} height={15} className='bg-gray-200 size-6 rounded-full ' /> 
+                    <p className="text-sm">{items.username}</p> 
+                    <p className="text-sm">3 hours ago</p> </div>
+                  <div className="flex gap-[-20px] hover:gap-1 duration-300 ">
+                    <Button variant={"dsn"} size={"sm"} >Dsn</Button>
+                    <Button variant={"dev"} size={"sm"}>Dev</Button>
+                  </div>
+                </div>
+                <div className="flex flex-col items-start justify-start mt-3  gap-2 text-black text-sm">
+                  <p className="text-md mb-[.2rem] font-bold ">{items.title}</p>
+                  <p className="text-sm mb-[1rem] w-full line-clamp-2">{items.description}</p>
+                </div>
+                <div className="flex gap-2 items-center justify-center">
+                  <Button variant={"ghost"} size={"lg"}>23</Button>
+                  <Button variant={"ghost"} size={"lg"}>234</Button>
                 </div>
               </div>
-              <div className="flex flex-col items-start justify-start gap-2 text-black text-sm">
-                <p className="text-sm">{items.title}</p>
-                <p className="text-sm">{items.description}</p>
-              </div>
-              <div className="flex gap-2 items-center justify-center">
-                <Button variant={"ghost"} size={"lg"}>23</Button>
-                <Button variant={"ghost"} size={"lg"}>234</Button>
-              </div>
-            </div>
-          )
-        })
-      }
-    </div>
+            )
+          })
+        }
+      </div>
     </>
   )
 }

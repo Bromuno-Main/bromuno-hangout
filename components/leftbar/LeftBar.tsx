@@ -7,10 +7,20 @@ import { Headers } from '../../data';
 
 function LeftBar() {
   const [navWidth, setNavWidth] = useState(false);
+  const [navExit, setNavExit] = useState(false);
 
   const handleNavWidth = () => {
     setTimeout(() => {
       if (navWidth === false) {
+        setNavWidth(true)
+      } else {
+        setNavWidth(false)
+      }
+    }, 100);
+  }
+  const handleNavExit = () => {
+    setTimeout(() => {
+      if (navExit === false) {
         setNavWidth(true)
       } else {
         setNavWidth(false)
@@ -24,8 +34,8 @@ function LeftBar() {
   return (
     <>
 
-      <nav onMouseEnter={handleNavWidth} onMouseLeave={handleNavWidth} className="top-0 bottom-0 delay-300 h-full z-20 sticky">
-        <div className={` h-full ${navWidth ? "min-w-[156px]" : "min-w-[90px]"}  px-1 flex flex-col justify-between items-center  transition-width duration-500`}>
+      <nav onMouseEnter={handleNavWidth} onMouseLeave={handleNavWidth} className="top-0 hover:w-[150px]  w-[100px]  duration-400 bottom-0 delay-300 h-full z-20 sticky">
+        <div className={` h-full   px-1 flex flex-col  justify-between items-center  transition-width duration-500`}>
           <div className="w-full h-fit  justify-items-center content-center">
             <div className='flex flex-col w-full py-[21px]'>
               {
@@ -33,21 +43,20 @@ function LeftBar() {
 
                   return (
 
-                    <Link key={index} href={route} className=' h-[55px] outline   w-full justify-center flex  '>
-                      <div className='relative flex items-center hover:bg-black/5   justify-start w-full h-full overflow-hidden gap-4'>
-                        <div className={`${navWidth ? "opacity-0 hidden   " : "  opacity-100"} transition-opacity px-10 duration-100`}>
-                          <Image src={image} alt='' width={20} height={20} className='w-full h-full' />
-                        </div>
-                        <div className={`${navWidth ? "opacity-100 px-8  flex gap-6  " : "absolute  right-[-50px] opacity-0"} transition-opacity duration-200`}>
-                          <div className={`${!navWidth?"hidden":""} overflow-hidden w-[18px] h-[20px]`}>
-                            <Image src={image} alt='' width={20} height={20} className='w-full h-full' />
+                    <Link key={index} href={route} className={ ` h-[55px] relative px-6 items-center hover:bg-black/5  justify-center rounded-md  w-full  flex  `}>
+                        
+                        <div className={`${navWidth? "w-20" :"w-5"} ${navExit? "w-20":""} transition-width duration-500   flex   relative  gap-3`}>
+                          <div className='flex gap-3 '> 
+                          <div className={`w-[18px] h-[20px]`}>
+                            <Image src={image} alt='' width={20} height={20} className='' />
                           </div>
                           <p
-                            className={`font-bold text-black text-[18px] leading-[22px]`}>
+                            className={`${navWidth? "opacity-100":"opacity-0"} ${navExit? "opacity-100":""}delay-300   font-bold text-black text-[18px] leading-[22px]`}>
                             {label}
                           </p>
+                          </div>
                         </div>
-                      </div>
+                     
 
                     </Link>
 
