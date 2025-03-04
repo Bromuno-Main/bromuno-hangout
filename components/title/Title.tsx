@@ -29,7 +29,7 @@ function Title(){
   }
 
   return (
-    <h3 className="text-black  flex px-10 py-6 w-full ">{title()}</h3>
+    <h3 className="text-black  !font-extrabold  pt-12 w-full ">{title()}</h3>
   )
 
 

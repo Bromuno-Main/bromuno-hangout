@@ -42,7 +42,7 @@ export function Post(){
             <div key={index} className="bg-white flex flex-col justify-start items-start w-full border rounded-2xl p-3">
               <div className="flex text-black text-sm items-center justify-between w-full">
                 <div className="flex justify-center items-center gap-2"><Image src={items.image} alt='icon' width={10} height={10} className='bg-gray-500 w-[14.14px] h-[14.14px]'/> <p className="text-sm">{items.username}</p> <p className="text-sm">3 hours ago</p> </div>
-                <div>
+                <div className="flex gap-[-5px] ">
                   <Button variant={"dsn"} size={"sm"} >Dsn</Button>
                   <Button variant={"dev"} size={"sm"}>Dev</Button>
                 </div>
