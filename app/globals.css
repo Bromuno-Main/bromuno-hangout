@@ -163,12 +163,17 @@ h3 {
   .input-primary {
     @apply rounded-md bg-gray-100 focus:outline focus:outline-gray-400 focus:-outline-offset-2 border-none  text-black placeholder:text-gray-400 w-full
   }
-  textarea {
+  /* textarea {
     @apply max-w-xl border border-gray-300 rounded-lg  py-2 focus:outline-none px-3  pl-4  placeholder:text-red-400;
-  }
+  } */
   .select {
     @apply max-w-xl  rounded-lg border  border-gray-300 items-center flex justify-between min-w-0 hover:bg-white shadow-none focus:outline-none;
   }
+
+  .date {
+    @apply text-gray-500
+  }
+
 }
 /* This class will prevent scrolling on the body */
 .modal-open {
@@ -182,6 +187,7 @@ ul {
 li {
   margin-left: 20px;
 }
+
 
 .masked-div {
   width: fit-content;

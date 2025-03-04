@@ -18,7 +18,7 @@ module.exports = {
     // rest of the code
     extend: {
 
-      
+    
       colors: {
         gradientPinkYellow: 'bg-gradient-to-r from-[#FFC530] to-[#FF4546]',
         gradientBluePurple: 'bg-gradient-to-r from-[#37B7FF] to-[#5376F1]',
@@ -38,6 +38,7 @@ module.exports = {
     },
   },
   plugins: [addVariablesForColors,nextui()],
+
 };
 
 function addVariablesForColors({ addBase, theme }: any) {

@@ -5,6 +5,7 @@ import { Button } from "../ui/Button"
 import { Posts } from "../../data"
 import { Answer } from "./Answer"
 import { useState } from "react"
+import { BiSolidCommentDots, BiSolidUpvote } from "react-icons/bi"
 
 
 
@@ -55,8 +56,13 @@ export function Post() {
                   <p className="text-sm mb-[1rem] w-full line-clamp-2">{items.description}</p>
                 </div>
                 <div className="flex gap-2 items-center justify-center">
-                  <Button variant={"ghost"} size={"lg"}>23</Button>
-                  <Button variant={"ghost"} size={"lg"}>234</Button>
+                  <Button variant={"ghost"} size={"lg"}>
+                  <BiSolidCommentDots size={20} />
+                     23</Button>
+                  <Button variant={"ghost"} size={"lg"}>
+                                      <BiSolidUpvote size={20} />
+                     
+                    234</Button>
                 </div>
               </div>
             )
