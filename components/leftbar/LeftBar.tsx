@@ -45,13 +45,13 @@ function LeftBar() {
 
                     <Link key={index} href={route} className={ ` h-[55px] relative px-6 items-center hover:bg-black/5  justify-center rounded-md  w-full  flex  `}>
                         
-                        <div className={`${navWidth? "w-20" :"w-5"} ${navExit? "w-20":""} transition-width duration-500   flex   relative  gap-3`}>
+                        <div className={`${navWidth? "w-20" :"w-5"}  transition-width duration-500   flex   relative  gap-3`}>
                           <div className='flex gap-3 '> 
                           <div className={`w-[18px] h-[20px]`}>
                             <Image src={image} alt='' width={20} height={20} className='' />
                           </div>
                           <p
-                            className={`${navWidth? "opacity-100":"opacity-0"} ${navExit? "opacity-100":""}delay-300   font-bold text-black text-[18px] leading-[22px]`}>
+                            className={`${navWidth? "opacity-100":"opacity-0"} delay-300   font-bold text-black text-[18px] leading-[22px]`}>
                             {label}
                           </p>
                           </div>

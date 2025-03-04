@@ -2,9 +2,11 @@
 import Image from "next/image"
 import React, { useState } from "react"
 import { SetStateAction } from "react"
-import { Input } from "../ui/input"
 import { Button } from "../ui/Button"
 import { useRouter } from "next/navigation"
+import { Input } from "../ui/input"
+
+
 
 interface propType {
   login: boolean,
@@ -61,7 +63,7 @@ export function Login({login, setLogin}:propType){
               <h4 className="text-black">Let's get to know you</h4>
               <p className="text-sm">Please provide basic details about yourself</p>
             </div>
-            <form action="">
+            <div >
               <div>
                 <p className="text-sm">Your name</p>
                 <select name="title" id="" className="text-black w-[50px] border">
@@ -69,7 +71,13 @@ export function Login({login, setLogin}:propType){
                   <option value="Mr">Mr</option>
                   <option value="Mr">Mrs</option>
                 </select>
-                <Input placeholder="Full name" type="text"/>
+               
+               <Input
+                  type="text"
+                  placeholder="Add a comment"
+                  className="input-primary w-3/5   "
+                />
+                
               </div>
               <div>
                 <p className="text-sm">Occupation</p>
@@ -85,11 +93,19 @@ export function Login({login, setLogin}:propType){
               </div>
               <div>
                 <p>Your country</p>
-                <Input placeholder="Your country"/>
+                <Input
+                  type="text"
+                  placeholder="Select your country"
+                  className="input-primary w-3/5   "
+                />
               </div>
               <div>
                 <p>Your address</p>
-                <Input placeholder="Provide your address"/>
+                <Input
+                  type="text"
+                  placeholder="Add a address"
+                  className="input-primary w-3/5   "
+                />
               </div>
 
               <Button onClick={
@@ -98,7 +114,7 @@ export function Login({login, setLogin}:propType){
                   setStage(2);
                 }
               } type="submit" variant={"ghost"} className="h-[39px] w-[131px] rounded-[32px] py-2 px-8 bg-[#FFCD83] text-black hover:text-[#FFCD83] hover:bg-black">Proceed</Button>
-            </form>
+            </div>
             <div className="flex items-center justify-end">
               <p className="text-sm font-bold">Already have an account? <span className="text-[#188268]">Log in</span></p> 
             </div>
@@ -157,11 +173,19 @@ export function Login({login, setLogin}:propType){
                 <select name="" id="">
                   <option value="+234" selected>+234</option>
                 </select>
-                <Input type="text" placeholder="Full name"/>
+                <Input
+                  type="number"
+                  placeholder="Enter phone number"
+                  className="input-primary w-3/5   "
+                />
               </div>
               <div>
                 <p>Email address</p>
-                <Input type="email" placeholder="Enter email"/>
+                <Input
+                  type="email"
+                  placeholder="Enter email address"
+                  className="input-primary w-3/5   "
+                />
               </div>
             </div>
             <Button onClick={
@@ -186,7 +210,11 @@ export function Login({login, setLogin}:propType){
             </div>
             <div>
               <p>Create password</p>
-              <Input type="password" placeholder="Enter your password"/>
+              <Input
+                  type="password"
+                  placeholder="Enter password"
+                  className="input-primary w-3/5   "
+                />
             </div>
             <Button onClick={
                 (e)=>{
