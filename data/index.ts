@@ -676,34 +676,34 @@ interface PostProps {
 }
 export const Posts: PostProps[] = [
  {
-  image: "/PickyTonia.svg",
+  image: "/tyler-the-creator-igor-album-art-2019-billboard-embed.web",
   username: "Picky Tonia",
   title: "Where can one learn how to do good work?",
   description: "This project is considered an academic project, and it's goal is to design..."
  },
  {
-  image: "/PickyTonia.svg",
+  image: "/img-1.png",
+  username: "Picky Tonia",
+  title: "How do I install windows eleven?",
+  description: "Voluptate dolor duis cillum non ipsum labore ullamco dolor veniam Lorem aliquip et excepteur."
+ },
+ {
+  image: "/img-2.png",
+  username: "Picky Tonia",
+  title: "Sint magna dolore eu consectetur irure. Aliqua nostrud voluptate esse non esse proident sunt exercitation eu voluptate culpa ea laborum.?",
+  description: "Ex ullamco deserunt non ea id mollit irure officia cillum eiusmod est ad non. Lorem amet culpa dolor ad cupidatat mollit. Aliquip est anim sunt minim exercitation. Anim fugiat sit aute esse sunt anim commodo."
+ },
+ {
+  image: "/img-3.png",
   username: "Picky Tonia",
   title: "Where can one learn how to do good work?",
   description: "This project is considered an academic project, and it's goal is to design..."
  },
  {
-  image: "/PickyTonia.svg",
+  image: "/img-4.png",
   username: "Picky Tonia",
   title: "Where can one learn how to do good work?",
-  description: "This project is considered an academic project, and it's goal is to design..."
- },
- {
-  image: "/PickyTonia.svg",
-  username: "Picky Tonia",
-  title: "Where can one learn how to do good work?",
-  description: "This project is considered an academic project, and it's goal is to design..."
- },
- {
-  image: "/PickyTonia.svg",
-  username: "Picky Tonia",
-  title: "Where can one learn how to do good work?",
-  description: "This project is considered an academic project, and it's goal is to design..."
+  description: "I got this error while coding: [Error: EPERM: operation not permitted, open 'C:\Users\DELL\Documents\bromuno-hangout\bromuno-hangout\dist\trace']. I'd like to know what it means"
  },
  
 ] 
