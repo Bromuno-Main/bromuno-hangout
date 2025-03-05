@@ -7,13 +7,13 @@ const Logo = () => {
 
     return (
         <>
-            <div className="flex flex-row justify-center items-center gap-2 w-full h-[68px] ">
+            <div className="size-6 ">
                 <Link href="/" className="">
                     <Image
                         src="/logo.svg"
                         alt="Logo"
-                        width={25}
-                        height={32}
+                        width={60}
+                        height={60}
                         className="relative"
                     />
                 </Link>

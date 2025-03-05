@@ -32,22 +32,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${livvic.className} ${robotoSerif_init.variable} flex w-screen px-10 bg-green py-5 items-center justify-center h-screen  flex-col `} >
+      <body className={`${livvic.className} ${robotoSerif_init.variable} gap-2  flex w-screen px-10 bg-green py-2 items-center justify-center h-screen  flex-col `} >
         <NextTopLoader />
 
-        <span className="uppercase">bromuno hangout</span>
+        <span className="uppercase text-sm opacity-60 hover:opacity-100 duration-300">bromuno hangout</span>
 
-        <main className="relative flex bg-white rounded-2xl w-full h-full flex-1 max-w-screen-2xl overflow-clip overflow-y-scroll  scrollbar-hide">
+        <main className="relative flex bg-white rounded-2xl w-full h-full max-h-[900px] flex-1 max-w-screen-2xl overflow-clip overflow-y-scroll  scrollbar-hide">
           <FormContextProvider>
             <LeftBar />
-            <div className="max-h-[200vh] min-h-[200vh] scrollbar-hide flex flex-col flex-1 px-4 bg-gray-50 overflow-hidden overflow-y-scroll  ">
+            <div className="h-full relative scrollbar-hide flex flex-col flex-1 px-4 bg-gray-50 overflow-hidden overflow-y-scroll  ">
               <Title/>
+              <div className="flex-1 py-2 ">
               {children}
+              </div>
             </div>
             <RightBar />
           </FormContextProvider>
         </main>
-       <span> all rights reserved</span>
+       <span className=" text-sm opacity-60 hover:opacity-100 duration-300 "> Copyright © 2025 Bromuno technologies. All rights reserved </span>
       </body>
     </html>
   );

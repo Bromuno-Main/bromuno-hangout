@@ -23,6 +23,9 @@ module.exports = {
         gradientPinkYellow: 'bg-gradient-to-r from-[#FFC530] to-[#FF4546]',
         gradientBluePurple: 'bg-gradient-to-r from-[#37B7FF] to-[#5376F1]',
         gradientYellowGreen: 'bg-gradient-to-r from-[#FFD553] to-[#CDEBA6]',
+        // Add the new base-green color here
+        "base-green": "#44B69A",
+    
       },
       animation: {
         scroll:

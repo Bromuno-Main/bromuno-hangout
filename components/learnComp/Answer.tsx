@@ -18,7 +18,7 @@ interface propType {
 
 export function Answer({ answer, setAnswer }: propType) {
   return (
-    <div className="fixed z-20   left-[15vw] top-[7vh] rounded-lg  flex flex-col bg-white shadow-lg lg:h-[85vh] lg:w-[661px] overflow-hidden my-auto   overflow-y-scroll scrollbar-hide">
+    <div className="fixed z-20   left-[16%] top-[7vh] rounded-lg  flex flex-col bg-white shadow-lg lg:h-[85vh] lg:w-[661px] overflow-hidden my-auto   overflow-y-scroll scrollbar-hide">
       <div className="flex items-center border-gray-300 pl-5 border-b-1 sticky top-0 z-30 bg-white   justify-between">
         <div className="flex items-center gap-2">
           <Image src={Posts[0].image} alt='😊' width={10} height={10} className='bg-gray-200 size-6 flex items-center justify-center rounded-full ' />
