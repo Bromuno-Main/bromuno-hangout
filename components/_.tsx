@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import MenuButton from "./menu_button";
+import { useEffect, useState } from "react";
+import MenuButton from "./ui/menu_button";
+// import MenuButton from "./menu_button";
 
 const Logo = () => {
   //update the size of the logo when the size of the screen changes

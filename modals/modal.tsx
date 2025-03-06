@@ -3,9 +3,9 @@ import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { IoMdClose } from 'react-icons/io';
 import { useFormContext } from "../lib/hooks";
-import ProjectType from "../components/ProjectType";
-import MoreProduct from "../components/MoreProduct";
-import AboutYourself from "../components/AboutYourself";
+// import ProjectType from "../components/ProjectType";
+// import MoreProduct from "../components/MoreProduct";
+// import AboutYourself from "../components/AboutYourself";
 import ContactInfo from "./ContactInfo";
 import PaymentMethod from "./PaymentMethod";
 import FinalPage from "./FinalPage";
@@ -51,16 +51,19 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         switch (activeTab) {
             case 0:
                 return (
-                    <ProjectType />
+                    <div/>
+                    // <ProjectType />
                 );
             case 1:
                 return (
-                    <MoreProduct />
+                    <div/>
+                    // <MoreProduct />
                 );
             case 2:
 
                 return (
-                    <AboutYourself />
+                    <div/>
+                    // <AboutYourself />
                 );
             case 3:
 

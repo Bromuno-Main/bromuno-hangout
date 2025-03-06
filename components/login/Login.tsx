@@ -1,11 +1,10 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
-import { SetStateAction } from "react";
-import { Button } from "../ui/Button";
 import { useRouter } from "next/navigation";
+import React, { SetStateAction, useState } from "react";
+import { businessSectors, nameTitle } from "../../data";
+import { Button } from "../ui/Button";
 import { Input } from "../ui/input";
-import { nameTitle, businessSectors } from "../../data";
 
 interface propType {
   login: boolean;
@@ -59,7 +58,7 @@ export function Login({ login, setLogin }: propType) {
     return (
       <>
         <div>
-          <h4 className="text-black">Let's get to know you</h4>
+          <h4 className="text-black">Let&apos;s get to know you</h4>
           <p className="text-sm">
             Please provide basic details about yourself
           </p>
@@ -152,9 +151,8 @@ export function Login({ login, setLogin }: propType) {
             return (
               <div
                 key={index}
-                className={`flex items-center justify-center w-[257px] h-[120px] rounded-[24px] py-6 px-4 gap-3 ${
-                  index === 0 ? "bg-[#FECC82]" : ""
-                }`}
+                className={`flex items-center justify-center w-[257px] h-[120px] rounded-[24px] py-6 px-4 gap-3 ${index === 0 ? "bg-[#FECC82]" : ""
+                  }`}
               >
                 <div>
                   <Image
