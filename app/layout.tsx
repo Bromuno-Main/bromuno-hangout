@@ -35,7 +35,7 @@ export default function RootLayout({
       <body className={`${livvic.className} ${robotoSerif_init.variable} gap-2  flex w-screen px-10 bg-green py-2 items-center justify-center h-screen  flex-col `} >
         <NextTopLoader />
 
-        <span className="uppercase text-sm opacity-60 hover:opacity-100 duration-300">bromuno hangout</span>
+        <span className="uppercase text-sm opacity-60 text-white  hover:opacity-100 duration-300">bromuno hangout</span>
 
         <main className="relative flex bg-white rounded-2xl w-full h-full max-h-[900px] flex-1 max-w-screen-2xl overflow-clip overflow-y-scroll  scrollbar-hide">
           <FormContextProvider>
@@ -49,7 +49,7 @@ export default function RootLayout({
             <RightBar />
           </FormContextProvider>
         </main>
-       <span className=" text-sm opacity-60 hover:opacity-100 duration-300 "> Copyright © 2025 Bromuno technologies. All rights reserved </span>
+       <span className=" text-sm text-white opacity-60 hover:opacity-100 duration-300 "> Copyright © 2025 Bromuno technologies. All rights reserved </span>
       </body>
     </html>
   );

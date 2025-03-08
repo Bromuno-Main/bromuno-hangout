@@ -7,34 +7,6 @@ export interface Offer {
   image: string;
 }
 
-export const offers: Offer[] = [
-  {
-    title: "Static Website",
-    index: 0,
-    description: "For showing information that dont require regular update",
-    image: "/protype.png",
-  },
-  {
-    title: "Dynamic Website",
-    index: 1,
-    description:
-      "For online publishing and media websites with a CMS that collect and manage user data",
-    image: "/protype.png",
-  },
-  {
-    title: "Web Applications",
-    index: 2,
-    description:
-      "Website with user generated content or enterprise apps that are used to manage systems",
-    image: "/protype.png",
-  },
-  {
-    title: "Mobile Applications",
-    index: 3,
-    description: "All products that work from within a mobile phone",
-    image: "/protype.png",
-  },
-];
 
 export const users = [
   {
@@ -238,6 +210,8 @@ export const users = [
     email: "mia.robinson@example.com",
   },
 ];
+
+
 export const nameTitle = [
   {
     id: 1,
@@ -281,6 +255,8 @@ export const nameTitle = [
   },
   
 ];
+
+
 export const businessSectors = [
   {
     id: 1,
