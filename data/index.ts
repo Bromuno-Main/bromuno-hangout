@@ -697,8 +697,8 @@ export const Headers: HeadersProp[] = [
     image:"/homeIcon.svg",
   },
   {
-    label: "Learn",
-    route: "/learn",
+    label: "Discover",
+    route: "/discover",
     image:"/learnIcon.svg",
   },
   {
