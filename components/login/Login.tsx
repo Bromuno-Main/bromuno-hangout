@@ -36,6 +36,7 @@ const purpose = [
 
 export function Login({ login, setLogin }: propType) {
   const [stage, setStage] = useState<number>(1);
+  const [resetPassword, setResetPassword] = useState<boolean>(true);
 
   const router = useRouter();
   const body = () => {
@@ -49,6 +50,12 @@ export function Login({ login, setLogin }: propType) {
         return <Contacts />;
       case 4:
         return <Protect />;
+        ;
+      case 5:
+        return <WelcomeBack />;
+          ;
+      case 6:
+        return <ResetPassword />;      
 
       default:
         return "";
@@ -132,7 +139,7 @@ export function Login({ login, setLogin }: propType) {
         <div className="flex items-center justify-end">
           <p className="text-sm font-bold">
             Already have an account?{" "}
-            <span className="text-[#188268]">Log in</span>
+            <span onClick={()=> setStage(5)} className="text-[#188268]">Log in</span>
           </p>
         </div>
       </>
@@ -281,6 +288,111 @@ export function Login({ login, setLogin }: propType) {
       </div>
     );
   };
+   const WelcomeBack = () => {
+    return (
+      <div>
+        <div>
+          <h4 className="text-black">Welcome back</h4>
+          <p className="text-sm">Log in to your account</p>
+        </div>
+        <div>
+          <div>
+            <p>Email address</p>
+            <Input
+              type="email"
+              placeholder="john@gmail.com"
+              className="input-primary w-3/5 "
+            />
+          </div>
+          <div>
+            <p>Create password</p>
+            <Input
+              type="password"
+              placeholder="Enter password"
+              className="input-primary w-3/5   "
+            />
+          </div>
+        </div>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            setLogin(false);
+            router.push("/");
+          }}
+          type="submit"
+          variant={"ghost"}
+          className="h-[39px] w-[131px] rounded-[32px] py-2 px-8 bg-[#FFCD83] text-black hover:text-[#FFCD83] hover:bg-black"
+        >
+          Proceed
+        </Button>
+        <div className="flex items-center justify-between">
+          <p className="text-sm font-bold gap-4 flex items-center justify-center">Can't login?{" "}
+            <span onClick={()=> setStage(6)} className="text-red-600">Click here</span>
+          </p>
+          <p className="text-sm font-bold">
+            Don&apos;t have an account?{" "}
+            <span onClick={()=> setStage(1)} className="text-[#188268]">Create one.</span>
+          </p>
+        </div>
+      </div>
+    );
+   }
+   const ResetPassword = () => {
+    return (
+
+      <div>
+        {resetPassword? (<div>
+        <div>
+          <h4>Reset Password</h4>
+          <p>Enter your email address here</p>
+        </div>
+        <div>
+          <h4>Email address</h4>
+          <Input
+            type="email"
+            placeholder="john@gmail.com" />
+        </div>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+           setResetPassword(false);
+          }}
+          type="submit"
+          variant={"ghost"}
+          className="h-[39px] w-[131px] rounded-[32px] py-2 px-8 bg-[#FFCD83] text-black hover:text-[#FFCD83] hover:bg-black">
+            Proceed
+        </Button>
+           
+      </div>):(
+        <div>
+        <div>
+          <h4>Reset Password</h4>
+          <p>Enter your new password here</p>
+        </div>
+        <div>
+          <h4>Enter New Password</h4>
+          <Input
+            type="password"
+            placeholder="Enter password" />
+        </div>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+           router.push("/");
+          }}
+          type="submit"
+          variant={"ghost"}
+          className="h-[39px] w-[131px] rounded-[32px] py-2 px-8 bg-[#FFCD83] text-black hover:text-[#FFCD83] hover:bg-black">
+            Proceed
+        </Button>
+           
+      </div>
+      )}
+      </div>
+    )
+      
+    
+   }
 
   return (
     <div className="w-full h-[100vh] fixed top-0 left-0  bg-white z-50 flex items-center justify-start">
