@@ -6,10 +6,7 @@ import { businessSectors, nameTitle } from "../../data";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/input";
 
-interface propType {
-  login: boolean;
-  setLogin: React.Dispatch<SetStateAction<boolean>>;
-}
+
 
 const purpose = [
   {
@@ -34,7 +31,7 @@ const purpose = [
   },
 ];
 
-export function Login({ login, setLogin }: propType) {
+export function Login() {
   const [stage, setStage] = useState<number>(1);
   const [resetPassword, setResetPassword] = useState<boolean>(true);
 
@@ -270,7 +267,6 @@ export function Login({ login, setLogin }: propType) {
         <Button
           onClick={(e) => {
             e.preventDefault();
-            setLogin(false);
             router.push("/");
           }}
           type="submit"
@@ -316,7 +312,7 @@ export function Login({ login, setLogin }: propType) {
         <Button
           onClick={(e) => {
             e.preventDefault();
-            setLogin(false);
+            
             router.push("/");
           }}
           type="submit"
