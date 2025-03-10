@@ -33,25 +33,6 @@ export function Learn() {
         <ConnectMentor />
         <UnlimitedBanner />
       </div>
-
-      <div className="fixed right-[190px] bottom-20 bg-white rounded-[18px]">
-        <div className="w-full lg:h-[251px] rounded-[16px] px-[14px] py-[24px] border border-[#D9D9D9] ">
-          <div className="flex justify-start items-center w-full">
-            <Image src={"/mentorIcon1.svg"} alt="ask" width={62} height={62} className="border-2 border-white rounded-full"/>
-            <Image src={"/mentorIcon2.svg"} alt="ask" width={62} height={62} className="ml-[-10px] border-2 rounded-full border-white"/>
-            <Image src={"/mentorIcon3.svg"} alt="ask" width={62} height={62} className="ml-[-10px] border-2 rounded-full border-white "/>
-          </div>
-          <div>
-            <h4 className="text-black">Connect with mentors</h4>
-            <p className="text-sm">Start a One-On-One Conversation with any mentor of your choice</p>
-          </div>
-          <Button>Connect</Button>
-        </div>
-        <div className="bg-green lg:h-[124px] w-full rounded-[16px] mt-4 p-6 flex justify-center items-center gap-[14px]">
-          <div></div>
-          <p className="text-sm">Become Someone New In 90 Days</p>
-        </div>
-      </div>
     </div>
   )
 }
