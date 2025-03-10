@@ -56,65 +56,80 @@ export function Login({ login, setLogin }: propType) {
   };
   const Details = () => {
     return (
-      <>
-        <div>
-          <h4 className="text-black">Let&apos;s get to know you</h4>
-          <p className="text-sm">
+      <section className="px-24 w-full max-w-screen-sm py-10">
+        <div >
+          <h3 className="text-black pb-2 ">Let&apos;s get to know you</h3>
+          <p className="text-medium">
             Please provide basic details about yourself
           </p>
         </div>
-        <div>
-          <div>
-            <p className="text-sm">Your name</p>
-            <select
-              name="title"
-              id=""
-              className="text-black w-[50px] border"
-            >
-              <option value="" selected>
-                Title
-              </option>
-              {nameTitle.map((title) => {
-                return <option key={title.id} value={title.sector}>{title.sector}</option>
-              })}
-            </select>
 
-            <Input
-              type="text"
-              placeholder="Add a comment"
-              className="input-primary w-3/5   "
-            />
+        <div className="flex flex-col w-full py-4  gap-2">
+          <p className="text-sm">Your name</p>
+
+          {/* Name and title */}
+
+          <div className="flex gap-2 w-full   ">
+            <span className="wire-pill cursor-pointer ">
+              <select
+                name="title"
+                id=""
+                className="bg-transparent cursor-pointer"
+              >
+                <option value="" selected>
+                  Title
+                </option>
+                {nameTitle.map((title) => {
+                  return <option key={title.id} value={title.sector}>{title.sector}</option>
+                })}
+              </select>
+            </span>
+            <span className="wire-pill w-full ">
+              <Input
+                type="text"
+                placeholder="Full name"
+                className="input-primary    bg-transparent   "
+              /></span>
           </div>
-          <div>
+
+
+          {/* Occupation */}
+          <div className="flex gap-2 flex-col pb-4 ">
             <p className="text-sm">Occupation</p>
-            <select name="title" id="" className=" text-black  border ">
+<span className="wire-pill w-full "> 
+            <select name="title" id="" >
+
               <option value="" selected className=" ">
                 Select industry
               </option>
               {businessSectors.map((sector) => {
                 return <option key={sector.id} value={sector.sector}>{sector.sector}</option>
               })}
-            </select>
+            </select></span>
           </div>
-          <div>
+          <div className="flex gap-2 flex-col  pb-4">
             <p className="text-sm">Date of Birth</p>
-            <Input placeholder="" type="date" />
+            <span className="wire-pill">
+            <Input  type="date" />
+            </span>
           </div>
-          <div>
+          <div className="flex gap-2 flex-col  pb-4">
             <p>Your country</p>
+            <span className="wire-pill">
             <Input
               type="text"
               placeholder="Select your country"
               className="input-primary w-3/5   "
-            />
+            /></span>
           </div>
-          <div>
+          <div className="flex gap-2 flex-col  pb-4 ">
             <p>Your address</p>
+            <span className="wire-pill">
             <Input
               type="text"
               placeholder="Add a address"
               className="input-primary w-3/5   "
-            />
+            /></span>
           </div>
 
           <Button
@@ -135,7 +150,7 @@ export function Login({ login, setLogin }: propType) {
             <span className="text-[#188268]">Log in</span>
           </p>
         </div>
-      </>
+      </section>
     );
   };
 
@@ -283,18 +298,18 @@ export function Login({ login, setLogin }: propType) {
   };
 
   return (
-    <div className="w-full h-[100vh] fixed top-0 left-0  bg-white z-50 flex items-center justify-start">
-      <div className="w-[46%] h-full bg-green flex items-center justify-center">
+    <div className="w-full h-[100vh] fixed top-0 left-0  bg-[#FFF9F0] z-50 flex items-center justify-start">
+      <div className="w-[46%] h-full lg:flex  bg-green hidden items-center justify-center">
         <Image
           src={"/banner.svg"}
           alt="banner"
-          height={10}
-          width={10}
-          className="w-[331px] h-[541px]"
+          height={200}
+          width={200}
+          className="lg:w-1/2 lg:h-full  "
         />
       </div>
-      <div className="bg-white w-[54%] h-full ">
-        <div className="w-full h-[85px] border-b border-[#201c1c] border-dashed bg-white"></div>
+      <div className="bg-[#FFF9F0] lg:w-[54%] h-full ">
+        <div className="w-full h-[85px] border-b border-[#201c1c] border-dashed"></div>
         {body()}
       </div>
     </div>

@@ -32,7 +32,6 @@ function AiChat ({ setOpenChat, openChat}: propType) {
           <Image src={"/voiceIcon.svg"} height={10} width={10} alt="image" className='object-fit lg:w-[19px] lg:h-[19px]'/>
         </div>
       </div>
-
     </div>
     </>
   )
