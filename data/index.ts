@@ -694,7 +694,7 @@ export const Headers: HeadersProp[] = [
   {
     label: "Daily",
     route: "/",
-    image:"/homeIcon.svg",
+    image:"/homeIcon .svg",
   },
   {
     label: "Discover",

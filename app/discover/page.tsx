@@ -1,11 +1,11 @@
 "use client"
 
-import { Learn } from "../../components/learnComp/Learn"
+import { Discover } from "../../components/learnComp/Discover"
 
 const page = () => {
   return (
     <div>
-      <Learn/>
+      <Discover/>
     </div>
   )
 }

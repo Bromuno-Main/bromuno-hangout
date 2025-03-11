@@ -64,23 +64,23 @@ function RightBar() {
         <div className=' w-full flex flex-col  items-center justify-center '>
           <div onClick={()=>{
             setMenu(false) 
-            }} className='size-12 m-2  overflow-hidden  hover hover:bg-stone-100   rounded-lg justify-center flex items-center  cursor-pointer'>
-            <Image src={"/profile.svg"}  height={80} width={80} alt="image" className='object-fit h-full w-full '/>
+            }} className=' m-2  overflow-hidden w-full p-3  hover hover:bg-stone-100   rounded-lg justify-center flex items-center  cursor-pointer'>
+            <Image src={"/profile.svg"}  height={80} width={80} alt="image" className='object-fit  size-12'/>
           </div>
           
           <div onClick={()=>{
             setMentorChat(true);
-            }} className='w-full  p-2  m-2 overflow-hidden hover:bg-stone-100   rounded-lg justify-center flex items-center  cursor-pointerr'>
+            }} className='w-full  p-3   overflow-hidden hover:bg-stone-100   rounded-lg justify-center flex items-center  cursor-pointer'>
             <Image src={"Ai.svg"} height={80} width={80} alt="image" className='object-fit size-8 '/>
           </div>
           
           <div onClick={()=>{
             setAiChat(true)
-            }} className='w-full  p-2  m-2 overflow-hidden hover:bg-stone-100   rounded-lg justify-center flex items-center  cursor-pointerrr'>
+            }} className='w-full  p-3   overflow-hidden hover:bg-stone-100   rounded-lg justify-center flex items-center  cursor-pointer'>
             <Image src={"/img-4.png"} height={80} width={80} alt="image" className='object-fit rounded-full  size-8  '/>
           </div>
           
-          <div className='size-12  overflow-clip hover:bg-stone-100   justify-center flex items-center cursor-pointer'>
+          <div className='w-full p-3   overflow-clip hover:bg-stone-100  rounded-lg justify-center flex items-center cursor-pointer'>
             <Image src={"/addIcon.svg"} height={80} width={80} alt="image" className='object-fit lg:w-[24px] lg:h-[24px]'/>
           </div>
         </div>

@@ -1,17 +1,19 @@
-// app/login/layout.tsx
-"use client";
-import React from "react";
+// app/login/Layout.tsx
+import React from 'react';
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-    <body className="bg-white h-screen">
-      {children}
-    </body>
-  </html>
-  );
+import { ReactNode } from 'react';
+
+interface LoginLayoutProps {
+  children: ReactNode;
 }
+
+const LoginLayout: React.FC<LoginLayoutProps> = ({ children }) => {
+  return (
+    <div>
+      {/* Your layout components or styles go here */}
+      {children}
+    </div>
+  );
+};
+
+export default LoginLayout;

@@ -11,7 +11,7 @@ import { ConnectMentor } from "./connect-mentor"
 
 
 
-export function Learn() {
+export function Discover() {
   return (
     <div className=" flex justify-start items-start h-full  relative">
       <div className="w-full  ">

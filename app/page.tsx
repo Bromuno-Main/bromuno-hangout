@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import { Login } from "../components/login/Login";
+import Login from "../components/login/Login";
 
 
 

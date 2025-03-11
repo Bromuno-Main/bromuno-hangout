@@ -1,15 +1,11 @@
-"use client";
-import React, { useState } from 'react';
-import { Login } from '../../../components/login/Login';
-
+'use client'
+import Login from "../../../components/login/Login";
+import React from "react";
 
 export default function LoginPage() {
-  const [login, setLogin] = useState(true);
-    return (
-        <div>
+  const [login, setLogin] = React.useState(false);
+
+  return (
       <Login login={login} setLogin={setLogin} />
-        </div>
-    );
-};
-
-
+  );
+}

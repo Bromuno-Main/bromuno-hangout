@@ -1,7 +1,7 @@
 // app/login/page.tsx
 "use client";
 import React, { useState } from "react";
-import { Login } from "../../components/login/Login";
+import Login from "../../components/login/Login";
 
 export default function LoginPage() {
   const [login, setLogin] = useState(true);
