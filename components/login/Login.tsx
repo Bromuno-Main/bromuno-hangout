@@ -1,6 +1,10 @@
 'use client'
 import Image from "next/image";
 import React, { Dispatch, SetStateAction } from 'react';
+import { useState,  } from "react";
+import { useRouter } from "next/router";
+import { Button, Input } from "@nextui-org/react";
+import { businessSectors, nameTitle } from "../../data";
 
 
 
@@ -140,6 +144,10 @@ export function Login() {
   };
 
   const Purpose = () => {
+      function setLogin(arg0: boolean) {
+          throw new Error("Function not implemented.");
+      }
+
     return (
             <div>
                 <div className="w-[46%] h-full lg:flex bg-green hidden items-center justify-center">
@@ -250,6 +258,42 @@ export function Login() {
       </div>
     );
    }
+   const Contacts = () => {
+    return (
+      <div>
+        <h4 className="text-black">Your Contacts</h4>
+        <p className="text-sm">Please provide your contact details</p>
+        <div>
+          <p>Your phone number</p>
+          <Input
+            type="text"
+            placeholder="Enter your phone number"
+            className="input-primary w-3/5"
+          />
+        </div>
+        <div>
+          <p>Your email address</p>
+          <Input
+            type="email"
+            placeholder="Enter your email address"
+            className="input-primary w-3/5"
+          />
+        </div>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            setStage(4);
+          }}
+          type="submit"
+          variant={"ghost"}
+          className="h-[39px] w-[131px] rounded-[32px] py-2 px-8 bg-[#FFCD83] text-black hover:text-[#FFCD83] hover:bg-black"
+        >
+          Proceed
+        </Button>
+      </div>
+    );
+  };
+
    const ResetPassword = () => {
     return (
 
