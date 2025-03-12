@@ -43,6 +43,14 @@ const RegisterComponent = () => {
             />
             <input
                 className={`w-full text-gray-600`}
+                type="tel"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                placeholder="Phone number"
+            />
+            <input
+                className={`w-full text-gray-600`}
                 type="password"
                 name="password"
                 value={formData.password}

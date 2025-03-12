@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from "../utils/axiosInstance";
 import TokenUtils from "../utils/TokenUtils";
+import {User} from "../types/User";
 
 // Define types for state
 interface AuthState {
-    user: any; // Replace `any` with your user type if available
+    user: User|null; // Replace `any` with your user type if available
     token: string | null;
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
     error: string | null;
