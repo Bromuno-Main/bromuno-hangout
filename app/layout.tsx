@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Roboto_Serif, Livvic } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import LeftBar from "../components/leftbar/LeftBar";
-import FormContextProvider from "../context/formContext";
 import "./globals.css";
 import RightBar from "../components/right-bar/RightBar";
 import { Title } from "../components/title/Title";
@@ -40,7 +39,6 @@ export default function RootLayout({
 
         <main className="relative flex bg-white rounded-2xl w-full h-full max-h-[900px] flex-1 max-w-screen-2xl overflow-clip overflow-y-scroll  scrollbar-hide">
           <StoreProvider>
-            <FormContextProvider>
             <LeftBar />
             <div className="h-full relative scrollbar-hide flex flex-col flex-1 px-4 bg-gray-50 overflow-hidden overflow-y-scroll  ">
               <Title/>
@@ -49,7 +47,6 @@ export default function RootLayout({
               </div>
             </div>
             <RightBar />
-            </FormContextProvider>
           </StoreProvider>
         </main>
        <span className=" text-sm opacity-60 hover:opacity-100 duration-300 "> Copyright © 2025 Bromuno technologies. All rights reserved </span>
