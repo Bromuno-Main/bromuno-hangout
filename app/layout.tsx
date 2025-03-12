@@ -6,6 +6,7 @@ import FormContextProvider from "../context/formContext";
 import "./globals.css";
 import RightBar from "../components/right-bar/RightBar";
 import { Title } from "../components/title/Title";
+import {StoreProvider} from "../redux/StoreProvider";
 
 const robotoSerif_init = Roboto_Serif({
   subsets: ["latin"],
@@ -38,7 +39,8 @@ export default function RootLayout({
         <span className="uppercase text-sm opacity-60 text-white  hover:opacity-100 duration-300">bromuno hangout</span>
 
         <main className="relative flex bg-white rounded-2xl w-full h-full max-h-[900px] flex-1 max-w-screen-2xl overflow-clip overflow-y-scroll  scrollbar-hide">
-          <FormContextProvider>
+          <StoreProvider>
+            <FormContextProvider>
             <LeftBar />
             <div className="h-full relative scrollbar-hide flex flex-col flex-1 px-4 bg-gray-50 overflow-hidden overflow-y-scroll  ">
               <Title/>
@@ -47,7 +49,8 @@ export default function RootLayout({
               </div>
             </div>
             <RightBar />
-          </FormContextProvider>
+            </FormContextProvider>
+          </StoreProvider>
         </main>
        <span className=" text-sm text-white opacity-60 hover:opacity-100 duration-300 "> Copyright © 2025 Bromuno technologies. All rights reserved </span>
       </body>
