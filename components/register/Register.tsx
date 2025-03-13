@@ -1,15 +1,17 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import { businessSectors, nameTitle } from "../../data";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/input";
+import { useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { register } from "../../redux/authSlice";
 
-interface propType {
-  register: boolean;
-  setRegister: React.Dispatch<SetStateAction<boolean>>;
-}
+
+
 
 const purpose = [
   {
@@ -34,7 +36,27 @@ const purpose = [
   },
 ];
 
-export function Register({ register, setRegister }: propType) {
+export function Register() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { status, error } = useSelector((state: RootState) => state.auth);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    phoneNumber: "+2349059429987",
+    purposeOfJoining: ["Fun"],
+  }
+  );
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(register(formData));
+  };  
+
   const [stage, setStage] = useState<number>(1);
 
   const router = useRouter();
@@ -87,6 +109,8 @@ export function Register({ register, setRegister }: propType) {
             <span className="wire-pill w-full ">
               <Input
                 type="text"
+                name="fullname"
+                value={formData.fullName}
                 placeholder="Full name"
                 className=" focus:outline-none"
               /></span>

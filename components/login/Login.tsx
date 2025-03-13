@@ -2,9 +2,11 @@
 import Image from "next/image";
 import React, { Dispatch, SetStateAction } from 'react';
 import { useState,  } from "react";
-import { useRouter } from "next/router";
-import { Button, Input } from "@nextui-org/react";
+// import { Button, Input } from "@nextui-org/react";
 import { businessSectors, nameTitle } from "../../data";
+import { useRouter } from "next/navigation";
+import { Input } from "../ui/input";
+import { Button } from "../ui/Button";
 
 
 
@@ -36,6 +38,7 @@ export function Login() {
   const [resetPassword, setResetPassword] = useState<boolean>(true);
 
   const router = useRouter();
+
   const body = () => {
     switch (stage) {
       case 1:
@@ -150,15 +153,7 @@ export function Login() {
 
     return (
             <div>
-                <div className="w-[46%] h-full lg:flex bg-green hidden items-center justify-center">
-                    <Image
-                        src={"/banner.svg"}
-                        alt="banner"
-                        height={200}
-                        width={200}
-                        className="lg:w-1/2 lg:h-full"
-                    />
-                </div>
+             
                 <form onSubmit={(e) => { e.preventDefault(); setLogin(true); }}>
                     <div>
                         <label htmlFor="username">Username:</label>
@@ -168,7 +163,7 @@ export function Login() {
                         <label htmlFor="password">Password:</label>
                         <input type="password" id="password" name="password" required />
                     </div>
-                    <button type="submit">Login</button>
+                    <Button type="submit">Login</Button>
                 </form>
             </div>
     );

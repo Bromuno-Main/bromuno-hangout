@@ -9,7 +9,7 @@ function Title(){
     switch (route) {
       case "/":
         return  "Home"
-      case "/learn":
+      case "/discover":
         return "Learn"
       case "/events":
         return "Events"
