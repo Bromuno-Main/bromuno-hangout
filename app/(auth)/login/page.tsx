@@ -1,14 +1,14 @@
 "use client";
-import React, { useState } from 'react';
-import { Login } from '../../../components/login/Login';
+import React from 'react';
+import {Login} from '../../../components/login/Login';
 
 
 export default function LoginPage() {
-  
+
     return (
-        <div>
-      <Login  />
-        </div>
+        <main>
+            <Login/>
+        </main>
     );
 };
 

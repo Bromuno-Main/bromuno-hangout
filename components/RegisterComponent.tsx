@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch, RootState} from "../redux/store";
 import {register} from "../redux/authSlice";
 
 const RegisterComponent = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const { status, error } = useSelector((state: RootState) => state.auth);
+    const {status, error} = useSelector((state: RootState) => state.auth);
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
         password: '',
+        dateOfBirth: '',
+        country: '',
         phoneNumber: '+2349059429987',
-        purposeOfJoining:["Fun"],
+        purposeOfJoining: ["Fun"],
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({...formData, [e.target.name]: e.target.value});
     };
 
     const handleSubmit = (e: React.FormEvent) => {
