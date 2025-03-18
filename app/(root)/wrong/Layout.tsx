@@ -1,12 +1,12 @@
-// app/login/layout.tsx
+// app/login/sdlayout.tsx
 "use client";
 import React from "react";
 
-export default function RootLayout({
+export default function LoginLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
     <body className="bg-white h-screen">

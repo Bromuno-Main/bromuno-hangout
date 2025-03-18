@@ -1,6 +1,6 @@
 "use client"
 
-import { Learn } from "../../components/learnComp/Learn"
+import { Learn } from "../../../components/learnComp/Learn"
 
 const page = () => {
   return (

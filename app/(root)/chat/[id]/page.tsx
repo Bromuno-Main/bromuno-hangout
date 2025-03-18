@@ -2,13 +2,13 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "next/navigation";
 import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../../../redux/store";
+import {AppDispatch, RootState} from "../../../../redux/store";
 import {
     createQuestionComment,
     createQuestionCommentReply,
     fetchSingleQuestion,
     upvoteComment
-} from "../../../redux/questionSlice";
+} from "../../../../redux/questionSlice";
 
 interface ReplyState {
     [key: string]: string;

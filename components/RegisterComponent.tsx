@@ -22,7 +22,7 @@ const RegisterComponent = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        dispatch(register(formData));
+        // dispatch(register(formData));
     };
 
     return (

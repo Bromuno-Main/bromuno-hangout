@@ -10,15 +10,10 @@ export default function Home() {
   
 
   return (
-    <>
-    
-      
         <div className="h-[300vh]    flex flex-col justify-start items-start">
 
           <HomePage />
           
         </div>
-      
-    </>
   );
 }

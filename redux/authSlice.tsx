@@ -28,7 +28,7 @@ export const login = createAsyncThunk(
             TokenUtils.setToken(response.data.token);
             return response.data;
         } catch (error: any) {
-            return rejectWithValue(error.response?.data?.message || 'Login failed');
+            return rejectWithValue(error.response?.data?.message || 'Register failed');
         }
     }
 );
@@ -41,7 +41,19 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 // Async thunk for registration
 export const register = createAsyncThunk(
     'auth/register',
-    async (userData: { fullName: string; email: string; password: string,phoneNumber:string,purposeOfJoining:string[] }, { rejectWithValue }) => {
+    async (
+        userData: {
+        fullName: string;
+            email: string;
+            occupation: string;
+            password: string,
+            phoneNumber:string,
+            dateOfBirth:string,
+            country:string,
+            address:string,
+            title:string,
+        purposeOfJoining:string[]
+        }, { rejectWithValue }) => {
         try {
             const response = await axiosInstance.post('/auth/register', userData);
             TokenUtils.setToken(response.data.token);

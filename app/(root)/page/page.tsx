@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
-import LoginComponent from "../../components/LoginComponent";
-import RegisterComponent from "../../components/RegisterComponent";
+import LoginComponent from "../../../components/LoginComponent";
+import RegisterComponent from "../../../components/RegisterComponent";
 
 export default function Page() {
     return (

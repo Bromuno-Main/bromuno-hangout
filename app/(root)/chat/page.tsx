@@ -2,8 +2,8 @@
 
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../../redux/store";
-import {createQuestion, fetchQuestions, upvote} from "../../redux/questionSlice";
+import {AppDispatch, RootState} from "../../../redux/store";
+import {createQuestion, fetchQuestions, upvote} from "../../../redux/questionSlice";
 import Link from "next/link";
 
 
@@ -80,7 +80,7 @@ export default function Page() {
                 <h2 className="text-lg font-semibold">Created Questions</h2>
                 <ul className="mt-2 space-y-2">
                     {questions.map((q) => (
-                        <Link href={`/chat/${q._id}`} key={q._id} className="p-2 border rounded shadow-sm">
+                        <Link href={`/app/(root)/chat/${q._id}`} key={q._id} className="p-2 border rounded shadow-sm">
                             <p className="font-semibold">{q.question}</p>
                             <p className="font-semibold">{q.description}</p>
                             <p className="font-semibold">{q.comments.length}</p>

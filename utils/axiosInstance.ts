@@ -4,7 +4,7 @@ import TokenUtils from './TokenUtils';
 const axiosInstance = axios.create({
     // baseURL: 'https://voice-server-7zky.onrender.com',
     // baseURL: 'https://jay-rare-kindly.ngrok-free.app/api/v1',
-    baseURL: 'http://localhost:3002/api/v1',
+    baseURL: 'http://localhost:3001/api/v1',
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
