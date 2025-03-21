@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { register } from "../../redux/authSlice";
+import { Link } from "lucide-react";
 
 
 
@@ -171,7 +172,7 @@ export function Register() {
           </Button>
           <p className="text-sm font-bold">
             Already have an account?{" "}
-            <span className="text-[#188268]">Log in</span>
+            <a href="/login" className="text-[#188268]">Log in</a>
           </p>
         </span>
       </section>
@@ -225,7 +226,7 @@ export function Register() {
           </Button>
           <p className="text-sm font-bold">
             Already have an account?{" "}
-            <span className="text-[#188268]">Log in</span>
+            <a href="/login" className="text-[#188268]">Log in</a>
           </p>
         </span>
       </section>
@@ -284,10 +285,10 @@ export function Register() {
           >
             Proceed
           </Button>
-          <p className="text-sm font-bold">
+          <span className="text-sm font-bold">
             Already have an account?{" "}
-            <span className="text-[#188268]">Log in</span>
-          </p>
+            <a href="/login" className="text-[#188268]  cursor:pointer"> Log in </a>
+          </span>
         </span>
       </section >
     );
@@ -334,7 +335,7 @@ export function Register() {
           </Button>
           <p className="text-sm font-bold">
             Already have an account?{" "}
-            <span className="text-[#188268]">Log in</span>
+            <a href="/login" className="text-[#188268] cursor:pointer ">Log in</a>
           </p>
         </span>
       </section>
