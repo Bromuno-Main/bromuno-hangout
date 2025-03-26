@@ -3,24 +3,24 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Roboto Serif";
-  src: url("/fonts/RobotoSerif-VariableFont_GRAD\,opsz\,wdth\,wght.ttf");
-  font-weight: normal;
-  /* font-display: swap; */
+    font-family: "Roboto Serif";
+    src: url("/fonts/RobotoSerif-VariableFont_GRAD\,opsz\,wdth\,wght.ttf");
+    font-weight: normal;
+    /* font-display: swap; */
 
 }
 
 @font-face {
-  font-family: "Big Shoulders Display";
-  src: url("/public/fonts/BigShouldersDisplay-VariableFont_wght.ttf");
-  font-weight: normal;
-  /* font-display: swap; */
+    font-family: "Big Shoulders Display";
+    src: url("/public/fonts/BigShouldersDisplay-VariableFont_wght.ttf");
+    font-weight: normal;
+    /* font-display: swap; */
 
 }
 
 
 * {
-  color: black;
+    color: black;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@300;400;500;600;700&display=swap");
@@ -29,331 +29,353 @@
 
 
 @font-face {
-  font-family: "Livvic";
-  src: url("/public/fonts/Livvic/Livvic-Regular.ttf");
-  font-weight: normal;
+    font-family: "Livvic";
+    src: url("/public/fonts/Livvic/Livvic-Regular.ttf");
+    font-weight: normal;
 }
-  /* font-display: swap; */
+
+/* font-display: swap; */
 
 
 .scrollbar-hide {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;
-  /* Chrome, Safari and Opera */
+    display: none;
+    /* Chrome, Safari and Opera */
 }
 
 .bg-green {
-  background-color: #188268;
-  color: white;
+    background-color: #188268;
+    color: white;
 }
+
 .bg-yellow {
-  background-color: #FFD553;
-  color: rgb(41, 40, 40);
+    background-color: #FFD553;
+    color: rgb(41, 40, 40);
 }
 
 .scrollbar-hide {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;
-  /* Chrome, Safari and Opera */
+    display: none;
+    /* Chrome, Safari and Opera */
 }
 
 p {
-  font-size: 1rem;
-  font-weight: 400;
-  color:black;
+    font-size: 1rem;
+    font-weight: 400;
+    color: black;
 }
 
 .play {
-  font-family: "Playfair Display", serif;
+    font-family: "Playfair Display", serif;
 }
 
 .display {
-  font-family: "Big Shoulders Display", sans-serif;
-  transition: cubic-bezier(0.215, 0.61, 0.355, 1);
-  transition-duration: 3s;
+    font-family: "Big Shoulders Display", sans-serif;
+    transition: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-duration: 3s;
 }
 
 
 h1 {
-  font-size: 5rem;
-  line-height: 5.5rem;
-  font-weight: bolder;
-  font-family: 'Roboto Serif', sans-serif;
+    font-size: 5rem;
+    line-height: 5.5rem;
+    font-weight: bolder;
+    font-family: 'Roboto Serif', sans-serif;
 }
 
 h2 {
-  font-size: 64px;
-  line-height: 5rem;
-  font-weight: 700;
-  font-family: 'Roboto Serif', sans-serif;
+    font-size: 64px;
+    line-height: 5rem;
+    font-weight: 700;
+    font-family: 'Roboto Serif', sans-serif;
 }
 
 h3 {
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 1.7rem;
-  font-family: 'Roboto Serif', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.7rem;
+    font-family: 'Roboto Serif', sans-serif;
 
 }
 
 h4 {
-  font-size: 1.6rem;
-  line-height: 1.7rem;
-  font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.7rem;
+    font-weight: 600;
 }
 
 h5 {
-  font-size: 1rem;
-  line-height: 2rem;
-  font-weight: 600;
-  font-family: 'Roboto Serif', sans-serif;
+    font-size: 1rem;
+    line-height: 2rem;
+    font-weight: 600;
+    font-family: 'Roboto Serif', sans-serif;
 
 }
 
 @media (max-width: 620px) {
-  h3 {
-    font-size: 1.2rem;
-    line-height: 38px;
-    font-weight: 600;
-  }
+    h3 {
+        font-size: 1.2rem;
+        line-height: 38px;
+        font-weight: 600;
+    }
 
-  h2 {
-    font-size: 32px;
-    line-height: 46px;
-    font-weight: 600;
-  }
-  h5 {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-weight: 600;
-  }
+    h2 {
+        font-size: 32px;
+        line-height: 46px;
+        font-weight: 600;
+    }
 
-  h1 {
-    font-size: 45px;
-    line-height: 48px;
-    font-weight: bold;
-  }
-  p {
-    font-size: 1rem;
-  }
-  .masked-div {
-    min-width: 350px !important;
-    min-height: 300px;
-  }
+    h5 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 600;
+    }
+
+    h1 {
+        font-size: 45px;
+        line-height: 48px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .masked-div {
+        min-width: 350px !important;
+        min-height: 300px;
+    }
 }
 
 h3 {
-  font-size: 2.5rem;
-  line-height: normal;
+    font-size: 2.5rem;
+    line-height: normal;
 }
-
 
 
 .black {
-  color: #222020;
+    color: #222020;
 }
 
 .animate-spin {
-  animation: spin 5s linear infinite;
-  /* Adjust duration here (2s for slower) */
+    animation: spin 5s linear infinite;
+    /* Adjust duration here (2s for slower) */
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
 
-  to {
-    transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @layer components {
-  button {
-    @apply bg-slate-50 px-6 py-2 rounded-md  duration-200 hover:bg-lime-300 hover:text-black text-nowrap;
-  }
+    button {
+        @apply bg-slate-50 px-6 py-2 rounded-md  duration-200 hover:bg-lime-300 hover:text-black text-nowrap;
+    }
 
-  Input {
-    @apply   focus-within:outline-transparent text-green-800 focus-visible:outline-transparent !border-none rounded-lg !bg-transparent  focus:!border-transparent active:!outline-transparent  w-full border-gray-700 p-2;
-  }
-  select {
-    @apply  cursor-pointer w-full  focus-within:outline-transparent text-green-800 focus-visible:outline-transparent !border-none rounded-lg !bg-transparent  focus:!border-transparent active:!outline-transparent   border-gray-600 p-2;
-  }
+    Input {
+        @apply focus-within:outline-transparent text-green-800 focus-visible:outline-transparent !border-none rounded-lg !bg-transparent  focus:!border-transparent active:!outline-transparent  w-full border-gray-700 p-2;
+    }
 
-  option {
-    @apply font-[Livvic]
-  }
+    select {
+        @apply cursor-pointer w-full  focus-within:outline-transparent text-green-800 focus-visible:outline-transparent !border-none rounded-lg !bg-transparent  focus:!border-transparent active:!outline-transparent   border-gray-600 p-2;
+    }
 
-  .input-primary {
-    @apply rounded-md bg-gray-100 focus:outline  focus:outline-gray-400 focus:-outline-offset-2 border-none  text-black placeholder:text-gray-600 w-full
-  }
-  /* textarea {
-    @apply max-w-xl border border-gray-300 rounded-lg  py-2 focus:outline-none px-3  pl-4  placeholder:text-red-400;
-  } */
- 
+    option {
+        @apply font-[Livvic]
+    }
 
+    .input-primary {
+        @apply rounded-md bg-gray-100 focus:outline  focus:outline-gray-400 focus:-outline-offset-2 border-none  text-black placeholder:text-gray-600 w-full
+    }
 
-.wire-pill {
-  @apply rounded-full border-2 border-[#A0A0A0] bg-transparent px-4 relative h-11 flex
+    /* textarea {
+      @apply max-w-xl border border-gray-300 rounded-lg  py-2 focus:outline-none px-3  pl-4  placeholder:text-red-400;
+    } */
+    .wire-pill {
+        @apply rounded-full border-2 border-[#A0A0A0] bg-transparent px-4 relative h-11 flex
+    }
+
 }
 
-}
 /* This class will prevent scrolling on the body */
 .modal-open {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 ul {
-  list-style-type: disc;
+    list-style-type: disc;
 }
 
 li {
-  margin-left: 20px;
+    margin-left: 20px;
 }
 
 
 .masked-div {
-  width: fit-content;
-  max-width: 800px;
-  height: 100%;
-  min-width: 500px;
-  mask-image: url(../mask.svg);
-  mask-repeat: no-repeat;
-  background-color: blue;
+    width: fit-content;
+    max-width: 800px;
+    height: 100%;
+    min-width: 500px;
+    mask-image: url(../mask.svg);
+    mask-repeat: no-repeat;
+    background-color: blue;
 }
-
 
 
 /* why us scroll base animation */
 
 
-
 .scroll-sections {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
 }
 
 .content-change {
-  min-height: 40vh;
-  margin-top: 10%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 20%;
-  max-width: 450px;
- 
+    min-height: 40vh;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 20%;
+    max-width: 450px;
+
 }
 
 .content-change > h4 {
-  color: rgb(21, 146, 108);
-  font-size: 2rem;
+    color: rgb(21, 146, 108);
+    font-size: 2rem;
 }
 
 .livvic-thin {
-  font-family: "Livvic", sans-serif;
-  font-weight: 100;
-  font-style: normal;
+    font-family: "Livvic", sans-serif;
+    font-weight: 100;
+    font-style: normal;
 }
 
 .livvic-extralight {
-  font-family: "Livvic", sans-serif;
-  font-weight: 200;
-  font-style: normal;
+    font-family: "Livvic", sans-serif;
+    font-weight: 200;
+    font-style: normal;
 }
 
 .livvic-light {
-  font-family: "Livvic", sans-serif;
-  font-weight: 300;
-  font-style: normal;
+    font-family: "Livvic", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
 .livvic-regular {
-  font-family: "Livvic", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Livvic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .livvic-medium {
-  font-family: "Livvic", sans-serif;
-  font-weight: 500;
-  font-style: normal;
+    font-family: "Livvic", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .livvic-semibold {
-  font-family: "Livvic", sans-serif;
-  font-weight: 600;
-  font-style: normal;
+    font-family: "Livvic", sans-serif;
+    font-weight: 600;
+    font-style: normal;
 }
 
 .livvic-bold {
-  font-family: "Livvic", sans-serif;
-  font-weight: 700;
-  font-style: normal;
+    font-family: "Livvic", sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .livvic-black {
-  font-family: "Livvic", sans-serif;
-  font-weight: 900;
-  font-style: normal;
+    font-family: "Livvic", sans-serif;
+    font-weight: 900;
+    font-style: normal;
 }
 
 .livvic-thin-italic {
-  font-family: "Livvic", sans-serif;
-  font-weight: 100;
-  font-style: italic;
+    font-family: "Livvic", sans-serif;
+    font-weight: 100;
+    font-style: italic;
 }
 
 .livvic-extralight-italic {
-  font-family: "Livvic", sans-serif;
-  font-weight: 200;
-  font-style: italic;
+    font-family: "Livvic", sans-serif;
+    font-weight: 200;
+    font-style: italic;
 }
 
 .livvic-light-italic {
-  font-family: "Livvic", sans-serif;
-  font-weight: 300;
-  font-style: italic;
+    font-family: "Livvic", sans-serif;
+    font-weight: 300;
+    font-style: italic;
 }
 
 .livvic-regular-italic {
-  font-family: "Livvic", sans-serif;
-  font-weight: 400;
-  font-style: italic;
+    font-family: "Livvic", sans-serif;
+    font-weight: 400;
+    font-style: italic;
 }
 
 .livvic-medium-italic {
-  font-family: "Livvic", sans-serif;
-  font-weight: 500;
-  font-style: italic;
+    font-family: "Livvic", sans-serif;
+    font-weight: 500;
+    font-style: italic;
 }
 
 .livvic-semibold-italic {
-  font-family: "Livvic", sans-serif;
-  font-weight: 600;
-  font-style: italic;
+    font-family: "Livvic", sans-serif;
+    font-weight: 600;
+    font-style: italic;
 }
 
 .livvic-bold-italic {
-  font-family: "Livvic", sans-serif;
-  font-weight: 700;
-  font-style: italic;
+    font-family: "Livvic", sans-serif;
+    font-weight: 700;
+    font-style: italic;
 }
 
 .livvic-black-italic {
-  font-family: "Livvic", sans-serif;
-  font-weight: 900;
-  font-style: italic;
+    font-family: "Livvic", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+
+/*Loading overlay*/
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #fff;
+    border-top: 5px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
