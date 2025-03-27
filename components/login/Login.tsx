@@ -8,6 +8,7 @@ import {AppDispatch, RootState} from "../../redux/store";
 import {login} from "../../redux/authSlice";
 import {hideLoading, showLoading} from "../../redux/loadingSlice";
 import {z} from "zod";
+import {useRouter} from "next/navigation";
 
 // Validation Schema
 const loginSchema = z.object({
@@ -19,6 +20,8 @@ export function Login() {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const dispatch = useDispatch<AppDispatch>();
     const {status, error} = useSelector((state: RootState) => state.auth);
+
+    const route = useRouter();
 
     const [formData, setFormData] = useState({
         email: "",
@@ -51,6 +54,9 @@ export function Login() {
         dispatch(showLoading());
         dispatch(login(formData))
             .unwrap()
+            .then(() => {
+                route.replace("/");
+            })
             .finally(() => {
                 dispatch(hideLoading());
             });

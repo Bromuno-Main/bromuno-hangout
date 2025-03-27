@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axiosInstance from "../utils/axiosInstance";
 import TokenUtils from "../utils/TokenUtils";
 
@@ -21,12 +21,14 @@ const initialState: AuthState = {
 // Async thunk for login
 export const login = createAsyncThunk(
     'auth/login',
-    async (credentials: { email: string; password: string }, { rejectWithValue }) => {
+    async (credentials: { email: string; password: string }, {rejectWithValue}) => {
         try {
             const response = await axiosInstance.post('/auth/login', credentials);
             TokenUtils.setToken(response.data.token);
+            console.log(response.data)
             return response.data;
         } catch (error: any) {
+            console.log(error)
             return rejectWithValue(error.response?.data?.message || 'Login failed');
         }
     }
@@ -40,7 +42,13 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 // Async thunk for registration
 export const register = createAsyncThunk(
     'auth/register',
-    async (userData: { fullName: string; email: string; password: string,phoneNumber:string,purposeOfJoining:string[] }, { rejectWithValue }) => {
+    async (userData: {
+        fullName: string;
+        email: string;
+        password: string,
+        phoneNumber: string,
+        purposeOfJoining: string[]
+    }, {rejectWithValue}) => {
         try {
             const response = await axiosInstance.post('/auth/register', userData);
             TokenUtils.setToken(response.data.token);
