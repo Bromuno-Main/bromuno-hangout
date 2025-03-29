@@ -30,11 +30,11 @@ function LeftBar() {
                   return (
                     <Link key={index} href={route} className={`h-[55px] relative px-6 items-center hover:bg-black/5 justify-center rounded-md w-full flex `}>
                       <div className={`${navWidth ? "w-[5rem]" : "w-5"} transition-width delay-200 ease-linear duration-500 flex relative gap-3`}>
-                        <div className={`flex gap-3 ${!isActive ? 'text-gray-600' : ' !text-[#F26869] '}`}>
+                        <div className={`flex gap-3 ${!isActive ? 'saturate-0 ' : ' !text-[#F26869] '}`}>
                           <div className={`w-[18px] h-[20px]`}>
-                            <Image src={image} alt='' width={20} height={20} className='text-[#F26869]'/>
+                            <Image src={image} alt='' width={20} height={20} />
                           </div>
-                          <p className={`${navWidth ? "opacity-100" : "opacity-0"} duration-300 delay-200 ease-linear font-bold  text-[18px] leading-[22px] ${!isActive ? '  ' : ' !text-[#F26869] '}`}>
+                          <p className={`${navWidth ? "opacity-100" : "opacity-0"} duration-300 delay-200 ease-linear font-bold text-neutral-400  text-[18px] leading-[22px] ${!isActive ? ' ' : ' !text-[#F26869] '}`}>
                             {label}
                           </p>
                         </div>

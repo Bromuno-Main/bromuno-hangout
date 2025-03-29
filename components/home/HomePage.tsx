@@ -7,11 +7,8 @@ import { Button } from "../ui/Button";
 export default function HomePage() {
   return (
     <>
-      <div className="w-full h-full border-5 flex flex-col ">
-        <div className="w-full flex">
-          <p>Daily</p>
-          <p>Tasks</p>
-        </div>
+      <div className="w-full h-full gap-4  flex flex-col ">
+       
         <div className="w-full">
           <div className="w-full">
             <div className="w-full h-[100px] lg:max-w-[619px] flex justify-between gap-4 items-center rounded-[18px] lg:px-6 lg:py-[18px] bg-[#E4FBEC]">
