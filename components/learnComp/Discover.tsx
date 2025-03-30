@@ -124,6 +124,41 @@ export function Post() {
                         )
                     })
                 }
+                <div>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <input
+                            type="text"
+                            placeholder="Enter your question"
+                            value={question}
+                            onChange={(e) => setQuestion(e.target.value)}
+                            className="w-full p-2 border rounded"
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="Enter your Description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            className="w-full p-2 border rounded"
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="Enter tags (comma separated)"
+                            value={tags}
+                            onChange={(e) => setTags(e.target.value)}
+                            className="w-full p-2 border rounded"
+                            required
+                        />
+                        <button
+                            type="submit"
+                            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+                            disabled={loading}
+                        >
+                            {loading ? "Submitting..." : "Create Question"}
+                        </button>
+                    </form>
+                </div>
             </div>
         </>
     )

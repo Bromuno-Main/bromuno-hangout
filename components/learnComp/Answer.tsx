@@ -6,7 +6,12 @@ import Image from "next/image"
 import {Button} from "../ui/Button"
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
-import {createQuestionComment, createQuestionCommentReply, fetchSingleQuestion} from "../../redux/questionSlice";
+import {
+    createQuestionComment,
+    createQuestionCommentReply,
+    fetchSingleQuestion,
+    upvoteComment
+} from "../../redux/questionSlice";
 import moment from "moment/moment";
 
 interface ReplyState {
@@ -30,6 +35,7 @@ export function Answer({answer, setAnswer, id}: propType) {
     // Separate states for comment and reply inputs
     const [commentText, setCommentText] = useState("");
     const [replyTexts, setReplyTexts] = useState<ReplyState>({});
+    const [openComment, setOpenComment] = useState<string | null>(null);
 
     useEffect(() => {
         if (normalisedId && answer) {
@@ -106,21 +112,27 @@ export function Answer({answer, setAnswer, id}: propType) {
 
                     </div>
                     {/* input----- */}
-                    <div
-                        onInput={(e) => setCommentText((e.target as HTMLElement).textContent || "")}
-                        contentEditable
-                        className="input-primary w-full min-h-[40px] items-end group max-h-[120px] max-w-[350px] flex flex-col mb-6  p-2 focus:outline-1 outline-0 outline overflow-y-auto"
-                    >
-                        <p className="group-focus:text-pink-600 w-full text-sm"> Leave a comment </p>
+                    <div className="h-full w-full flex flex-col relative">
+                        <input
+                            value={commentText}
+                            onChange={(e) => setCommentText(e.target.value)}
+                            type="text"
+                            className="border p-2 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                        />
+                        <p className="text-gray-500 text-sm">Leave a comment</p>
 
-                        <button
-                            onClick={() => {
-                                handleCommentSubmit();
-                            }}
-                            className=" max-w-40 group-focus:block hidden"> submit
-                        </button>
-
+                        {/* Parent with focus-within */}
+                        <div
+                            className="relative bg-pink-600 focus-within:opacity-100 focus-within:translate-y-0 opacity-0 translate-y-2 transition-all duration-300">
+                            <button
+                                onClick={handleCommentSubmit}
+                                className="bg-pink-600 text-white px-4 py-2 rounded-md"
+                            >
+                                Submit
+                            </button>
+                        </div>
                     </div>
+
 
                 </div>
                 <div className="border-t-1 p-4 flex flex-col gap-4">
@@ -148,11 +160,15 @@ export function Answer({answer, setAnswer, id}: propType) {
                                     <div className="flex justify-between items-center py-2 ">
 
                                         <div className="flex gap-2 items-center justify-center">
-                                            <Button variant={"ghost"} size={"lg"}>
+                                            <Button onClick={() => {
+                                                setOpenComment(post._id);
+                                            }} variant={"ghost"} size={"lg"}>
                                                 <BiSolidCommentDots size={20}/>
                                                 {post.replies.length}
                                             </Button>
-                                            <Button variant={"ghost"} size={"lg"}>
+                                            <Button onClick={() => {
+                                                dispatch(upvoteComment({id: normalisedId, commentId: post._id}))
+                                            }} variant={"ghost"} size={"lg"}>
                                                 <BiSolidUpvote size={20}/>
                                                 {post.upVotes.length}
                                             </Button>
@@ -162,6 +178,32 @@ export function Answer({answer, setAnswer, id}: propType) {
                                         <div>
                                             <Button variant={"ghost"} size={"lg"} className="w-fit">Open chat</Button>
                                         </div>
+                                    </div>
+                                    {
+                                        openComment === post._id && <div>
+                                            <div className="reply-input flex justify-between mb-2">
+                                                <input
+                                                    type="text"
+                                                    value={replyTexts[post._id] || ""}
+                                                    onChange={(e) => handleReplyChange(post._id, e.target.value)}
+                                                    placeholder="Reply"
+                                                    className="w-3/4 p-2 border border-gray-300 rounded-lg"
+                                                />
+                                                <button
+                                                    onClick={() => handleReplySubmit(post._id)}
+                                                    className="w-1/4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+                                                >
+                                                    Reply
+                                                </button>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div className="replies ml-4">
+                                        {post?.replies?.map((reply) => (
+                                            <div key={reply._id} className="reply mb-2">
+                                                <p className="text-gray-600">{reply?.text}</p>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             )
