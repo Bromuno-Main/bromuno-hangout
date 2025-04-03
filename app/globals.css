@@ -167,7 +167,7 @@ h3 {
     }
 
     Input {
-        @apply focus-within:outline-transparent px-3 text-green-800 focus-visible:outline-transparent !border-none rounded-lg !bg-transparent focus:!border-transparent active:!outline-transparent w-full border-gray-700 p-2;
+        @apply focus-within:outline-transparent px-3 text-green-800 focus-visible:outline-transparent border-none rounded-lg !bg-transparent focus:!border-transparent active:!outline-transparent w-full border-gray-700 p-2;
     }
 
     Select {
@@ -245,3 +245,9 @@ li {
     font-size: 2rem;
 }
 
+.boxed {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    padding: 4px 4px 4px 4px;
+}
