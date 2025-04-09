@@ -1,12 +1,15 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import axiosInstance from "../utils/axiosInstance";
 import {Question} from "../types/Question";
+import {LoadingState} from "../types/LoadingState";
 
 
 interface QuestionState {
     questions: Question[];  // Store all questions as an array
     question: { [id: string]: Question } | null;  // Store a single question as a key-value pair
     loading: boolean;
+    fetching: LoadingState,
+    fetchingDetails: LoadingState,
     error: string | null;
 }
 
@@ -14,6 +17,8 @@ const initialState: QuestionState = {
     questions: [], // Initialize as an empty array
     question: null, // Initialize as null for no single question fetched
     loading: false,
+    fetching: LoadingState.Idle,
+    fetchingDetails: LoadingState.Idle,
     error: null,
 };
 
@@ -134,28 +139,31 @@ const questionSlice = createSlice({
             })
             // Fetch Questions extraReducers
             .addCase(fetchQuestions.pending, (state) => {
-                state.loading = true;
+                state.fetching = LoadingState.Pending;
                 state.error = null;
             })
             .addCase(fetchQuestions.fulfilled, (state, action: PayloadAction<Question[]>) => {
-                state.loading = false;
+                state.fetching = LoadingState.Succeeded;
                 state.questions = action.payload;  // Store all questions in the array
             })
             .addCase(fetchQuestions.rejected, (state, action: PayloadAction<any>) => {
-                state.loading = false;
+                state.fetching = LoadingState.Failed;
                 state.error = action.payload;
+                if (action.payload === "Access denied: No token provided") {
+
+                }
             })
             // Fetch Single Question extraReducers
             .addCase(fetchSingleQuestion.pending, (state) => {
-                state.loading = true;
+                state.fetchingDetails = LoadingState.Pending;
                 state.error = null;
             })
             .addCase(fetchSingleQuestion.fulfilled, (state, action: PayloadAction<Question>) => {
-                state.loading = false;
+                state.fetchingDetails = LoadingState.Succeeded;
                 state.question = {[action.payload._id]: action.payload};  // Store the single question as a key-value pair
             })
             .addCase(fetchSingleQuestion.rejected, (state, action: PayloadAction<any>) => {
-                state.loading = false;
+                state.fetchingDetails = LoadingState.Failed;
                 state.error = action.payload;
             }) // Create Comment extraReducers
             .addCase(createQuestionComment.pending, (state) => {
