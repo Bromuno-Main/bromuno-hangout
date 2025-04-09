@@ -1,6 +1,13 @@
 import axios, {InternalAxiosRequestConfig} from 'axios';
 import TokenUtils from './TokenUtils';
 
+let onUnauthorized: (() => void) | null = null;
+
+export const setUnauthorizedHandler = (handler: () => void) => {
+    onUnauthorized = handler;
+};
+
+
 const axiosInstance = axios.create({
     // baseURL: 'https://voice-server-7zky.onrender.com',
     baseURL: 'https://bromuno-hangout-server.onrender.com/api/v1',
@@ -25,6 +32,19 @@ axiosInstance.interceptors.request.use(
         return config;
     },
     error => Promise.reject(error)
+);
+
+
+axiosInstance.interceptors.response.use(
+    response => response,
+    async error => {
+        const status = error.response?.status;
+        console.log(status);
+        if (status === 401 && onUnauthorized) {
+            onUnauthorized();
+        }
+        return Promise.reject(error);
+    }
 );
 
 export default axiosInstance;

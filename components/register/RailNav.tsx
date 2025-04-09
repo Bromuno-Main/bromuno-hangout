@@ -30,7 +30,9 @@ export function RailNav({stage, setStage}: NavProps) {
                         />
                     </span>
                     <span
-                        onClick={() => setStage(stage + 1)}
+                        onClick={() => {
+                            if (stage < 4) setStage(stage + 1);
+                        }}
                         className={`p-2 bg-gray-200 rounded-full ${stage > 1 && stage < 4 ? 'bg-green' : ''}`}
                     >
                         <Image
