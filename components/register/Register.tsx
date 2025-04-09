@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import {useRouter} from "next/navigation";
-import React, {useMemo, useState} from "react";
+import {useRouter, useSearchParams} from "next/navigation";
+import React, {useEffect, useMemo, useState} from "react";
 import {businessSectors, nameTitle} from "../../data";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../redux/store";
@@ -83,26 +83,53 @@ export function Register() {
             });
     };
 
-    const [stage, setStage] = useState<number>(1);
+    const [stage, setStage] = useState<number>(0);
+    const [s, setS] = useState<string>("details");
 
     const router = useRouter();
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        if (searchParams.get("s") === null || !searchParams.get("s")) {
+            router.push("/register?s=details");
+        } else {
+            switch (stage) {
+                case 1:
+                    router.push("/register?s=details");
+                    return setS("details");
+                case 2:
+                    router.push("/register?s=purpose");
+                    return setS("purpose");
+                case 3:
+                    router.push("/register?s=contacts");
+                    return setS("contacts");
+                case 4:
+                    router.push("/register?s=protect");
+                    return setS("protect");
+                default:
+                    router.push("/register?s=details");
+                    return setS('details');
+            }
+        }
+    }, [router, searchParams, stage]);
+
 
     const Body = useMemo(() => {
-        switch (stage) {
-            case 1:
+        switch (s) {
+            case "details":
                 return <Details setFormData={setFormData} formData={formData} handleChange={handleChange}
                                 setStage={setStage}/>;
-            case 2:
+            case "purpose":
                 return <Purpose setFormData={setFormData} formData={formData} handleChange={handleChange}
                                 setStage={setStage}/>;
-            case 3:
+            case "contacts":
                 return <Contacts setFormData={setFormData} formData={formData} handleChange={handleChange}
                                  setStage={setStage}/>;
-            case 4:
+            case "protect":
                 return <Protect handleClick={handleSubmit} setFormData={setFormData} formData={formData}
                                 handleChange={handleChange} setStage={setStage}/>;
             default:
-                return "";
+                return <div/>;
         }
     }, [stage, formData, handleChange]);
 
