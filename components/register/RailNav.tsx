@@ -9,7 +9,7 @@ export function RailNav({stage, setStage}: NavProps) {
         <div className="w-full h-[85px] border-b border-[#201c1c] border-dashed">
             <div className="flex items-center gap-3 justify-between h-full px-6 w-full">
                 <div className="flex items-center gap-2">
-                    {[1, 2, 3, 4].map((step) => (
+                    {[0, 1, 2, 3].map((step) => (
                         <span
                             key={step}
                             className={`w-3 h-3 rounded-full ${stage >= step ? 'bg-green' : 'bg-gray-300'}`}

@@ -1,8 +1,8 @@
 "use client"
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Image from "next/image";
-import { Button } from "../ui/Button";
-import { StageProps } from "./Register";
+import {Button} from "../ui/Button";
+import {StageProps} from "./Register";
 
 export const purpose = [
     {
@@ -27,7 +27,7 @@ export const purpose = [
     },
 ];
 
-export const Purpose: React.FC<StageProps> = ({ formData, handleChange, setStage, setFormData }) => {
+export const Purpose: React.FC<StageProps> = ({formData, handleChange, setStage, setFormData}) => {
     const [selectedPurposes, setSelectedPurposes] = useState<string[]>(formData.purposeOfJoining || []);
 
     const handlePurposeClick = (title: string) => {
@@ -93,7 +93,7 @@ export const Purpose: React.FC<StageProps> = ({ formData, handleChange, setStage
                 <Button
                     onClick={(e) => {
                         e.preventDefault();
-                        setStage(3);
+                        setStage(2);
                     }}
                     type="submit"
                     variant={"ghost"}

@@ -1,5 +1,6 @@
 import axios, {InternalAxiosRequestConfig} from 'axios';
 import TokenUtils from './TokenUtils';
+import {BASE_URL} from "../constants";
 
 let onUnauthorized: (() => void) | null = null;
 
@@ -9,8 +10,7 @@ export const setUnauthorizedHandler = (handler: () => void) => {
 
 
 const axiosInstance = axios.create({
-    // baseURL: 'https://voice-server-7zky.onrender.com',
-    baseURL: 'https://bromuno-hangout-server.onrender.com/api/v1',
+    baseURL: BASE_URL,
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',

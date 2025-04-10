@@ -34,6 +34,22 @@ export const login = createAsyncThunk(
     }
 );
 
+// Async thunk for login
+export const resendEmailVerification = createAsyncThunk(
+    'auth/login',
+    async (credentials: { email: string }, {rejectWithValue}) => {
+        try {
+            const response = await axiosInstance.post('/auth/send-verification-email', credentials);
+            TokenUtils.setToken(response.data.token);
+            console.log(response.data)
+            return response.data;
+        } catch (error: any) {
+            console.log(error)
+            return rejectWithValue(error.response?.data?.message || 'Login failed');
+        }
+    }
+);
+
 // Async thunk for logout
 export const logout = createAsyncThunk('auth/logout', async () => {
     TokenUtils.removeToken();

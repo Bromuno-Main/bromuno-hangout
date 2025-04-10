@@ -53,7 +53,7 @@ export const Contacts: React.FC<StageProps> = ({formData, handleChange, setStage
           <Button
               onClick={(e) => {
                   e.preventDefault();
-                  setStage(4);
+                  setStage(3);
               }}
               type="submit"
               variant={"ghost"}

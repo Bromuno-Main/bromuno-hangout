@@ -72,7 +72,7 @@ export function Register() {
         dispatch(register(formData))
             .unwrap()
             .then(() => {
-                router.push("/verify-email");
+                router.replace("/verify-email?email=" + encodeURIComponent(formData.email));
             })
             .catch((err) => {
                 // Handle error here
@@ -90,20 +90,20 @@ export function Register() {
     const searchParams = useSearchParams();
 
     useEffect(() => {
-        if (searchParams.get("s") === null || !searchParams.get("s")) {
+        if (!searchParams.get("s")) {
             router.push("/register?s=details");
         } else {
             switch (stage) {
-                case 1:
+                case 0:
                     router.push("/register?s=details");
                     return setS("details");
-                case 2:
+                case 1:
                     router.push("/register?s=purpose");
                     return setS("purpose");
-                case 3:
+                case 2:
                     router.push("/register?s=contacts");
                     return setS("contacts");
-                case 4:
+                case 3:
                     router.push("/register?s=protect");
                     return setS("protect");
                 default:

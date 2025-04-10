@@ -131,7 +131,7 @@ export const Details: React.FC<StageProps> = ({formData, handleChange, setStage,
         <Button
             onClick={(e) => {
                 e.preventDefault();
-                // setStage("");
+                setStage(1);
                 router.push("/register?s=purpose");
             }}
             type="submit"

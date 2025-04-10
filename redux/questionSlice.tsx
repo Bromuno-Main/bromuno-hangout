@@ -6,18 +6,22 @@ import {LoadingState} from "../types/LoadingState";
 
 interface QuestionState {
     questions: Question[];  // Store all questions as an array
+    tags: string[];  // Store all questions as an array
     question: { [id: string]: Question } | null;  // Store a single question as a key-value pair
     loading: boolean;
     fetching: LoadingState,
+    fetchingTags: LoadingState,
     fetchingDetails: LoadingState,
     error: string | null;
 }
 
 const initialState: QuestionState = {
     questions: [], // Initialize as an empty array
+    tags: [], // Initialize as an empty array
     question: null, // Initialize as null for no single question fetched
     loading: false,
     fetching: LoadingState.Idle,
+    fetchingTags: LoadingState.Idle,
     fetchingDetails: LoadingState.Idle,
     error: null,
 };
@@ -25,7 +29,12 @@ const initialState: QuestionState = {
 // Async thunk for creating a question
 export const createQuestion = createAsyncThunk(
     'question/createQuestion',
-    async (questionData: { question: string; tags: string[], description: string }, {rejectWithValue}) => {
+    async (questionData: {
+        question: string;
+        tags: string[],
+        description: string,
+        image?: string
+    }, {rejectWithValue}) => {
         try {
             const response = await axiosInstance.post('/question/', questionData);
             return response.data;
@@ -69,6 +78,7 @@ export const createQuestionComment = createAsyncThunk(
     async (commentData: { text: string; id: string }, {rejectWithValue}) => {
         try {
             const response = await axiosInstance.post(`/question/${commentData.id}/comments/`, {text: commentData.text});
+            console.log(response.data);
             return {questionId: commentData.id, data: response.data};
         } catch (error: any) {
             return rejectWithValue(error.response?.data?.message || 'Failed to create comment');
@@ -116,6 +126,21 @@ export const upvoteComment = createAsyncThunk(
     }
 );
 
+// Async thunk for fetching tags
+export const fetchTags = createAsyncThunk(
+    'question/fetchTags',
+    async (_, {rejectWithValue}) => {
+        try {
+            const response = await axiosInstance.get('/tags/');
+            console.log(response.data);
+            return response.data.tags;
+        } catch (error: any) {
+            console.log(error);
+            return rejectWithValue(error.response?.data?.message || 'Failed to fetch questions');
+        }
+    }
+);
+
 
 // Question slice
 const questionSlice = createSlice({
@@ -152,6 +177,19 @@ const questionSlice = createSlice({
                 if (action.payload === "Access denied: No token provided") {
 
                 }
+            })
+            // Fetch Tags extraReducers
+            .addCase(fetchTags.pending, (state) => {
+                state.fetchingTags = LoadingState.Pending;
+                state.error = null;
+            })
+            .addCase(fetchTags.fulfilled, (state, action: PayloadAction<string[]>) => {
+                state.fetchingTags = LoadingState.Succeeded;
+                state.tags = action.payload;  // Store all questions in the array
+            })
+            .addCase(fetchTags.rejected, (state, action: PayloadAction<any>) => {
+                state.fetchingTags = LoadingState.Failed;
+                state.error = action.payload;
             })
             // Fetch Single Question extraReducers
             .addCase(fetchSingleQuestion.pending, (state) => {
@@ -216,6 +254,15 @@ const questionSlice = createSlice({
                         ...state.questions[questionIndex],
                         isUpVoted: data.question.isUpVoted, // Assuming the backend returns the updated upvote status
                         upVotes: data.question.upVotes, // Updated upVotes list
+                    };
+
+                }
+                // Also update the single question in state.question
+                if (state.question && state.question[questionId]) {
+                    state.question[questionId] = {
+                        ...state.question[questionId],
+                        isUpVoted: data.question.isUpVoted,
+                        upVotes: data.question.upVotes,
                     };
                 }
             })
