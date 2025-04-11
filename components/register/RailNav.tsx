@@ -4,7 +4,8 @@ import React from "react";
 import {NavProps} from "./Register";
 
 
-export function RailNav({stage, setStage}: NavProps) {
+export function RailNav({stage, setStageAction, canMove}: NavProps) {
+    console.log(canMove[stage]);
     return (
         <div className="w-full h-[85px] border-b border-[#201c1c] border-dashed">
             <div className="flex items-center gap-3 justify-between h-full px-6 w-full">
@@ -17,9 +18,12 @@ export function RailNav({stage, setStage}: NavProps) {
                     ))}
                 </div>
                 <div className="flex gap-3 items-center">
-                    <span
-                        onClick={() => setStage(stage - 1)}
-                        className={`p-2 bg-gray-200 rounded-full ${stage > 1 && stage < 5 ? 'bg-green' : ''}`}
+                    <button
+                        disabled={stage === 0 || !canMove[stage - 1]}
+                        onClick={() => {
+                            if (stage > 0) setStageAction(stage - 1)
+                        }}
+                        className={`p-2 bg-gray-200 rounded-full ${stage > 0 && stage < 5 ? 'bg-green' : ''}`}
                     >
                         <Image
                             src={'/forwardArrow.svg'}
@@ -28,12 +32,13 @@ export function RailNav({stage, setStage}: NavProps) {
                             width={24}
                             height={24}
                         />
-                    </span>
-                    <span
+                    </button>
+                    <button
+                        disabled={stage === 3 || !canMove[stage]}
                         onClick={() => {
-                            if (stage < 4) setStage(stage + 1);
+                            if (stage < 4) setStageAction(stage + 1);
                         }}
-                        className={`p-2 bg-gray-200 rounded-full ${stage > 1 && stage < 4 ? 'bg-green' : ''}`}
+                        className={`p-2 bg-gray-200 rounded-full ${stage > 0 && stage < 4 ? 'bg-green' : ''}`}
                     >
                         <Image
                             src={'/forwardArrow.svg'}
@@ -42,7 +47,7 @@ export function RailNav({stage, setStage}: NavProps) {
                             width={24}
                             height={24}
                         />
-                    </span>
+                    </button>
                 </div>
             </div>
         </div>

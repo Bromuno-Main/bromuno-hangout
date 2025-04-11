@@ -98,7 +98,7 @@ export function Answer({answer, setAnswer, id}: propType) {
                                 <div className="flex items-center gap-2">
                                     <Image src={`/profile.svg`} alt='😊' width={10} height={10}
                                            className='bg-gray-200 size-6 flex items-center justify-center rounded-full '/>
-                                    <p className="text-sm">{question![normalisedId]?.user?.email}</p>
+                                    <p className="text-sm">{question![normalisedId]?.user?.fullName}</p>
                                     <p className="text-sm text-gray-500">
                                         {moment(question![normalisedId].createdAt).fromNow()}
                                     </p>

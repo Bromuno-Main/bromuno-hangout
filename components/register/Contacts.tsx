@@ -1,9 +1,19 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Input} from "../ui/input";
 import {Button} from "../ui/Button";
 import {StageProps} from "./Register";
 
-export const Contacts: React.FC<StageProps> = ({formData, handleChange, setStage, setFormData}) => {
+export const Contacts: React.FC<StageProps> = ({formData, setCanMove, handleChange, setStage, setFormData}) => {
+
+    const [isFormValid, setIsFormValid] = useState(false);
+
+    useEffect(() => {
+        const isValid =
+            formData.phoneNumber &&
+            formData.email;
+        setIsFormValid(!!isValid);
+        setCanMove(2, isFormValid);
+    }, [formData]);
     return (
         <section className="px-6 lg:px-24 w-full max-w-screen-sm py-10">
             <div className="pb-4 ">
@@ -51,6 +61,7 @@ export const Contacts: React.FC<StageProps> = ({formData, handleChange, setStage
             {/* Submit ==========>>>>>>>>> */}
             <span className="flex justify-between w-full py-6   items-center ">
           <Button
+              disabled={!isFormValid}
               onClick={(e) => {
                   e.preventDefault();
                   setStage(3);

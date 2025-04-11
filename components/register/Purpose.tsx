@@ -1,5 +1,5 @@
 "use client"
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import {Button} from "../ui/Button";
 import {StageProps} from "./Register";
@@ -27,7 +27,7 @@ export const purpose = [
     },
 ];
 
-export const Purpose: React.FC<StageProps> = ({formData, handleChange, setStage, setFormData}) => {
+export const Purpose: React.FC<StageProps> = ({formData, setCanMove, handleChange, setStage, setFormData}) => {
     const [selectedPurposes, setSelectedPurposes] = useState<string[]>(formData.purposeOfJoining || []);
 
     const handlePurposeClick = (title: string) => {
@@ -43,6 +43,10 @@ export const Purpose: React.FC<StageProps> = ({formData, handleChange, setStage,
             purposeOfJoining: selectedPurposes,
         }));
     };
+
+    useEffect(() => {
+        setCanMove(1, selectedPurposes.length > 0);
+    }, [selectedPurposes]);
 
     return (
         <section className="px-24 w-full max-w-screen-md py-10">
