@@ -1,15 +1,16 @@
 "use client";
-import React, {useCallback, useEffect, useState} from "react";
-import {Button} from "../ui/Button";
-import {Answer} from "./Answer";
-import {UnlimitedBanner} from "./go-ulimited";
-import {ConnectMentor} from "./connect-mentor";
-import {useDispatch} from "react-redux";
-import {AppDispatch} from "../../redux/store";
-import {fetchQuestions} from "../../redux/questionSlice";
-import {PostQuestion} from "./PostQuestion";
+import React, { useCallback, useEffect, useState } from "react";
+import { Button } from "../ui/Button";
+import { Answer } from "./Answer";
+import { UnlimitedBanner } from "./go-ulimited";
+import { ConnectMentor } from "./connect-mentor";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux/store";
+import { fetchQuestions } from "../../redux/questionSlice";
+import { PostQuestion } from "./PostQuestion";
 import QuestionList from "./QuestionList";
-import {useRouter, useSearchParams} from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { IoMdClose } from "react-icons/io";
 
 export function Discover() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -60,23 +61,20 @@ export function Discover() {
     return (
         <>
             {showAnswer && id && (
-                <Answer id={id} answer={showAnswer} setAnswer={setShowAnswer}/>
+                <Answer id={id} answer={showAnswer} setAnswer={setShowAnswer} />
             )}
 
             <div className="flex justify-start items-start h-full relative">
                 <div className="w-full">
-                    <div className="flex-1 lg:h-[78px] flex justify-between items-start lg:pt-2">
-                        <div className="h-full lg:w-[430px] flex items-end justify-start lg:pl-3 lg:pb-[7px]">
-                            <p className="lg:w-[340px] lg:h-[20px] font-semibold text-[16px] text-[#A0A0A0] leading-[20px]">
-                                Ask Questions, Get Expert Answers
-                            </p>
+                    <div className="flex-1flex justify-between border-b  pb-2 mb-3 items-start lg:pt-2">
+
+                        <div onClick={toggleModal}>  Ask Questions, Get Expert Answers
                         </div>
-                        <Button onClick={toggleModal}>Open Modal</Button>
                     </div>
 
                     {/* Hardcoded categories, can be dynamic */}
                     <div
-                        className="flex text-black justify-start items-center gap-4 [&>p]:p-2 [&>p]:text-sm [&>p]:font-medium">
+                        className="flex text-black justify-start items-center mb-6  gap-4 [&>p]:p-2 [&>p]:text-sm [&>p]:font-medium">
                         <p>Crypto</p>
                         <p>Web Design</p>
                         <p>Coding</p>
@@ -95,8 +93,8 @@ export function Discover() {
 
                 <div
                     className="lg:w-1/2 max-w-screen-sm md:pl-[2rem] pb-10 justify-end min-w-[340px] min-h-[80vh] sticky right-3 top-[4vh] flex flex-col gap-4">
-                    <ConnectMentor/>
-                    <UnlimitedBanner/>
+                    <ConnectMentor />
+                    <UnlimitedBanner />
                 </div>
 
                 {/* Modal */}
@@ -105,11 +103,11 @@ export function Discover() {
                         <div className="bg-white w-full max-w-2xl p-6 rounded-lg shadow-lg relative">
                             <button
                                 onClick={toggleModal}
-                                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+                                className="absolute top-4 right-4 rounded-full !size-10 flex items-center justify-center  text-gray-500 hover:text-gray-700"
                             >
-                                Close
+                                <IoMdClose />
                             </button>
-                            <PostQuestion/>
+                            <PostQuestion />
                         </div>
                     </div>
                 )}
