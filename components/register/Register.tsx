@@ -30,7 +30,8 @@ export interface FormData {
 
 export interface NavProps {
     stage: number;
-    setStage: (stage: number) => void;
+    setStageAction: (stage: number) => void;
+    canMove: Record<number, boolean>;
 }
 
 export interface StageProps {
@@ -39,6 +40,7 @@ export interface StageProps {
     setStage: React.Dispatch<React.SetStateAction<number>>;
     setFormData: React.Dispatch<React.SetStateAction<FormData>>;
     handleClick?: () => void;
+    setCanMove: (stage: number, value: boolean) => void;
 }
 
 
@@ -58,6 +60,14 @@ export function Register() {
         purposeOfJoining: [],
     });
 
+    const [canMove, setCanMoveState] = useState<Record<number, boolean>>({
+        0: false,  // Initially, the user can start at the first stage
+        1: false, // Can't move to stage 1 initially
+        2: false, // Can't move to stage 2 initially
+        3: false, // Can't move to stage 3 initially
+    });
+
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const {name, value} = e.target;
         setFormData((prevState) => ({
@@ -72,7 +82,7 @@ export function Register() {
         dispatch(register(formData))
             .unwrap()
             .then(() => {
-                router.push("/verify-email");
+                router.replace("/verify-email?email=" + encodeURIComponent(formData.email));
             })
             .catch((err) => {
                 // Handle error here
@@ -90,20 +100,20 @@ export function Register() {
     const searchParams = useSearchParams();
 
     useEffect(() => {
-        if (searchParams.get("s") === null || !searchParams.get("s")) {
+        if (!searchParams.get("s")) {
             router.push("/register?s=details");
         } else {
             switch (stage) {
-                case 1:
+                case 0:
                     router.push("/register?s=details");
                     return setS("details");
-                case 2:
+                case 1:
                     router.push("/register?s=purpose");
                     return setS("purpose");
-                case 3:
+                case 2:
                     router.push("/register?s=contacts");
                     return setS("contacts");
-                case 4:
+                case 3:
                     router.push("/register?s=protect");
                     return setS("protect");
                 default:
@@ -113,20 +123,31 @@ export function Register() {
         }
     }, [router, searchParams, stage]);
 
+    // Wrap the setCanMove to match the expected type (stage: number, value: boolean)
+    const setCanMove = (stage: number, value: boolean) => {
+        setCanMoveState((prevState) => ({
+            ...prevState,
+            [stage]: value,
+        }));
+    };
 
     const Body = useMemo(() => {
         switch (s) {
             case "details":
-                return <Details setFormData={setFormData} formData={formData} handleChange={handleChange}
+                return <Details setCanMove={setCanMove} setFormData={setFormData} formData={formData}
+                                handleChange={handleChange}
                                 setStage={setStage}/>;
             case "purpose":
-                return <Purpose setFormData={setFormData} formData={formData} handleChange={handleChange}
+                return <Purpose setCanMove={setCanMove} setFormData={setFormData} formData={formData}
+                                handleChange={handleChange}
                                 setStage={setStage}/>;
             case "contacts":
-                return <Contacts setFormData={setFormData} formData={formData} handleChange={handleChange}
+                return <Contacts setCanMove={setCanMove} setFormData={setFormData} formData={formData}
+                                 handleChange={handleChange}
                                  setStage={setStage}/>;
             case "protect":
-                return <Protect handleClick={handleSubmit} setFormData={setFormData} formData={formData}
+                return <Protect setCanMove={setCanMove} handleClick={handleSubmit} setFormData={setFormData}
+                                formData={formData}
                                 handleChange={handleChange} setStage={setStage}/>;
             default:
                 return <div/>;
@@ -146,7 +167,7 @@ export function Register() {
                 />
             </div>
             <div className="bg-[#FFF9F0] lg:w-[54%] h-full ">
-                <RailNav stage={stage} setStage={setStage}/>
+                <RailNav canMove={canMove} stage={stage} setStageAction={setStage}/>
                 {Body}
 
             </div>

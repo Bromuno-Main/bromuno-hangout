@@ -1,31 +1,47 @@
 "use client";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { Button } from "../../../components/ui/Button";
+import {useRouter, useSearchParams} from "next/navigation";
+import {Button} from "../../../components/ui/Button";
+import {BASE_URL} from "../../../constants";
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "../../../redux/store";
+import {resendEmailVerification} from "../../../redux/authSlice";
 
 function Page() {
     const [code, setCode] = useState<string>(""); // State for the code input
+    const [email, setEmail] = useState<string>(""); // State for the code input
     const [error, setError] = useState<string | null>(null); // State for error messages
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+    const dispatch = useDispatch<AppDispatch>();
 
-    const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        setError(null);
-
-        if (!code || code.length !== 6) {
-            setError("Please enter a valid 6-digit code.");
-            return;
+    useEffect(() => {
+        if (searchParams.get("token")) {
+            if (searchParams.get("token") !== null) {
+                setCode(searchParams.get("token")!);
+                handleVerify(searchParams.get("token")!);
+            }
         }
+        const emailParam = searchParams.get("email");
+        if (emailParam) {
+            setEmail(decodeURIComponent(emailParam)); // Decode email correctly
+        }
+
+// utils/urlHelper.js
+
+    }, [searchParams]);
+
+    const handleVerify = async (token: string) => {
 
         try {
             // Simulate API call to verify the code
-            const response = await fetch("/api/verify-email", {
-                method: "POST",
+            const response = await fetch(`${BASE_URL}/auth/verify-email/?token=${token}`, {
+                method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ code }),
             });
 
             if (!response.ok) {
@@ -37,6 +53,14 @@ function Page() {
         } catch (err: any) {
             setError(err.message || "Something went wrong. Please try again.");
         }
+    };
+
+
+    const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        setError(null);
+        console.log(email);
+        dispatch(resendEmailVerification({email: email.trim()}));
     };
 
     return (

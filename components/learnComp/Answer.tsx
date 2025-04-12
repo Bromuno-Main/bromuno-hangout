@@ -11,6 +11,7 @@ import {
     createQuestionComment,
     createQuestionCommentReply,
     fetchSingleQuestion,
+    upvote,
     upvoteComment
 } from "../../redux/questionSlice";
 import moment from "moment/moment";
@@ -105,10 +106,10 @@ export function Answer({ answer, setAnswer, id }: propType) {
                                 className="flex items-center border-gray-300 pl-5 border-b-1 sticky top-0 z-30 bg-white   justify-between">
                                 <div className="flex items-center gap-2">
                                     <Image src={`/profile.svg`} alt='😊' width={10} height={10}
-                                        className='bg-gray-200 size-6 flex items-center justify-center rounded-full ' />
-                                    <p className="text-sm">{question![normalisedId]?.user?.email}</p>
+                                           className='bg-gray-200 size-6 flex items-center justify-center rounded-full '/>
+                                    <p className="text-sm">{question![normalisedId]?.user?.fullName}</p>
                                     <p className="text-sm text-gray-500">
-                                        {moment(question![normalisedId].createdAt, "YYYYMMDD").fromNow()}
+                                        {moment(question![normalisedId].createdAt).fromNow()}
                                     </p>
 
                                 </div>
@@ -127,6 +128,9 @@ export function Answer({ answer, setAnswer, id }: propType) {
 
 
                                 <div className="px-5 flex flex-col  gap-3">
+                                    {question![normalisedId]?.image &&
+                                        <img className={`w-full h-[300px]`} src={question![normalisedId]?.image}
+                                             alt=""/>}
                                     <p className="font-semibold">{question![normalisedId]?.question}</p>
                                     <p className="text-sm ">{question![normalisedId]?.description}</p>
                                     <div>
@@ -138,8 +142,10 @@ export function Answer({ answer, setAnswer, id }: propType) {
                                         }
                                     </div>
                                     <div className="flex gap-2 items-center justify-start">
-                                        <Button variant={"ghost"} size={"lg"}>
-                                            <BiSolidUpvote size={20} />
+                                        <Button onClick={() => {
+                                            dispatch(upvote({id: normalisedId}))
+                                        }} variant={"ghost"} size={"lg"}>
+                                            <BiSolidUpvote size={20}/>
                                             {question![normalisedId].upVotes.length}
                                         </Button>
                                         <p className="text-sm group-focus">Leave an upvote if you found this helpful</p>
@@ -156,94 +162,105 @@ export function Answer({ answer, setAnswer, id }: propType) {
                                         />
 
                                         {/* Parent with focus-within */}
-
-                                        <button
-                                            onClick={handleCommentSubmit}
-                                            className="bg-green max-w-[8rem] text-white px-4 py-2 rounded-md"
-                                        >
-                                            Submit
-                                        </button>
+                                        <div
+                                            className="relative bg-pink-600 focus-within:opacity-100 focus-within:translate-y-0 opacity-0 translate-y-2 transition-all duration-300">
+                                            <button
+                                                onClick={handleCommentSubmit}
+                                                className="bg-pink-600 text-white px-4 py-2 rounded-md"
+                                            >
+                                                Submit
+                                            </button>
+                                        </div>
                                     </div>
-
+                                    <button
+                                        onClick={handleCommentSubmit}
+                                        className="bg-pink-600 text-white px-4 py-2 rounded-md"
+                                    >
+                                        Submit
+                                    </button>
 
                                 </div>
                                 <div className="border-t-1 p-4 flex flex-col gap-4">
                                     <h4 className="text-sm">Answers {question![normalisedId].comments.length}</h4>
                                     {
-                                        question![normalisedId].comments.map((post, index) => {
-                                            return (
-                                                <div key={index}
-                                                    className={`${index === 0 ? "border border-[#6AC5AE]" : "border"} w-full flex flex-col gap-2 rounded-[24px] p-4`}>
-                                                    <div className="flex justify-between items-center  ">
-                                                        <div className="flex items-center gap-2">
-                                                            <Image src={`/profile.svg`} alt='😊' width={30} height={30}
-                                                                className='bg-gray-200 size-7 flex items-center justify-center rounded-full ' />
-                                                            <p className="text-sm">  username </p>
-                                                            <p className="text-sm">user description</p>
-                                                        </div>
-                                                        <div className="flex gap-2">
-                                                            <p className="text-sm date">
-                                                                {moment(post.createdAt, "YYYYMMDD").fromNow()}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <p className="text-sm">{post.text}</p>
-
-                                                    <div className="flex justify-between items-center py-2 ">
-
-                                                        <div className="flex gap-2 items-center justify-center">
-                                                            <Button onClick={() => {
-                                                                setOpenComment(post._id);
-                                                            }} variant={"ghost"} size={"lg"}>
-                                                                <BiSolidCommentDots size={20} />
-                                                                {post.replies.length}
-                                                            </Button>
-                                                            <Button onClick={() => {
-                                                                dispatch(upvoteComment({
-                                                                    id: normalisedId,
-                                                                    commentId: post._id
-                                                                }))
-                                                            }} variant={"ghost"} size={"lg"}>
-                                                                <BiSolidUpvote size={20} />
-                                                                {post.upVotes.length}
-                                                            </Button>
-                                                            <Button variant={"ghost"} size={"lg"}>Gift</Button>
-
-                                                        </div>
-                                                        <div>
-                                                            <Button variant={"ghost"} size={"lg"} className="w-fit">Open
-                                                                chat</Button>
-                                                        </div>
-                                                    </div>
-                                                    {
-                                                        openComment === post._id && <div>
-                                                            <div className="reply-input flex justify-between mb-2">
-                                                                <input
-                                                                    type="text"
-                                                                    value={replyTexts[post._id] || ""}
-                                                                    onChange={(e) => handleReplyChange(post._id, e.target.value)}
-                                                                    placeholder="Reply"
-                                                                    className="w-3/4 p-2 border border-gray-300 rounded-lg"
-                                                                />
-                                                                <button
-                                                                    onClick={() => handleReplySubmit(post._id)}
-                                                                    className="w-1/4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
-                                                                >
-                                                                    Reply
-                                                                </button>
+                                        [...question![normalisedId]
+                                            .comments]
+                                            .sort((a, b) => moment(b.createdAt).valueOf() - moment(a.createdAt).valueOf())
+                                            .map((post, index) => {
+                                                return (
+                                                    <div key={index}
+                                                         className={`${index === 0 ? "border border-[#6AC5AE]" : "border"} w-full flex flex-col gap-2 rounded-[24px] p-4`}>
+                                                        <div className="flex justify-between items-center  ">
+                                                            <div className="flex items-center gap-2">
+                                                                <Image src={`/profile.svg`} alt='😊' width={30}
+                                                                       height={30}
+                                                                       className='bg-gray-200 size-7 flex items-center justify-center rounded-full '/>
+                                                                <p className="text-sm">{post?.user?.fullName}</p>
+                                                                <p className="text-sm">{post.user.occupation}</p>
+                                                            </div>
+                                                            <div className="flex gap-2">
+                                                                <p className="text-sm date">
+                                                                    {moment(post.createdAt).fromNow()}
+                                                                </p>
                                                             </div>
                                                         </div>
-                                                    }
-                                                    <div className="replies ml-4">
-                                                        {post?.replies?.map((reply) => (
-                                                            <div key={reply._id} className="reply mb-2">
-                                                                <p className="text-gray-600">{reply?.text}</p>
+                                                        <p className="text-sm">{post.text}</p>
+
+                                                        <div className="flex justify-between items-center py-2 ">
+
+                                                            <div className="flex gap-2 items-center justify-center">
+                                                                <Button onClick={() => {
+                                                                    setOpenComment(post._id);
+                                                                }} variant={"ghost"} size={"lg"}>
+                                                                    <BiSolidCommentDots size={20}/>
+                                                                    {post.replies.length}
+                                                                </Button>
+                                                                <Button onClick={() => {
+                                                                    dispatch(upvoteComment({
+                                                                        id: normalisedId,
+                                                                        commentId: post._id
+                                                                    }))
+                                                                }} variant={"ghost"} size={"lg"}>
+                                                                    <BiSolidUpvote size={20}/>
+                                                                    {post.upVotes.length}
+                                                                </Button>
+                                                                <Button variant={"ghost"} size={"lg"}>Gift</Button>
+
                                                             </div>
-                                                        ))}
+                                                            <div>
+                                                                <Button variant={"ghost"} size={"lg"} className="w-fit">Open
+                                                                    chat</Button>
+                                                            </div>
+                                                        </div>
+                                                        {
+                                                            openComment === post._id && <div>
+                                                                <div className="reply-input flex justify-between mb-2">
+                                                                    <input
+                                                                        type="text"
+                                                                        value={replyTexts[post._id] || ""}
+                                                                        onChange={(e) => handleReplyChange(post._id, e.target.value)}
+                                                                        placeholder="Reply"
+                                                                        className="w-3/4 p-2 border border-gray-300 rounded-lg"
+                                                                    />
+                                                                    <button
+                                                                        onClick={() => handleReplySubmit(post._id)}
+                                                                        className="w-1/4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+                                                                    >
+                                                                        Reply
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        <div className="replies ml-4">
+                                                            {post?.replies?.map((reply) => (
+                                                                <div key={reply._id} className="reply mb-2">
+                                                                    <p className="text-gray-600">{reply?.text}</p>
+                                                                </div>
+                                                            ))}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            )
-                                        })
+                                                )
+                                            })
                                     }
                                 </div>
 

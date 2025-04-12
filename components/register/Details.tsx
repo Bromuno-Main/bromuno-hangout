@@ -5,7 +5,7 @@ import {Button} from "../ui/Button";
 import {StageProps} from "./Register";
 import {useRouter} from "next/navigation";
 
-export const Details: React.FC<StageProps> = ({formData, handleChange, setStage, setFormData}) => {
+export const Details: React.FC<StageProps> = ({formData, setCanMove, handleChange, setStage, setFormData}) => {
     const [isFormValid, setIsFormValid] = useState(false);
     const router = useRouter();
 
@@ -18,6 +18,7 @@ export const Details: React.FC<StageProps> = ({formData, handleChange, setStage,
             formData.title &&
             formData.occupation;
         setIsFormValid(!!isValid);
+        setCanMove(0, isFormValid);
     }, [formData]);
 
     return (
@@ -131,7 +132,7 @@ export const Details: React.FC<StageProps> = ({formData, handleChange, setStage,
         <Button
             onClick={(e) => {
                 e.preventDefault();
-                // setStage("");
+                setStage(1);
                 router.push("/register?s=purpose");
             }}
             type="submit"

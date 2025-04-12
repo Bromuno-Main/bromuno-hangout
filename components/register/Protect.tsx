@@ -1,13 +1,29 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Input} from "../ui/input";
 import {Button} from "../ui/Button";
 import {StageProps} from "./Register";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 
-export const Protect: React.FC<StageProps> = ({formData, handleChange, setStage, setFormData, handleClick}) => {
+export const Protect: React.FC<StageProps> = ({
+                                                  formData,
+                                                  setCanMove,
+                                                  handleChange,
+                                                  setStage,
+                                                  setFormData,
+                                                  handleClick
+                                              }) => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const {status, error} = useSelector((state: RootState) => state.auth);
+
+    const [isFormValid, setIsFormValid] = useState(false);
+
+    useEffect(() => {
+        const isValid =
+            formData.password;
+        setIsFormValid(!!isValid);
+        setCanMove(3, isFormValid);
+    }, [formData]);
 
     return (
         <section className="px-6  lg:px-24 w-full max-w-screen-sm py-10">
@@ -38,6 +54,7 @@ export const Protect: React.FC<StageProps> = ({formData, handleChange, setStage,
             {/* Submit ==========>>>>>>>>> */}
             <span className="flex justify-between w-full items-center ">
           <Button
+              disabled={!isFormValid}
               onClick={(e) => {
                   e.preventDefault();
                   if (handleClick) {

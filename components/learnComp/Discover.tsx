@@ -9,13 +9,15 @@ import { AppDispatch } from "../../redux/store";
 import { fetchQuestions } from "../../redux/questionSlice";
 import { PostQuestion } from "./PostQuestion";
 import QuestionList from "./QuestionList";
-import { useRouter, useSearchParams } from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
+import TagsList from "./TagsList";
 import { IoMdClose } from "react-icons/io";
 
 export function Discover() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [showAnswer, setShowAnswer] = useState(false);
     const [id, setId] = useState<string | null>(null);
+    const [tag, setTag] = useState<string>("All");
 
     const dispatch = useDispatch<AppDispatch>();
     const searchParams = useSearchParams();
@@ -74,16 +76,14 @@ export function Discover() {
 
                     {/* Hardcoded categories, can be dynamic */}
                     <div
-                        className="flex text-black justify-start items-center mb-6  gap-4 [&>p]:p-2 [&>p]:text-sm [&>p]:font-medium">
-                        <p>Crypto</p>
-                        <p>Web Design</p>
-                        <p>Coding</p>
-                        <p>Business</p>
+                        className="flex text-black justify-start items-center gap-4 [&>p]:p-2 [&>p]:text-sm [&>p]:font-medium">
+                        <TagsList tag={tag} setTag={setTag}/>
                     </div>
 
                     {(
                         <QuestionList
                             id={id}
+                            tag={tag}
                             setId={setId}
                             setShowAnswer={setShowAnswer}
                             showAnswer={showAnswer}

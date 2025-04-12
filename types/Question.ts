@@ -26,6 +26,7 @@ export interface Question {
     _id: string; // Question ID (typically from MongoDB ObjectId)
     question: string; // The question text
     description: string;
+    image: string;
     isUpVoted: boolean;
     user: User; // The user who posted the question
     tags: string[]; // Tags related to the question

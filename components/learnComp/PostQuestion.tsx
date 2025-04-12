@@ -2,26 +2,51 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
 import React, {useState} from "react";
 import {createQuestion} from "../../redux/questionSlice";
+import {Plus} from "lucide-react";
+import {uploadImage} from "../../redux/uploadSlice";
+import {Autocomplete, Chip, TextField} from "@mui/material";
 
 export function PostQuestion() {
 
     const dispatch = useDispatch<AppDispatch>();
     const {loading} = useSelector((state: RootState) => state.question);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [preview, setPreview] = useState<string | null>(null);
+    const {tags, fetching, error} = useSelector((state: RootState) => state.question);
 
+    // Handle file selection
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0] || null;
+        setSelectedFile(file);
+
+        // Generate preview URL
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => setPreview(reader.result as string);
+            reader.readAsDataURL(file);
+        }
+    };
 
     const [question, setQuestion] = useState("");
     const [description, setDescription] = useState("");
-    const [tags, setTags] = useState("");
+    const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!question.trim() || !tags.trim()) return;
+        if (!question.trim() || !selectedTags) return;
 
-        dispatch(createQuestion({question, description, tags: tags.split(",").map(tag => tag.trim())}));
+        const v: string = selectedFile ? await dispatch(uploadImage({image: selectedFile})).unwrap() : null;
+
+        dispatch(createQuestion({
+            question,
+            description,
+            tags: selectedTags,
+            image: v,
+        }));
 
         // Clear form after submission
         setQuestion("");
-        setTags("");
+        setSelectedTags([]);
         setDescription("");
     };
 
@@ -89,36 +114,78 @@ export function PostQuestion() {
                                 </div>
                             </p>
                         </div>
+                        <div className={`w-full flex flex-row`}>
 
                         <textarea
                             placeholder="Enter your Description"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            className="w-full p-2 border-b  font-bold placeholder:font-medium focus:outline-none   "
+                            className="w-full p-2 border-b flex-1  font-bold placeholder:font-medium focus:outline-none   "
 
                         />
+
+                            <label
+                                className="border-dashed size-[226px] rounded-[24px] border-[1.5px] border-[#48405c] flex items-center justify-center">
+                                <div
+                                    className="lg:w-[150px] lg:h-[55px] space-y-[14px] justify-items-center content-center">
+                                    {preview ? (
+                                        <img src={preview} alt="Preview"
+                                             className="w-full h-full object-contain rounded-[24px]"/>
+                                    ) : (
+                                        <div
+                                            className="lg:w-[150px] lg:h-[55px] space-y-[14px] justify-items-center content-center">
+                                            <div
+                                                className="size-[30px] bg-white rounded-full py-[9px] px-[11px] flex items-center justify-center">
+                                                <Plus color="black" size={12}/>
+                                            </div>
+                                            <p className="uppercase text-[12px]">PNG, JPEG {"(600 X 256)"}</p>
+                                        </div>
+                                    )}
+                                    <input type="file" accept="image/png, image/jpeg" className="hidden"
+                                           onChange={handleFileChange}/>
+                                </div>
+                            </label>
+                        </div>
                         <span className="flex gap-3 items-center border-b font-bold  ">
                             Tags:
-                        <input
-                            type="text"
-                            placeholder="Enter tags (comma separated)"
-                            value={tags}
-                            onChange={(e) => setTags(e.target.value)}
-                            className="w-full p-2 border font-bold placeholder:font-medium rounded Focus:broder-transparent focus:outline-none   border-gray-200 "
-                            required
-                        /></span>
+                      </span>
+                        <Autocomplete
+                            multiple
+                            id="tags-filled"
+                            value={selectedTags}
+                            onChange={(e, newValue) => setSelectedTags(newValue)}
+                            options={tags.map((option) => option)}
+                            defaultValue={[tags[13]]}
+                            freeSolo
+                            renderValue={(value: readonly string[], getItemProps) =>
+                                value.map((option: string, index: number) => {
+                                    const {key, ...itemProps} = getItemProps({index});
+                                    return (
+                                        <Chip variant="outlined" label={option} key={key} {...itemProps} />
+                                    );
+                                })
+                            }
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    variant="filled"
+                                    label="Tags"
+                                    placeholder="tags"
+                                />
+                            )}
+                        />
                         <span className="flex gap-3 items-center">
 
                             <button
                                 type="submit"
                                 className={`w-full rounded-full text-black p-2 ${
-                                    question.trim() && tags.trim() && question.length <= 60
+                                    question.trim() && selectedTags && question.length <= 60
                                         ? "bg-[#FFCD83] hover:bg-[#ffd493]"
                                         : "bg-gray-300 cursor-not-allowed"
                                 }`}
-                                disabled={!question.trim() || !tags.trim() || loading || question.length > 60}
+                                disabled={!question.trim() || !selectedTags || loading || question.length > 60}
                                 title={
-                                    !question.trim() || !tags.trim() || question.length > 60
+                                    !question.trim() || !selectedTags || question.length > 60
                                         ? "Can't Post"
                                         : ""
                                 }
