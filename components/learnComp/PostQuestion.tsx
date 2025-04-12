@@ -146,13 +146,13 @@ export function PostQuestion() {
                                 </div>
                             </label>
                         </div>
-                        <span className="flex gap-3 items-center border-b font-bold  ">
+                        <span className="flex gap-3  border-b font-bold w-full   ">
                             Tags:
-                      </span>
                         <Autocomplete
                             multiple
                             id="tags-filled"
                             value={selectedTags}
+                            style={{width: "100%", border: "none", outline: "none", background: "none", fill: "none"}}
                             onChange={(e, newValue) => setSelectedTags(newValue)}
                             options={tags.map((option) => option)}
                             defaultValue={[tags[13]]}
@@ -169,11 +169,11 @@ export function PostQuestion() {
                                 <TextField
                                     {...params}
                                     variant="filled"
-                                    label="Tags"
-                                    placeholder="tags"
+                                    placeholder="add tags"
                                 />
                             )}
                         />
+                      </span>
                         <span className="flex gap-3 items-center">
 
                             <button

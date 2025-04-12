@@ -101,12 +101,15 @@ export function Discover() {
                 {isModalOpen && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                         <div className="bg-white w-full max-w-2xl p-6 rounded-lg shadow-lg relative">
-                            <button
-                                onClick={toggleModal}
-                                className="absolute top-4 right-4 rounded-full !size-10 flex items-center justify-center  text-gray-500 hover:text-gray-700"
-                            >
-                                <IoMdClose />
-                            </button>
+                            <div className="flex justfify-between font-bold  ">
+                                New Question
+                                <div 
+                                    onClick={toggleModal}
+                                    className="absolute top-4 right-4 rounded-full flex size-8 hover:grey-200 items-center justify-center cursor-pointer "
+                                >
+                                    <IoMdClose />
+                                </div    >
+                            </div>
                             <PostQuestion />
                         </div>
                     </div>
