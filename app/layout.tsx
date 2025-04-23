@@ -37,7 +37,7 @@ export default function RootLayout({
     return (
         <html lang="en" className={bigShouldersDisplay.className}>
         <body
-            className={`${livvic.className} ${bigShouldersDisplay.variable} gap-2 flex w-screen px-10 bg-green py-2 items-center justify-center h-screen flex-col`}
+            className={`${livvic.className} ${bigShouldersDisplay.variable} gap-2 flex w-screen lg:px-10 bg-green lg:py-2 px-2 py-1 items-center justify-center h-screen flex-col`}
         >
         <NextTopLoader/>
 

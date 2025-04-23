@@ -66,7 +66,7 @@ export function Discover() {
                 <Answer id={id} answer={showAnswer} setAnswer={setShowAnswer} />
             )}
 
-            <div className="flex justify-start items-start h-full relative">
+            <div className="flex lg:flex-row flex-col justify-start items-start h-full relative">
                 <div className="w-full">
                     <div className="flex-1flex justify-between border-b  pb-2 mb-3 items-start lg:pt-2">
 
@@ -92,9 +92,9 @@ export function Discover() {
                 </div>
 
                 <div
-                    className="lg:w-1/2 max-w-screen-sm md:pl-[2rem] pb-10 justify-end min-w-[340px] min-h-[80vh] sticky right-3 top-[4vh] flex flex-col gap-4">
+                    className="lg:w-1/2  max-w-screen-sm md:pl-[2rem] lg:pb-10 justify-end min-w-[340px] lg:min-h-[80vh] sticky right-3 top-[4vh] flex flex-col gap-4">
                     <ConnectMentor />
-                    <UnlimitedBanner />
+                    <UnlimitedBanner  className="lg:block hidden"/>
                 </div>
 
                 {/* Modal */}

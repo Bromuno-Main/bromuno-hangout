@@ -52,7 +52,7 @@ function RightBar() {
   }
 
   return ( 
-  <>
+  <div className='hidden lg:block'>
     {tools && <Tools openTools={tools} setOpenTools={setTools} section={section} setSection={setSection} />}
     {mentorChat&& <MentorChat openChat={mentorChat} setOpenChat={setMentorChat} />}
     {aiChat&& <AiChat openChat={aiChat} setOpenChat={setAiChat} />}
@@ -113,7 +113,7 @@ function RightBar() {
         <p className='text-green-500'>Hello</p>
       </div>
     </section>}
-  </>
+  </div>
   )
 }
 
