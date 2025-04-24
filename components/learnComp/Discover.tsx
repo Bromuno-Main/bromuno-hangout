@@ -92,7 +92,7 @@ export function Discover() {
                 </div>
 
                 <div
-                    className="lg:w-1/2  max-w-screen-sm md:pl-[2rem] lg:pb-10 justify-end min-w-[340px] lg:min-h-[80vh] sticky right-3 top-[4vh] flex flex-col gap-4">
+                    className="lg:w-1/2 w-full  lg:max-w-screen-sm lg:pl-[2rem] lg:pb-10 justify-end lg:min-w-[340px] lg:min-h-[80vh] sticky right-3 top-[4vh] flex flex-col gap-4">
                     <ConnectMentor />
                     <UnlimitedBanner  className="lg:block hidden"/>
                 </div>

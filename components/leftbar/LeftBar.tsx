@@ -56,20 +56,19 @@ function LeftBar() {
         </div>
       </nav>
       {/* mobile bottom nav */}
-      <nav className="hover:w-[10rem]  w-full  duration-400 bottom-0  left-0 right-0 overflow-hidden delay-75 z-20 absolute lg:hidden">
+      <nav className=" w-full  bottom-0  left-0 right-0 overflow-hidden z-20 absolute lg:hidden">
         <div className={` px-1 flex ease-linear justify-between items-center transition-width duration-500 bg-white`}>
           <div className="w-full h-fit justify-items-center content-center">
-            <div className='flex w-full'>
+            <div className='flex items-center justify-between w-full'>
               {
                 Headers.map(({ route, image }, index) => {
                   const isActive = pathname === route;
                   return (
-                    <Link key={index} href={route} className={`h-[55px] relative px-6 items-center group hover:text-black hover:bg-black/5 justify-center rounded-md w-full flex ${index > 4? "hidden":""} `}>
-                      <div className={`${navWidth ? "w-[5rem]" : "w-5"} transition-width delay-200 ease-linear duration-500 flex relative gap-3`}>
-                        <div className={`flex gap-3 justify-between ${!isActive ? 'saturate-0 ' : ' !text-[#F26869]'}`}>
-                          <div className={`w-[18px] h-[20px]  `}>
-                            <Image src={image} alt='' width={20} height={20} className={`${index > 3? "hidden":""} `}/>
-                            {index === 4 ? <Menu/> : ""}
+                    <Link key={index} href={route} className={`h-[55px] relative px-6 items-center hover:text-black hover:bg-black/5 justify-center rounded-md flex ${index > 3? "hidden":""} `}>
+                      <div className={`w-full h-full flex items-center justify-center relative gap-3`}>
+                        <div className={`w-full h-full flex gap-3 justify-between ${!isActive ? 'saturate-0 ' : ' !text-[#F26869]'}`}>
+                          <div className={` w-full h-full flex items-center justify-center `}>
+                            <Image src={image} alt='' width={20} height={20} className={`size-5`}/>
                           </div>
                            
                         </div>
@@ -79,6 +78,9 @@ function LeftBar() {
                   );
                 })
               }
+              <div className='flex items-center justify-center size-[55px] '>
+               <Menu />
+              </div> 
             </div>
           </div>
           

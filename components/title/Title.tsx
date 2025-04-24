@@ -1,10 +1,18 @@
 "use client"
-import { Menu, MessageCircleIcon, User } from "lucide-react";
+import { Menu, MessageCircleIcon, User, X } from "lucide-react";
 import { usePathname } from "next/navigation"
 import { FaHamburger } from "react-icons/fa";
+import { Dialog, DialogContent } from "../ui/dialog";
+import { useState } from "react";
+import { Profile } from "../right-bar/profile";
+import { Tools } from "../notification/Notify";
+import RightBar from "../right-bar/RightBar";
 
+interface proptype {
+  className?: string 
+}
 
-function Title(){
+function Title({className}:proptype){
   const route = usePathname();
 
   const title = () => {
@@ -30,15 +38,12 @@ function Title(){
     }
   }
 
+  
+
   return (
     <>
-      <h3 className="text-black  !font-extrabold  pt-12 w-full lg:block hidden">{title()}</h3>
-      <div className="flex justify-between items-center lg:hidden h-[52px]  w-full p-2.5">
-        <h4>{title()}</h4>
-        <div className="flex gap-2.5 items-center justify-center">
-          <MessageCircleIcon size={23}/> <User size={23}/> <Menu size={23}/>
-        </div>
-      </div>
+      
+      <h3 className={`${className} text-black  !font-extrabold  lg:pt-12`}>{title()}</h3>
     </>
   )
 

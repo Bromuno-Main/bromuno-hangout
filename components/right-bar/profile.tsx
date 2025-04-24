@@ -13,7 +13,7 @@ export const Profile: React.FC = () => {
                             alt="Profile Background"
                             width={500}
                             height={500}
-                            className="object-cover object-center" />
+                            className="object-cover lg:w-[500px] w-full object-center" />
                     </div>
 
                     <Image src="/profile.svg" width="400" height="400" alt="profile" className='bg-gray-200 size-32 rounded-full mx-auto  top-[25%] absolute    ' />

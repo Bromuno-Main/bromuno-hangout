@@ -13,7 +13,7 @@ interface propType {
 function AiChat ({ setOpenChat, openChat}: propType) {
   return (
     <>
-    <div className="lg:h-[678px] lg:w-[353px] rounded-[12px] absolute top-[25%]  right-[10%]  bg-white  flex-col flex justify-between items-center">
+    {openChat && <div className="lg:h-[678px] lg:w-[353px] rounded-[12px] absolute top-[25%]  right-[10%]  bg-white  flex-col flex justify-between items-center">
       <div className="w-full  lg:h-[61px] px-3 flex justify-between items-center">
         <p >Lami Ai</p>
         <div onClick={()=>{
@@ -32,7 +32,7 @@ function AiChat ({ setOpenChat, openChat}: propType) {
           <Image src={"/voiceIcon.svg"} height={10} width={10} alt="image" className='object-fit lg:w-[19px] lg:h-[19px]'/>
         </div>
       </div>
-    </div>
+    </div>}
     </>
   )
 }
@@ -40,7 +40,7 @@ function AiChat ({ setOpenChat, openChat}: propType) {
 function MentorChat ({openChat, setOpenChat}: propType){
 return (
   <>
-  <div className="lg:h-[678px] bg-white lg:w-[353px] rounded-[12px] shadow-medium shadow-gray-800/5  absolute bottom-[5%] right-[7%]  ">
+  {openChat && <div className="lg:h-[678px] bg-white lg:w-[353px] rounded-[12px] shadow-medium shadow-gray-800/5  absolute bottom-[5%] right-[7%]  ">
     <div className="w-full px-3 border-b-1 border-gray-100 lg:h-[61px] flex justify-between items-center">
       <p >Mentor</p>
       <div onClick={()=>{
@@ -58,7 +58,7 @@ return (
     </div>
 
 
-  </div>
+  </div>}
   </>
 )
 }

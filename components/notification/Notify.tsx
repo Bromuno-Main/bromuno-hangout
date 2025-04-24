@@ -4,6 +4,7 @@ import Image from "next/image"
 import { Button } from "../ui/Button"
 import React, { SetStateAction } from "react";
 import { useState } from "react";
+import { X } from "lucide-react";
 
 const postArray = [
   {
@@ -61,7 +62,7 @@ section: string;
 setOpenTools: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export function Tools({openTools, setOpenTools, section, setSection}:propType) {
+export function Tools({ openTools, setOpenTools, section, setSection}:propType) {
   
 
   const body = () => {
@@ -78,30 +79,34 @@ export function Tools({openTools, setOpenTools, section, setSection}:propType) {
   };
 
   return (
-    <div className="lg:w-[465px] w-[1224] h-[80vh] absolute right-28 top-[20%] bg-white p-3 rounded-lg shadow-lg">
-      <div className="flex items-center justify-between p-2">
-        <div className="flex items-center gap-2">
-          <Button onClick={
-            ()=>setSection("notifications")
-          } variant={"ghost"} size={"lg"} className={`${section === "notifications"? "bg-black text-white":""} w-fit border-none `}>Notifications</Button>
+   <>
+   {
+    openTools &&  <div className="lg:w-[465px] flex-col flex w-full lg:h-[80vh] h-[100vh] lg:absolute fixed top-0 right-0 z-50 lg:right-28 lg:top-[20%] bg-white p-3 lg:rounded-lg shadow-lg">
+    <div className="flex items-center justify-between p-2">
+      <div className="flex items-center gap-2">
+        <Button onClick={
+          ()=>setSection("notifications")
+        } variant={"ghost"} size={"lg"} className={`${section === "notifications"? "bg-black text-white":""} w-fit border-none `}>Notifications</Button>
 
-          <Button onClick={
-            ()=>setSection("schedule")
-          } variant={"ghost"} size={"lg"} className={`${section === "schedule"? "bg-black text-white":""} w-fit border-none `}>Schedule</Button>
+        <Button onClick={
+          ()=>setSection("schedule")
+        } variant={"ghost"} size={"lg"} className={`${section === "schedule"? "bg-black text-white":""} w-fit border-none `}>Schedule</Button>
 
-          <Button onClick={
-            ()=>setSection("notes")
-          } variant={"ghost"} size={"lg"} className={`${section === "notes"? "bg-black text-white":""} w-fit border-none `}>Notes</Button>
-        </div>
-        <div onClick={()=>setOpenTools(false)} className="cursor-pointer">
-         <Image src={"/closeIcon.svg"} alt="close" width={20} height={20}/>
-        </div>
+        <Button onClick={
+          ()=>setSection("notes")
+        } variant={"ghost"} size={"lg"} className={`${section === "notes"? "bg-black text-white":""} w-fit border-none `}>Notes</Button>
       </div>
-      <div>
-        {body()}
+      <div onClick={()=>setOpenTools(false)} className="cursor-pointer">
+       <X/>
       </div>
-      
     </div>
+    <div className="flex-1 overflow-hidden overflow-y-scroll scrollbar-hide">
+      {body()}
+    </div>
+    
+  </div>
+   }
+   </>
   )
 }
 
