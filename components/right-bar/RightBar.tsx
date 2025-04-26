@@ -1,11 +1,11 @@
 "use client"
 import Image from 'next/image'
 import { useState } from 'react'
-import { AiChat, MentorChat } from '../chats/Chat';
+import { AiChat, MentorChat, MobileChat } from '../chats/Chat';
 import { Tools } from '../notification/Notify';
 import { set } from 'react-hook-form';
 import { Profile } from './profile';
-import { Menu } from 'lucide-react';
+import { Menu, MessageCircleIcon } from 'lucide-react';
 import { Title } from '../title/Title';
 
 
@@ -16,6 +16,7 @@ function RightBar() {
   const [mentorChat, setMentorChat] = useState(false);
   const [tools, setTools] = useState(false);
   const [section, setSection] = useState("");
+  const [mobileChat, setMobilechat] = useState(false)
 
   const handleTools = (target:string )=>{
     if (!tools) {
@@ -32,10 +33,11 @@ function RightBar() {
   
 
   return ( 
-  <div className=' lg:h-full lg:relative absolute top-0 right-0 left-0 z-50'>
+  <div className=' lg:h-full lg:relative absolute top-0 right-0 left-0 z-20'>
     <Tools openTools={tools} setOpenTools={setTools} section={section} setSection={setSection} />
     <MentorChat openChat={mentorChat} setOpenChat={setMentorChat} />
     <AiChat openChat={aiChat} setOpenChat={setAiChat} />
+    {mobileChat && <MobileChat setMobileChat={setMobilechat} mobileChat={mobileChat}/>}
     {menu ?
 
     // Rightbar items 🗨️
@@ -78,19 +80,26 @@ function RightBar() {
         </div>
       </div>
     </section>
+    {/* mobile right bar */}
     <section className='lg:hidden flex items-center justify-between bg-white px-3'>
     <div className='h-full items-center justify-center flex'>
     <Title/>
     </div>
     <div className='flex items-center justify-between '>
       <div className='  flex   items-center justify-center '>
+
+        <div onClick={()=>{
+          setMobilechat(true)
+        }} className='flex items-center justify-center '>
+          <MessageCircleIcon/>
+        </div>
         <div onClick={()=>{
           setMenu(false) 
           }} className=' m-2  overflow-hidden w-full p-3  hover hover:bg-stone-100   rounded-lg justify-center flex items-center  cursor-pointer'>
           <Image src={"/profile.svg"}  height={80} width={80} alt="image" className='object-fit  size-12'/>
         </div>
         
-        <div onClick={()=>{
+        {/* <div onClick={()=>{
           setMentorChat(true);
           }} className='w-full  p-3   overflow-hidden hover:bg-stone-100   rounded-lg justify-center flex items-center  cursor-pointer'>
           <Image src={"Ai.svg"} height={80} width={80} alt="image" className='object-fit size-8 '/>
@@ -104,7 +113,7 @@ function RightBar() {
         
         <div className='w-full p-3   overflow-clip hover:bg-stone-100  rounded-lg justify-center flex items-center cursor-pointer'>
           <Image src={"/addIcon.svg"} height={80} width={80} alt="image" className='object-fit lg:w-[24px] lg:h-[24px]'/>
-        </div>
+        </div> */}
         <div className='flex items-center justify-center ' onClick={()=>{
           setTools(true)
           setSection("notifications")
