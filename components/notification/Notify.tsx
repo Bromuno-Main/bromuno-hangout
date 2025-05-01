@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { Button } from "../ui/Button"
+import Image from "next/image";
+import { Button } from "../ui/Button";
 import React, { SetStateAction } from "react";
-import { useState } from "react";
 import { X } from "lucide-react";
 
 const postArray = [
@@ -49,105 +48,121 @@ const postArray = [
     time: "10:00 AM",
     color: "bg-[#E4FBEC]",
   },
-]
-
-
-
-
+];
 
 interface propType {
-openTools: boolean;
-setSection: React.Dispatch<SetStateAction<string>>;
-section: string;
-setOpenTools: React.Dispatch<SetStateAction<boolean>>;
+  openTools: boolean;
+  setSection: React.Dispatch<SetStateAction<string>>;
+  section: string;
+  setOpenTools: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export function Tools({ openTools, setOpenTools, section, setSection}:propType) {
-  
-
+export function Tools({
+  openTools,
+  setOpenTools,
+  section,
+  setSection,
+}: propType) {
   const body = () => {
     switch (section) {
       case "notifications":
-        return <Notifications/>;
+        return <Notifications />;
       case "schedule":
-        return <Schedule/>;
+        return <Schedule />;
       case "notes":
-        return <Notes/>;
+        return <Notes />;
       default:
-        return <Notifications/>;
+        return <Notifications />;
     }
   };
 
   return (
-   <>
-   {
-    openTools &&  <div className="lg:w-[465px] flex-col flex w-full lg:h-[80vh] h-[100vh] lg:absolute fixed top-0 right-0 z-50 lg:right-28 lg:top-[20%] bg-white p-3 lg:rounded-lg shadow-lg">
-    <div className="flex items-center justify-between p-2">
-      <div className="flex items-center gap-2">
-        <Button onClick={
-          ()=>setSection("notifications")
-        } variant={"ghost"} size={"lg"} className={`${section === "notifications"? "bg-black text-white":""} w-fit border-none `}>Notifications</Button>
+    <>
+      {openTools && (
+        <div className="lg:w-[465px] flex-col flex w-full lg:h-[80vh] h-[100vh] lg:absolute fixed top-0 right-0 z-50 lg:right-28 lg:top-[20%] bg-white p-3 lg:rounded-lg shadow-lg">
+          <div className="flex items-center justify-between p-2">
+            <div className="flex items-center gap-2">
+              <Button
+                onClick={() => setSection("notifications")}
+                variant={"ghost"}
+                size={"lg"}
+                className={`${
+                  section === "notifications" ? "bg-black text-white" : ""
+                } w-fit border-none `}
+              >
+                Notifications
+              </Button>
 
-        <Button onClick={
-          ()=>setSection("schedule")
-        } variant={"ghost"} size={"lg"} className={`${section === "schedule"? "bg-black text-white":""} w-fit border-none `}>Schedule</Button>
+              <Button
+                onClick={() => setSection("schedule")}
+                variant={"ghost"}
+                size={"lg"}
+                className={`${
+                  section === "schedule" ? "bg-black text-white" : ""
+                } w-fit border-none `}
+              >
+                Schedule
+              </Button>
 
-        <Button onClick={
-          ()=>setSection("notes")
-        } variant={"ghost"} size={"lg"} className={`${section === "notes"? "bg-black text-white":""} w-fit border-none `}>Notes</Button>
-      </div>
-      <div onClick={()=>setOpenTools(false)} className="cursor-pointer">
-       <X/>
-      </div>
-    </div>
-    <div className="flex-1 overflow-hidden overflow-y-scroll scrollbar-hide">
-      {body()}
-    </div>
-    
-  </div>
-   }
-   </>
-  )
+              <Button
+                onClick={() => setSection("notes")}
+                variant={"ghost"}
+                size={"lg"}
+                className={`${
+                  section === "notes" ? "bg-black text-white" : ""
+                } w-fit border-none `}
+              >
+                Notes
+              </Button>
+            </div>
+            <div onClick={() => setOpenTools(false)} className="cursor-pointer">
+              <X />
+            </div>
+          </div>
+          <div className="flex-1 overflow-hidden overflow-y-scroll scrollbar-hide">
+            {body()}
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
 
 function Notifications() {
   return (
-    <div className="w-full lg:h-[126px] bg-[#E4FBEC] py-3 rounded-[16px]">
-
-      </div>
-  )
+    <div className="w-full lg:h-[126px] bg-[#E4FBEC] py-3 rounded-[16px]"></div>
+  );
 }
 
 function Schedule() {
   return (
-    <div className="w-full lg:h-[126px] bg-[#E4FBEC] py-3 rounded-[16px]">
-
-      </div>
-  )
+    <div className="w-full lg:h-[126px] bg-[#E4FBEC] py-3 rounded-[16px]"></div>
+  );
 }
 
 function Notes() {
   return (
     <div className="w-full lg:h-[410px] gap-4 overflow-hidden overflow-y-scroll scrollbar-hide">
-    {
-      postArray.map((post, index) => {
+      {postArray.map((post, index) => {
         return (
-          <div key={index} className="w-full lg:h-[126px] rounded-2xl p-4 gap-2 flex flex-col ">
+          <div
+            key={index}
+            className="w-full lg:h-[126px] rounded-2xl p-4 gap-2 flex flex-col "
+          >
             <div className="flex justify-between">
               <h4 className="text-[25px] text-black">{post.title}</h4>
               <div>
-                <Image src={"/dotIcon.svg"} alt="edit" width={20} height={20}/>
+                <Image src={"/dotIcon.svg"} alt="edit" width={20} height={20} />
               </div>
-            </div>  
+            </div>
             <p className="text-sm">{post.description}</p>
             <div className="flex gap-2 justify-start items-center">
               <span className="text-gray-300 text-sm">{post.date}</span>
               <span className="text-sm text-black">{post.time}</span>
             </div>
           </div>
-        )
-      })
-    }
-  </div>
-  )
+        );
+      })}
+    </div>
+  );
 }
