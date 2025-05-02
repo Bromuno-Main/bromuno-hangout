@@ -1,11 +1,14 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { MobileChat } from "../chats/Chat";
 import { Tools } from "../notification/Notify";
 import { Profile } from "./profile";
-import { Menu, MessageCircleIcon } from "lucide-react";
+import { ChevronDown, Menu, MessageCircleIcon } from "lucide-react";
 import { Title } from "../title/Title";
+import { Headers } from "../../data";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 function RightBar() {
   const [menu, setMenu] = useState(true);
@@ -15,6 +18,7 @@ function RightBar() {
   const [section, setSection] = useState("");
   const [chatSection, setChatSection] = useState("");
   const [mobileChat, setMobilechat] = useState(false);
+  const [popUp, setPopUp] = useState(false);
 
   const handleTools = (target: string) => {
     if (!tools) {
@@ -44,6 +48,7 @@ function RightBar() {
         section={chatSection}
         setSection={setChatSection}
       />
+      <PopUp popUp={popUp} setPopUp={setPopUp} />
       {menu ? (
         // Rightbar items 🗨️
         <div className="h-full w-full">
@@ -149,8 +154,13 @@ function RightBar() {
           </section>
           {/* mobile right bar */}
           <section className="lg:hidden flex items-center justify-between bg-white px-3">
-            <div className="h-full items-center justify-center flex">
-              <Title />
+            <div
+              onClick={() => {
+                setPopUp(true);
+              }}
+              className="h-full gap-2 items-center justify-center flex"
+            >
+              <Title /> <ChevronDown />
             </div>
             <div className="flex items-center justify-between ">
               <div className="  flex   items-center justify-center ">
@@ -267,3 +277,52 @@ function RightBar() {
 }
 
 export default RightBar;
+
+interface popUpProp {
+  popUp: boolean;
+  setPopUp: React.Dispatch<SetStateAction<boolean>>;
+}
+
+const PopUp = ({ popUp, setPopUp }: popUpProp) => {
+  const pathname = usePathname();
+  return (
+    <>
+      {popUp && (
+        <div className="grid grid-cols-2 fixed bg-white left-0 bottom-0 z-50 h-[60vh]  w-full py-[21px]">
+          {Headers.map(({ label, route, image }, index) => {
+            const isActive = pathname === route;
+            return (
+              <Link
+                key={index}
+                href={route}
+                onClick={() => setPopUp(false)}
+                className={`h-[55px] relative px-6 items-center group hover:text-black hover:bg-black/5 justify-center rounded-md w-full flex `}
+              >
+                <div
+                  className={` transition-width delay-200 ease-linear duration-500 flex relative gap-3`}
+                >
+                  <div
+                    className={`flex flex-col items-center justify-center gap-3 ${
+                      !isActive ? "saturate-0 " : " !text-[#F26869]"
+                    }`}
+                  >
+                    <div className={`w-[18px] h-[20px]`}>
+                      <Image src={image} alt="" width={20} height={20} />
+                    </div>
+                    <p
+                      className={`duration-300 delay-200 ease-linear font-bold  text-neutral-400  text-[18px] leading-[22px] ${
+                        !isActive ? " " : " !text-[#F26869] "
+                      }`}
+                    >
+                      {label}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </>
+  );
+};

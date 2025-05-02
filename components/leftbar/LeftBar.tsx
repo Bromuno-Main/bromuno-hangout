@@ -130,44 +130,6 @@ function LeftBar() {
               <div className="flex items-center justify-center size-[55px] ">
                 <MoreHorizontal />
               </div>
-              {/* popup */}
-              {/* <div className="grid grid-cols-2 fixed bg-white left-0 bottom-0 z-50  w-full py-[21px]">
-                {Headers.map(({ label, route, image }, index) => {
-                  const isActive = pathname === route;
-                  return (
-                    <Link
-                      key={index}
-                      href={route}
-                      className={`h-[55px] relative px-6 items-center group hover:text-black hover:bg-black/5 justify-center rounded-md w-full flex `}
-                    >
-                      <div
-                        className={`${
-                          navWidth ? "w-[5rem]" : "w-5"
-                        } transition-width delay-200 ease-linear duration-500 flex relative gap-3`}
-                      >
-                        <div
-                          className={`flex gap-3 ${
-                            !isActive ? "saturate-0 " : " !text-[#F26869]"
-                          }`}
-                        >
-                          <div className={`w-[18px] h-[20px]`}>
-                            <Image src={image} alt="" width={20} height={20} />
-                          </div>
-                          <p
-                            className={`${
-                              navWidth ? "opacity-100" : "opacity-0"
-                            } duration-300 delay-200 ease-linear font-bold  text-neutral-400  text-[18px] leading-[22px] ${
-                              !isActive ? " " : " !text-[#F26869] "
-                            }`}
-                          >
-                            {label}
-                          </p>
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div> */}
             </div>
           </div>
         </div>
