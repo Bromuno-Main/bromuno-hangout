@@ -3,7 +3,7 @@ import Image from "next/image";
 import { SetStateAction, useState } from "react";
 import { MobileChat } from "../chats/Chat";
 import { Tools } from "../notification/Notify";
-import { Profile } from "./profile";
+import { Profile } from "../profile/Profile";
 import { ChevronDown, Menu, MessageCircleIcon } from "lucide-react";
 import { Title } from "../title/Title";
 import { Headers } from "../../data";
@@ -12,6 +12,7 @@ import Link from "next/link";
 
 function RightBar() {
   const [menu, setMenu] = useState(true);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   // const [aiChat, setAiChat] = useState(false);
   // const [mentorChat, setMentorChat] = useState(false);
   const [tools, setTools] = useState(false);
@@ -48,16 +49,16 @@ function RightBar() {
         section={chatSection}
         setSection={setChatSection}
       />
-      <PopUp popUp={popUp} setPopUp={setPopUp} />
-      {menu ? (
-        // Rightbar items 🗨️
+      <PopUp popUp={popUp} setPopUp={setPopUp} />      <Profile isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+      
+      
         <div className="h-full w-full">
-          <section className="sticky lg:min-w-[90px] lg:max-w-[90px] items-center  h-full hidden lg:flex flex-col top-0 bottom-0 right-0">
+          <section className="sticky lg:min-w-[90px] lg:max-w-[90px] items-center h-full hidden lg:flex flex-col top-0 bottom-0 right-0">
             <div className="flex flex-col items-center justify-between w-full h-full lg:pt-[22px] size-6 ">
               <div className=" w-full flex flex-col  items-center justify-center ">
                 <div
                   onClick={() => {
-                    setMenu(false);
+                    window.location.href = "/profile";
                   }}
                   className=" m-2  overflow-hidden w-full p-3  hover hover:bg-stone-100   rounded-lg justify-center flex items-center  cursor-pointer"
                 >
@@ -187,21 +188,7 @@ function RightBar() {
                   />
                 </div>
 
-                {/* <div onClick={()=>{
-          setMentorChat(true);
-          }} className='w-full  p-3   overflow-hidden hover:bg-stone-100   rounded-lg justify-center flex items-center  cursor-pointer'>
-          <Image src={"Ai.svg"} height={80} width={80} alt="image" className='object-fit size-8 '/>
-        </div>
-        
-        <div onClick={()=>{
-          setAiChat(true)
-          }} className='w-full  p-3   overflow-hidden hover:bg-stone-100   rounded-lg justify-center flex items-center  cursor-pointer'>
-          <Image src={"/img-4.png"} height={80} width={80} alt="image" className='object-fit rounded-full  size-8  '/>
-        </div>
-        
-        <div className='w-full p-3   overflow-clip hover:bg-stone-100  rounded-lg justify-center flex items-center cursor-pointer'>
-          <Image src={"/addIcon.svg"} height={80} width={80} alt="image" className='object-fit lg:w-[24px] lg:h-[24px]'/>
-        </div> */}
+              
                 <div
                   className="flex items-center justify-center "
                   onClick={() => {
@@ -214,64 +201,7 @@ function RightBar() {
               </div>
             </div>
           </section>
-        </div>
-      ) : (
-        // Your Profile 🧑‍🦲
-        // destop profile
-        <div>
-          <section className="text-black absolute border-white border min-w-[446px] max-w-[446px]  hidden   shadow-[-5px_0_35px_rgba(0,0,0,0.25)]  lg:flex flex-col top-0 bottom-0 right-0 lg:pt-[22px] lg:pb-[16px] lg:px-[12px] bg-white">
-            <div className="flex flex-col items-center justify-between w-full h-full ">
-              <div className="w-full h-[33px]  justify-between items-center flex pr-2">
-                <div
-                  onClick={() => {
-                    setMenu(true);
-                  }}
-                  className="size-6 justify-items-center  flex items-center bg-white"
-                >
-                  <Image
-                    src={"/closeIcon.svg"}
-                    alt="icon"
-                    width={10}
-                    height={10}
-                    className="w-[14.14px] h-[14.14px] cursor-pointer "
-                  />
-                </div>
-                <button className="h-full p-0 w-[49px] rounded-[24px]">
-                  Edit
-                </button>
-              </div>
-              <Profile />
-              <p className="text-green-500">Hello</p>
-            </div>
-          </section>
-          {/* mobile profile */}
-          <section className="text-black w-full h-full fixed left-0 top-0 p-3 z-50  lg:hidden flex flex-col bg-white">
-            <div className="flex flex-col items-center justify-between w-full h-full ">
-              <div className="w-full h-[33px]  justify-between items-center flex pr-2">
-                <div
-                  onClick={() => {
-                    setMenu(true);
-                  }}
-                  className="size-6 justify-items-center  flex items-center bg-white"
-                >
-                  <Image
-                    src={"/closeIcon.svg"}
-                    alt="icon"
-                    width={10}
-                    height={10}
-                    className="w-[14.14px] h-[14.14px] cursor-pointer "
-                  />
-                </div>
-                <button className="h-full p-0 w-[49px] rounded-[24px]">
-                  Edit
-                </button>
-              </div>
-              <Profile />
-              <p className="text-green-500">Hello</p>
-            </div>
-          </section>
-        </div>
-      )}
+        </div>    
     </div>
   );
 }

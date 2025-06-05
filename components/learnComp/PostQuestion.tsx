@@ -146,7 +146,7 @@ export function PostQuestion() {
                                 </div>
                             </label>
                         </div>
-                        <span className="flex gap-3  border-b font-bold w-full   ">
+                        <span className="flex gap-3  border-b font-bold w-full">
                             Tags:
                         <Autocomplete
                             multiple

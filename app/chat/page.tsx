@@ -10,14 +10,12 @@ import Link from "next/link";
 export default function Page() {
     const dispatch = useDispatch<AppDispatch>();
     const {questions, loading, error} = useSelector((state: RootState) => state.question);
-
-
     useEffect(() => {
         dispatch(fetchQuestions())
         return () => {
-
+            // Cleanup if needed
         }
-    }, []);
+    }, [dispatch]);
 
     const [question, setQuestion] = useState("");
     const [description, setDescription] = useState("");

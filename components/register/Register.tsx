@@ -131,28 +131,30 @@ export function Register() {
         }));
     };
 
-    const Body = useMemo(() => {
-        switch (s) {
-            case "details":
+    const memoizedHandleSubmit = React.useCallback(handleSubmit, [s]);
+
+    const renderStageComponent = useMemo(() => {
+        switch (stage) {
+            case 0:
                 return <Details setCanMove={setCanMove} setFormData={setFormData} formData={formData}
                                 handleChange={handleChange}
                                 setStage={setStage}/>;
-            case "purpose":
+            case 1:
                 return <Purpose setCanMove={setCanMove} setFormData={setFormData} formData={formData}
                                 handleChange={handleChange}
                                 setStage={setStage}/>;
-            case "contacts":
+            case 2:
                 return <Contacts setCanMove={setCanMove} setFormData={setFormData} formData={formData}
                                  handleChange={handleChange}
                                  setStage={setStage}/>;
-            case "protect":
-                return <Protect setCanMove={setCanMove} handleClick={handleSubmit} setFormData={setFormData}
+            case 3:
+                return <Protect setCanMove={setCanMove} handleClick={memoizedHandleSubmit} setFormData={setFormData}
                                 formData={formData}
                                 handleChange={handleChange} setStage={setStage}/>;
             default:
                 return <div/>;
         }
-    }, [stage, formData, handleChange]);
+    }, [stage, formData, handleChange, setStage, memoizedHandleSubmit]);
 
     return (
         <div className="w-full h-[100vh] fixed top-0 left-0  bg-[#FFF9F0] z-50 flex items-center justify-start">
@@ -168,7 +170,7 @@ export function Register() {
             </div>
             <div className="bg-[#FFF9F0] lg:w-[54%] h-full ">
                 <RailNav canMove={canMove} stage={stage} setStageAction={setStage}/>
-                {Body}
+                {renderStageComponent}
 
             </div>
         </div>

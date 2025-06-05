@@ -46,7 +46,7 @@ function LeftBar() {
                     >
                       <div
                         className={`flex gap-3 ${
-                          !isActive ? "saturate-0 " : " !text-[#F26869]"
+                          !isActive ? "saturate-0 brightness-0 " : " !text-[#F26869]"
                         }`}
                       >
                         <div className={`w-[18px] h-[20px]`}>

@@ -1,8 +1,7 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
 import { Answer } from "./Answer";
-import { UnlimitedBanner } from "./go-ulimited";
-import { ConnectMentor } from "./connect-mentor";
+
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { fetchQuestions } from "../../redux/questionSlice";
@@ -65,20 +64,16 @@ export function Discover() {
         <Answer id={id} answer={showAnswer} setAnswer={setShowAnswer} />
       )}
 
-      <div className="flex lg:flex-row flex-col-reverse justify-start items-start h-full relative">
-        <div className="w-full">
-          <div className="flex-1flex justify-between border-b  pb-2 mb-3 items-start lg:pt-2">
-            <div onClick={toggleModal}> Ask Questions, Get Expert Answers</div>
-          </div>
-
-          <div className="lg:w-1/2 w-full  lg:max-w-screen-sm lg:pl-[2rem] lg:pb-10 justify-end lg:min-w-[340px] lg:min-h-[80vh] lg:sticky right-3 top-[4vh] lg:hidden flex flex-col gap-4">
-            <ConnectMentor />
-            <UnlimitedBanner className="lg:block hidden" />
-          </div>
+      <div className="flex  flex-col justify-center items-start h-full relative">
+        <div className="w-full flex flex-col gap-6  items-center ">
+        
 
           {/* Hardcoded categories, can be dynamic */}
-          <div className="flex text-black justify-start items-center gap-4 [&>p]:p-2 [&>p]:text-sm [&>p]:font-medium">
-            <TagsList tag={tag} setTag={setTag} />
+          <div className="flex justify-between items-center rounded-lg  px-4 w-full flex-1  top-6 gap-4">
+            <TagsList tag={tag} setTag={setTag} />  
+            <div onClick={toggleModal} className="flex justify-center  bg-white rounded-lg px-4 font-bold uppercase border  items-center cursor-pointer py-2 ">
+            <div> new Post</div>
+          </div>
           </div>
 
           {
@@ -92,14 +87,14 @@ export function Discover() {
           }
         </div>
 
-        <div className="lg:w-1/2 w-full   lg:max-w-screen-sm lg:pl-[2rem] lg:pb-10 justify-end lg:min-w-[340px] lg:min-h-[80vh] lg:sticky hidden right-3 top-[4vh] lg:flex flex-col gap-4">
+        {/* <div className="lg:w-1/2 w-full   lg:max-w-screen-sm lg:pl-[2rem] lg:pb-10 justify-end lg:min-w-[340px] lg:min-h-[80vh] lg:sticky hidden right-3 top-[4vh] lg:flex flex-col gap-4">
           <ConnectMentor />
           <UnlimitedBanner className="lg:block hidden" />
-        </div>
+        </div> */}
 
         {/* Modal */}
         {isModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="fixed inset-0  bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-white w-full max-w-2xl p-6 rounded-lg shadow-lg relative">
               <div className="flex justfify-between font-bold  ">
                 New Question

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "rm -rf .next dist"
+    "postinstall": "if exist .next rd /s /q .next && if exist dist rd /s /q dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -16,6 +16,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@mui/material": "^7.0.2",
     "@nextui-org/react": "^2.3.6",
+    "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-slot": "^1.1.2",
     "@reduxjs/toolkit": "^2.6.1",
@@ -31,6 +32,7 @@
     "clsx": "^2.1.1",
     "country-list": "^2.3.0",
     "country-state-city": "^3.2.1",
+    "emoji-picker-react": "^4.12.2",
     "framer-motion": "^11.18.2",
     "gsap": "^3.12.5",
     "js-cookie": "^3.0.5",
@@ -51,7 +53,7 @@
     "swiper": "^11.0.7",
     "tailwind-merge": "^2.4.0",
     "yup": "^1.4.0",
-    "zod": "^3.24.2"
+    "zod": "^3.25.51"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",

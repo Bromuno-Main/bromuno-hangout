@@ -1,0 +1,32 @@
+"use client";
+
+import React from 'react';
+import { Big_Shoulders_Display, Livvic } from "next/font/google";
+import "../globals.css";
+
+const bigShouldersDisplay = Big_Shoulders_Display({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--big-shoulders",
+  fallback: ["inter"],
+  preload: true,
+});
+
+const livvic = Livvic({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+});
+
+export default function ProfileTemplate({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className={bigShouldersDisplay.className}>
+      <body className={`${livvic.className} ${bigShouldersDisplay.variable} min-h-screen`}>
+        {children}
+      </body>
+    </html>
+  );
+}
