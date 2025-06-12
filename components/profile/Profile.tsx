@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Image from 'next/image';
 import { ProfileOverviewTab } from './ProfileOverviewTab';
 import { ProfileWorkTab } from './ProfileWorkTab';
 import { ProfilePaymentTab } from './ProfilePaymentTab';
 import { LoadingState } from '../ui/LoadingState';
+import {dispatch} from "../../redux/store";
+import {fetchUser, selectCurrentUser, selectUserError, selectUserStatus} from "../../redux/userSlice";
+import { useSelector } from 'react-redux';
 
 interface ProfileProps {
     isOpen: boolean;
@@ -14,7 +17,11 @@ interface ProfileProps {
 export const Profile: React.FC<ProfileProps> = ({ isOpen, isPage = false }) => {
     const [activeTab, setActiveTab] = React.useState('overview');
     const [isLoading, setIsLoading] = React.useState(true);
-    const [error, setError] = React.useState<Error | null>(null);
+    // const [error, setError] = React.useState<Error | null>(null);
+
+    const user = useSelector(selectCurrentUser);
+    const status = useSelector(selectUserStatus);
+    const error = useSelector(selectUserError);
 
     React.useEffect(() => {
         const loadProfileData = async () => {
@@ -23,7 +30,7 @@ export const Profile: React.FC<ProfileProps> = ({ isOpen, isPage = false }) => {
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 setIsLoading(false);
             } catch (err) {
-                setError(err instanceof Error ? err : new Error('Failed to load profile'));
+                // setError(err instanceof Error ? err : new Error('Failed to load profile'));
                 setIsLoading(false);
             }
         };
@@ -34,7 +41,7 @@ export const Profile: React.FC<ProfileProps> = ({ isOpen, isPage = false }) => {
     if (error) {
         return (
             <div className="flex items-center justify-center p-4 bg-red-50 rounded-lg">
-                <p className="text-red-600">Error loading profile: {error.message}</p>
+                <p className="text-red-600">Error loading profile: {error}</p>
             </div>
         );
     }
@@ -47,7 +54,7 @@ export const Profile: React.FC<ProfileProps> = ({ isOpen, isPage = false }) => {
                 <div className="flex gap-4 items-center">
                     <button className="text-gray-700 hover:text-gray-900">Edit</button>
                     <button className="text-gray-700 hover:text-gray-900">Logout</button>
-                   
+
                 </div>
             </div>
 
@@ -73,9 +80,9 @@ export const Profile: React.FC<ProfileProps> = ({ isOpen, isPage = false }) => {
                     </div>
                 {/* Profile Info */}
                 <div className=" text-white text-center">
-                    <h2 className="text-2xl text-inherit font-bold">Yungbld</h2>
-                    <p className=" text-inherit">@yunbld</p>
-                    <p className="text-sm text-inherit mt-1">Nairobi, Kenya</p>
+                    <h2 className="text-2xl text-inherit font-bold">{user?.fullName}</h2>
+                    <p className=" text-inherit">@{user?.fullName}</p>
+                    <p className="text-sm text-inherit mt-1">{user?.country}, Kenya</p>
                 </div>
                 </div>
 
