@@ -1,14 +1,12 @@
-"use client";
-
 import { Big_Shoulders_Display, Livvic } from "next/font/google";
-import NextTopLoader from "nextjs-toploader";
-import LeftBar from "../components/leftbar/LeftBar";
-import FormContextProvider from "../context/formContext";
+import { LayoutContent } from "../components/layout/LayoutContent";
 import "./globals.css";
-import RightBar from "../components/right-bar/RightBar";
-import { StoreProvider } from "../redux/StoreProvider";
-import LoadingOverlay from "../components/LoadingOverlay";
-import AppInitializer from "../components/AppInitializer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Bromuno Hangout",
+  description: "Connect with fellow developers, join events, find jobs, and collaborate on projects.",
+};
 
 const bigShouldersDisplay = Big_Shoulders_Display({
   subsets: ["latin"],
@@ -25,39 +23,18 @@ const livvic = Livvic({
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className={bigShouldersDisplay.className}>
-      <body
-        className={`${livvic.className} ${bigShouldersDisplay.variable} gap-2 flex w-screen  bg-green   items-center justify-center h-screen flex-col`}
+      <LayoutContent 
+        bigShouldersClass={bigShouldersDisplay.className}
+        livvicClass={livvic.className}
+        bigShouldersVar={bigShouldersDisplay.variable}
       >
-        <NextTopLoader />
-
-        {/* <span className="uppercase text-sm opacity-60 text-white hover:opacity-100 duration-300">
-          bromuno hangout
-        </span> */}
-
-        <main className="relative flex bg-white rounded w-full h-full {lg:max-h-[900px]}  flex-1 max-w-screen-3xl overflow-clip overflow-y-scroll scrollbar-hide">
-          <StoreProvider>
-            <AppInitializer />
-            <LoadingOverlay />
-            <FormContextProvider>
-              <LeftBar />
-              <div className="h-full relative scrollbar-hide flex flex-col flex-1  bg-gray-50 overflow-hidden overflow-y-scroll pt-[100px] lg:pt-0">
-                {/* <Title className="hidden lg:block" /> */}
-                <div className="flex-1 ">{children}</div>
-              </div>
-
-              <RightBar />
-            </FormContextProvider>
-          </StoreProvider>
-        </main>
-        {/* <span className="text-sm text-white opacity-60 hover:opacity-100 duration-300">
-          Copyright © 2025 Bromuno technologies. All rights reserved
-        </span> */}
-      </body>
+        {children}
+      </LayoutContent>
     </html>
   );
 }

@@ -93,10 +93,12 @@ export default function QuestionList({
                     </div>
                     <div className="flex flex-col items-start justify-start mt-3 gap-2 text-black text-sm">
                       {items.image && (
-                        <img
+                        <Image
                           className={`w-full h-[300px]`}
                           src={items.image}
-                          alt=""
+                          alt="Question image"
+                          width={800}
+                          height={300}
                         />
                       )}
                       <p className="text-md mb-[.2rem] font-bold">

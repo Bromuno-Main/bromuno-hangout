@@ -4,9 +4,11 @@
 import { Profile } from '../../components/profile/Profile'
 
 export default function ProfilePage() {
+  const handleClose = () => {
+    // No-op for page mode
+  };
+
   return (
-    <Profile isOpen={true} isPage={true} onClose={function (): void {
-      throw new Error('Function not implemented.')
-    } } />
+    <Profile isOpen={true} isPage={true} onClose={handleClose} />
   )
 }

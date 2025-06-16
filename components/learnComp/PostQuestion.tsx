@@ -5,6 +5,7 @@ import {createQuestion} from "../../redux/questionSlice";
 import {Plus} from "lucide-react";
 import {uploadImage} from "../../redux/uploadSlice";
 import {Autocomplete, Chip, TextField} from "@mui/material";
+import Image from 'next/image';
 
 export function PostQuestion() {
 
@@ -12,19 +13,19 @@ export function PostQuestion() {
     const {loading} = useSelector((state: RootState) => state.question);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
-    const {tags, fetching, error} = useSelector((state: RootState) => state.question);
-
-    // Handle file selection
+    const {tags, fetching, error} = useSelector((state: RootState) => state.question);    // Handle file selection
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0] || null;
+        if (!event.target || !event.target.files) return;
+        
+        const file = event.target.files[0];
+        if (!file) return;
+        
         setSelectedFile(file);
 
         // Generate preview URL
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = () => setPreview(reader.result as string);
-            reader.readAsDataURL(file);
-        }
+        const reader = new FileReader();
+        reader.onload = () => setPreview(reader.result as string);
+        reader.readAsDataURL(file);
     };
 
     const [question, setQuestion] = useState("");
@@ -128,9 +129,13 @@ export function PostQuestion() {
                                 className="border-dashed size-[226px] rounded-[24px] border-[1.5px] border-[#48405c] flex items-center justify-center">
                                 <div
                                     className="lg:w-[150px] lg:h-[55px] space-y-[14px] justify-items-center content-center">
-                                    {preview ? (
-                                        <img src={preview} alt="Preview"
-                                             className="w-full h-full object-contain rounded-[24px]"/>
+                                    {preview ? (                                        <Image 
+                                            src={preview} 
+                                            alt="Preview"
+                                            width={600}
+                                            height={300}
+                                            className="w-full h-full object-contain rounded-[24px]"
+                                        />
                                     ) : (
                                         <div
                                             className="lg:w-[150px] lg:h-[55px] space-y-[14px] justify-items-center content-center">

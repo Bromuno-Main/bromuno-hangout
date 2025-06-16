@@ -214,11 +214,12 @@ export function Answer({ answer, setAnswer, id }: propType) {
                   </div>
                   <div className="border-stone-300 border-b-1 py-6 px-10  ">
                     <div className="px-5 flex flex-col  gap-3">
-                      {question![normalisedId]?.image && (
-                        <img
+                      {question![normalisedId]?.image && (                        <Image
                           className={`w-full h-[300px] object-fit`}
                           src={question![normalisedId]?.image}
-                          alt=""
+                          alt="Question image"
+                          width={800}
+                          height={300}
                         />
                       )}
                       <p className="font-semibold">
