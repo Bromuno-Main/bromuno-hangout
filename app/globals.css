@@ -80,27 +80,28 @@ h2 {
     font-size: 64px;
     line-height: 5rem;
     font-weight: 700;
-    font-family: "Big Shoulders Display", sans-serif;
+    font-family: "livvic Display", sans-serif;
 }
 
 h3 {
     font-size: 2rem;
     font-weight: 600;
     line-height: 1.7rem;
-    font-family: "Big Shoulders Display", sans-serif;
+    font-family: "livvic", sans-serif;
 }
 
 h4 {
     font-size: 1.6rem;
     line-height: 1.7rem;
-    font-weight: 600;
+    font-weight: 700;
+    font-family: "livvic", sans-serif;
 }
 
 h5 {
     font-size: 1rem;
     line-height: 2rem;
-    font-weight: 600;
-    font-family: "Roboto Serif", sans-serif;
+    font-weight: 700;
+    font-family: "livvic", sans-serif;
 }
 
 @media (max-width: 620px) {

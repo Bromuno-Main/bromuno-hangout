@@ -37,22 +37,22 @@ export default function RootLayout({
   return (
     <html lang="en" className={bigShouldersDisplay.className}>
       <body
-        className={`${livvic.className} ${bigShouldersDisplay.variable} gap-2 flex w-screen lg:px-10 bg-green lg:py-2 px-2 py-1 items-center justify-center h-screen flex-col`}
+        className={`${livvic.className} ${bigShouldersDisplay.variable} gap-2 flex w-screen  bg-green  items-center justify-center h-screen flex-col`}
       >
         <NextTopLoader />
-
+{/* 
         <span className="uppercase text-sm opacity-60 text-white hover:opacity-100 duration-300">
           bromuno hangout
-        </span>
+        </span> */}
 
-        <main className="relative flex bg-white rounded-2xl w-full h-full lg:max-h-[900px]  flex-1 max-w-screen-2xl overflow-clip overflow-y-scroll scrollbar-hide">
+        <main className="relative flex bg-white  w-full h-full  flex-1 max-w-screen-3xl overflow-clip overflow-y-scroll scrollbar-hide">
           <StoreProvider>
             <AppInitializer />
             <LoadingOverlay />
             <FormContextProvider>
               <LeftBar />
               <div className="h-full relative scrollbar-hide flex flex-col flex-1 px-4 bg-gray-50 overflow-hidden overflow-y-scroll pt-[100px] lg:pt-0">
-                <Title className="hidden lg:block" />
+                {/* <Title className="hidden lg:block" /> */}
                 <div className="flex-1 py-2">{children}</div>
               </div>
 
@@ -60,9 +60,9 @@ export default function RootLayout({
             </FormContextProvider>
           </StoreProvider>
         </main>
-        <span className="text-sm text-white opacity-60 hover:opacity-100 duration-300">
+        {/* <span className="text-sm text-white opacity-60 hover:opacity-100 duration-300">
           Copyright © 2025 Bromuno technologies. All rights reserved
-        </span>
+        </span> */}
       </body>
     </html>
   );

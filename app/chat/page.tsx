@@ -77,7 +77,7 @@ export default function Page() {
             {error && <p className="text-red-500 mt-2">{error}</p>}
 
             <div className="mt-6">
-                <h2 className="text-lg font-semibold">Created Questions</h2>
+                <h4 className="text-lg font-semibold">Created Questions</h4>
                 <ul className="mt-2 space-y-2">
                     {questions.map((q) => (
                         <Link href={`/chat/${q._id}`} key={q._id} className="p-2 border rounded shadow-sm">

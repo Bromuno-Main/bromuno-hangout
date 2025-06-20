@@ -61,7 +61,7 @@ export default function Page() {
                     <p className="text-lg text-gray-600 mb-4">Tags: {question[normalisedId].tags.join(", ")}</p>
 
                     <div className="comments-section">
-                        <h2 className="text-2xl font-bold mb-4">Comments</h2>
+                        <h4 className="text-2xl font-bold mb-4">Comments</h4>
                         {question[normalisedId].comments.map((comment) => (
                             <div key={comment._id} className="comment mb-4">
                                 <p className="text-lg">{comment.text}</p>

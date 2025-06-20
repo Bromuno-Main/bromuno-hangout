@@ -652,7 +652,7 @@ interface PostProps {
 }
 export const Posts: PostProps[] = [
  {
-  image: "/tyler-the-creator-igor-album-art-2019-billboard-embed.web",
+  image: "/album-cover.webp",
   username: "Picky Tonia",
   title: "Where can one learn how to do good work?",
   description: "This project is considered an academic project, and it's goal is to design..."
@@ -705,8 +705,7 @@ export const Headers: HeadersProp[] = [
     label: "Events",
     route: "/events",
     image:'/eventsIcon.svg'
-  },
-  {
+  },  {
     label: "Project",
     route: "/projects",
     image:'/projectsIcon.svg'

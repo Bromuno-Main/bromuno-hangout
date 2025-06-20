@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation"
 import { FaHamburger } from "react-icons/fa";
 import { Dialog, DialogContent } from "../ui/dialog";
 import { useState } from "react";
-import { Profile } from "../right-bar/profile";
 import { Tools } from "../notification/Notify";
 import RightBar from "../right-bar/RightBar";
 
@@ -43,7 +42,7 @@ function Title({className}:proptype){
   return (
     <>
       
-      <h3 className={`${className} text-black  !font-extrabold  lg:pt-12`}>{title()}</h3>
+      <h5 className={`${className} text-black  !font-extrabold  lg:pt-12`}>{title()}</h5>
     </>
   )
 

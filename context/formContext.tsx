@@ -125,209 +125,130 @@ interface FormType {
     setSubscriptionType: React.Dispatch<React.SetStateAction<Subscription|null>>;
 }
 
-export const FormContext = createContext<FormType | null>(null);
+// Create a context with a default value
+const FormContext = createContext({
+  activeTab: 0,
+  setActiveTab: (tab: number) => {},
+  activeService: 0,
+  setActiveService: (service: number) => {},
+  offer: null as Offer | null,
+  setOffer: (offer: Offer | null) => {},
+  industry: { anchorKey: '', currentKey: '' },
+  setIndustry: (industry: any) => {},
+  country: { anchorKey: '', currentKey: '' },
+  setCountry: (country: any) => {},
+  business: { anchorKey: '', currentKey: '' },
+  setBusiness: (business: any) => {},
+  brief: '',
+  setBrief: (brief: string) => {},
+  work: '',
+  setWork: (work: string) => {},
+  phone: '',
+  setPhone: (phone: string) => {},
+  email: '',
+  setEmail: (email: string) => {},
+  loading: false,
+  setLoading: (loading: boolean) => {},
+  projectFor: '',
+  setProjectFor: (projectFor: string) => {},
+  subcriptionType: null,
+  setSubcriptionType: (type: any) => {},
+  onSubmit: async (data: any) => {},
+  prevClicked: () => {},
+  handleSubmit: (() => {}) as any,
+  control: {} as any,
+  errors: {} as any,
+  register: (() => {}) as any,
+  nextClicked: (props?: SelectedProp) => {}
+});
 
 export default function FormContextProvider({ children }: FormContextProp) {
-    const [title, setTitle] = useState<Selection | any>(new Set([]));
-    const [activeTab, setActiveTab] = useState<number>(0);
-    const services = [{ title: "Service Package", index: 0 }, { title: "Subscription", index: 1 }];
-    const [activeService, setActiveService] = useState<number>(0);
-    const [offer, setOffer] = useState<Offer>();
-    const [industry, setIndustry] = useState<Selection | any>(new Set([]));
-    const [country, setCountry] = useState<Selection | any>(new Set([]));
-    const [business, setBusiness] = useState<Selection | any>(new Set([]));
-    const [brief, setBrief] = useState<string>("");
-    const [work, setWork] = useState<string>("");
-    const [name, setName] = useState<string>("");
-    const [phone, setPhone] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [loading, setLoading] = useState<boolean>(false);
-    const [projectFor, setProjectFor] = useState<string>("");
-    const [paymentType, setPaymentType] = useState<string>("Service Package");
-    const [subcriptionType, setSubscriptionType] = useState<Subscription | null>(null);
+  const [activeTab, setActiveTab] = useState(0);
+  const [activeService, setActiveService] = useState(0);
+  const [offer, setOffer] = useState<Offer | null>(null);
+  const [industry, setIndustry] = useState<{ anchorKey: string, currentKey: string }>({ anchorKey: '', currentKey: '' });
+  const [country, setCountry] = useState<{ anchorKey: string, currentKey: string }>({ anchorKey: '', currentKey: '' });
+  const [business, setBusiness] = useState<{ anchorKey: string, currentKey: string }>({ anchorKey: '', currentKey: '' });
+  const [brief, setBrief] = useState('');
+  const [work, setWork] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [projectFor, setProjectFor] = useState('');
+  const [subcriptionType, setSubcriptionType] = useState(null);
 
-    
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset
+  } = useForm({
+    resolver: yupResolver(returnCurrentSchema(activeTab))
+  });
 
-
-    const { register, handleSubmit, control, formState: { errors } } = useForm({
-        resolver: yupResolver(returnCurrentSchema(activeTab)),
-    });
-
-
-    const nextClicked = ({ onSelected }: SelectedProp = {}) => {
-        switch (activeTab) {
-            case 0:
-                if (onSelected) {
-                    onSelected();
-                }
-
-                return setActiveTab(1);
-            case 1:
-                if (projectFor === "") {
-                    return;
-                }
-
-                return setActiveTab(2);
-
-            case 2:
-                return setActiveTab(3);
-
-            case 3:
-                return setActiveTab(4);
-            case 4:
-
-                return setActiveTab(4);
-
-            default:
-                return setActiveTab(4);
-
-        }
+  const nextClicked = ({ onSelected }: SelectedProp = {}) => {
+    if (activeTab === 4) return;
+    if (onSelected) {
+      onSelected();
     }
-    const prevClicked = () => {
-        switch (activeTab) {
-            case 0:
+    setActiveTab(prev => prev + 1);
+  };
 
-                return setActiveTab(0);
-            case 1:
+  const prevClicked = () => {
+    if (activeTab === 0) return;
+    setActiveTab(prev => prev - 1);
+  };
 
-                return setActiveTab(0);
-
-            case 2:
-
-                return setActiveTab(1);
-
-            case 3:
-
-                return setActiveTab(2);
-            case 4:
-
-                return setActiveTab(3);
-
-            default:
-                return setActiveTab(0);
-
-        }
+  const onSubmit = async (data: any) => {
+    if (activeTab === 4) {
+      // Handle final submission
+      return;
     }
+    nextClicked();
+  };
 
-    const onSubmit = (data: any) => {
-        if (activeTab === 4) {
-            // onFinalSubmit(data);
-        } else {
-            nextClicked(data);
-        }
-    };
+  const value = {
+    activeTab,
+    setActiveTab,
+    activeService,
+    setActiveService,
+    offer,
+    setOffer,
+    industry,
+    setIndustry,
+    country,
+    setCountry,
+    business,
+    setBusiness,
+    brief,
+    setBrief,
+    work,
+    setWork,
+    phone,
+    setPhone,
+    email,
+    setEmail,
+    loading,
+    setLoading,
+    projectFor,
+    setProjectFor,
+    subcriptionType,
+    setSubcriptionType,
+    onSubmit,
+    prevClicked,
+    handleSubmit,
+    control,
+    errors,
+    register,
+    nextClicked
+  };
 
-    const onFinalSubmit = async () => {
-
-
-
-        const selectedIndustry = businessSectors.find(sector => sector.id.toString() === industry.anchorKey);
-        console.log(selectedIndustry?.sector);
-        const selectedBusiness = businessSectors.find(sector => sector.id.toString() === business.anchorKey);
-        console.log(selectedBusiness?.sector);
-        const selectedCountry = Country.getAllCountries().find(sector => sector.isoCode.toString() === country.anchorKey);
-        console.log(selectedCountry?.name);
-        const selectedTitle = nameTitle.find(sector => sector.id.toString() === title.anchorKey);
-        console.log(selectedTitle?.sector);
-        // return;
-        setLoading(true);
-        try {
-            const payload = {
-                industry: selectedIndustry?.sector,
-                brief,
-                businessInto: selectedBusiness?.sector,
-                yourWork: work,
-                yourTitle: selectedTitle?.sector,
-                yourName: name,
-                yourCountry: selectedCountry?.name,
-                yourPhone: phone,
-                businessType: offer?.title,
-                yourEmail: email,
-                projectFor,
-                paymentType: services[activeService],
-                subscriptionType: subcriptionType,
-                // Add other fields as necessary
-            };
-
-            // Using fetch
-            const response = await fetch('https://email.bromuno.com/submit-form/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload),
-            });
-
-            // If you prefer axios
-            /*
-            const response = await axios.post('https://your-api-endpoint.com/submit-form', payload);
-            */
-
-            if (response.ok) {
-                const result = await response.json();
-                console.log('Form submitted successfully:', result);
-                // Handle success, maybe navigate to a success page or close the modal
-            } else {
-                console.error('Error submitting form:', response.statusText);
-                // Handle the error, show a notification or alert
-            }
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            // Handle the error, show a notification or alert
-        } finally {
-            setLoading(false);
-            setActiveTab(5);
-        }
-    };
-
-
-
-    return (
-        <FormContext.Provider value={{
-            title,
-            setTitle,
-            activeTab,
-            setActiveTab,
-            services,
-            activeService,
-            setActiveService,
-            offer,
-            setOffer,
-            industry,
-            setIndustry,
-            country,
-            setCountry,
-            business,
-            setBusiness,
-            brief,
-            setBrief,
-            work,
-            setWork,
-            phone,
-            setPhone,
-            email,
-            setEmail,
-            loading,
-            setLoading,
-            projectFor,
-            setProjectFor,
-            nextClicked,
-            prevClicked,
-            onSubmit,
-            onFinalSubmit,
-            // Provide form-related methods
-            register,
-            handleSubmit,
-            control,
-            errors,
-            paymentType,
-            setPaymentType,
-            subcriptionType,
-            setSubscriptionType,
-            name,
-            setName,
-        }}>
-            {children}
-        </FormContext.Provider>
-    );
+  return (
+    <FormContext.Provider value={value}>
+      {children}
+    </FormContext.Provider>
+  );
 }
+
+export { FormContext };

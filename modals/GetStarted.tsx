@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button,  SelectItem, Select,   Selection } from "@nextui-org/react";
-import { businessSectors, Offer, offers, ProjectFor, servicesList, subscriptionList,  } from "../data";
+import { businessSectors, Offer, ProjectFor, servicesList, subscriptionList } from "../data";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -275,10 +275,10 @@ export default function GetStarted({ isOpen,  onClose }: AppProps) {
         return (
           <div className="flex flex-col min-h-[80vh] overflow-scroll">
             <div className="w-full flex items-center flex-col py-10 max-w-screen-2xl m-auto h-full justify-center   ">
-              <h2 className="font-normal text-gray-400 ">What can we do for you?</h2>
+              <h4 className="font-normal text-gray-400 ">What can we do for you?</h4>
               <p>Select the kind of product you want to build</p>
               <div className={`p-4 m-4 flex lg:flex-row flex-col   gap-6 cursor-pointer`}>
-                {offers.map((offer, index) => (
+                {offer && Array.isArray(offer) && offer.map((offer: Offer, index: number) => (
                   <div
                     onClick={() => nextClicked({
                       onSelected: () => {
