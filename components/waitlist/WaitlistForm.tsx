@@ -261,7 +261,14 @@ export function WaitlistForm() {  const [formData, setFormData] = useState<Waitl
           alt="hangout_logo"
           height={200}
           width={200}
-          className="  absolute top-4 right-4 "
+          className="  absolute lg:bottom-16  mix-blend-difference opacity-80 "
+        />
+        <Image
+          src="/logo-icon.svg"
+          alt="hangout_logo"
+          height={150}
+          width={150}
+          className="  absolute  "
         />
       </div>
       <div className="bg-[#FFF9F0] lg:w-[54%] flex-1 flex flex-col  w-full  lg:h-full">
