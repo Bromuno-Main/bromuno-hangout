@@ -25,7 +25,7 @@ function RightBar() {
   const [popUp, setPopUp] = useState(false);
 
   const navItems: NavItem[] = [
-    { icon: MessageCircleIcon, route: '/chat', color: 'text-gray-600' },
+    { icon: MessageCircleIcon, route: '/conversations', color: 'text-gray-600' },
     { icon: Calendar, route: '/calendar', color: 'text-gray-600' },
     { icon: Bookmark, route: '/bookmarks', color: 'text-gray-600' },
     { icon: Award, route: '/awards', color: 'text-gray-600' },
@@ -63,41 +63,44 @@ function RightBar() {
         <div className="h-full w-full">
           {/* Desktop right bar */}
           <nav className="sticky lg:min-w-[80px] lg:max-w-[80px] items-center h-full hidden lg:flex flex-col top-0 bottom-0 right-0">
-            <div className="flex flex-col items-center justify-between w-full h-full py-6">
-              <Link href="/profile" className="mb-8">
-                <div className="w-10 h-10 rounded-full overflow-hidden">
-                  <Image
-                    src="/profile.svg"
-                    alt="Profile"
-                    width={40}
-                    height={40}
-                    className="object-cover"
-                  />
+            
+              <div className="flex flex-col items-center justify-between w-full h-full py-6">
+                <div className="space-y-4">
+                  <Link href="/profile" className="mb-8">
+                    <div className="w-10 h-10 rounded-full overflow-hidden">
+                      <Image
+                        src="/profile.svg"
+                        alt="Profile"
+                        width={40}
+                        height={40}
+                        className="object-cover"
+                      />
+                    </div>
+                  </Link>
+                  <div className="flex flex-col items-center space-y-4">
+                    {navItems.map((item, index) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={index}
+                          href={item.route}
+                          className={`p-3 rounded-xl transition-colors ${usePathname() === item.route ? "bg-black" : "hover:bg-gray-100"}`}
+                        >
+                          <Icon className={`w-6 h-6 ${usePathname() === item.route ? "invert" : "text-black"}`} />
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
-              </Link>
-
-              <div className="flex flex-col items-center space-y-6">
-                {navItems.map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link 
-                      key={index} 
-                      href={item.route}
-                      className="p-3 rounded-xl hover:bg-gray-100 transition-colors"
-                    >
-                      <Icon className={`w-6 h-6 ${item.color}`} />
-                    </Link>
-                  );
-                })}
               </div>
-
-              <button
-                onClick={() => handleTools("notifications")}
-                className="p-3 rounded-xl hover:bg-gray-100 transition-colors"
-              >
-                <Menu className="w-6 h-6 text-gray-600" />
-              </button>
-            </div>
+              <div>
+                <button
+                  onClick={() => handleTools("notifications")}
+                  className="p-3 rounded-xl hover:bg-gray-100 transition-colors"
+                >
+                  <Menu className="w-6 h-6 text-gray-600" />
+                </button>
+              </div>
           </nav>
 
           {/* Mobile right bar */}
@@ -169,15 +172,13 @@ const PopUp = ({ popUp, setPopUp }: popUpProp) => {
                 className={`h-[55px] relative px-6 items-center group hover:text-black hover:bg-black/5 justify-center rounded-md w-full flex`}
               >
                 <div className="transition-width delay-200 ease-linear duration-500 flex relative gap-3">
-                  <div className={`flex flex-col items-center justify-center gap-3 ${
-                    !isActive ? "saturate-0" : "text-[#F26869]"
-                  }`}>
+                  <div className={`flex flex-col items-center justify-center gap-3 ${!isActive ? "saturate-0" : "text-[#F26869]"
+                    }`}>
                     <div className="w-[18px] h-[20px]">
                       <Image src={image} alt="" width={20} height={20} />
                     </div>
-                    <p className={`duration-300 delay-200 ease-linear font-bold text-neutral-400 text-[18px] leading-[22px] ${
-                      !isActive ? "" : "text-[#F26869]"
-                    }`}>
+                    <p className={`duration-300 delay-200 ease-linear font-bold text-neutral-400 text-[18px] leading-[22px] ${!isActive ? "" : "text-[#F26869]"
+                      }`}>
                       {label}
                     </p>
                   </div>

@@ -165,10 +165,8 @@ h3 {
 @layer components {
     button {
         @apply bg-slate-50 px-6 py-2 rounded-md duration-200 hover:bg-lime-300 hover:text-black text-nowrap;
-    }
-
-    Input {
-        @apply focus-within:outline-transparent px-3 text-green-800 focus-visible:outline-transparent border-none rounded-lg !bg-transparent focus:!border-transparent active:!outline-transparent w-full border-gray-700 p-2;
+    }    Input {
+        @apply focus-within:outline-transparent px-3 text-green-800 focus-visible:outline-transparent border-none rounded-lg !bg-transparent focus:!border-transparent active:!outline-transparent w-full border-gray-700 p-2 !font-[Livvic];
     }
 
     Select {
@@ -176,7 +174,11 @@ h3 {
     }
 
     option {
-        @apply font-[Livvic];
+        @apply !font-[Livvic];
+    }
+
+    input, select, textarea {
+        @apply !font-[Livvic];
     }
 
     .input-primary {
@@ -184,7 +186,7 @@ h3 {
     }
 
     .wire-pill {
-        @apply rounded-full border-2 border-[#A0A0A0] bg-transparent overflow-hidden relative h-11 flex;
+        @apply rounded-full border-2 caret-pink-500 border-[#A0A0A0] bg-transparent overflow-hidden relative h-11 flex;
     }
 
     .error {
