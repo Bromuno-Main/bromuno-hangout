@@ -69,7 +69,7 @@ export default function QuestionList({
                   >
                     <div className="flex text-black text-sm items-center justify-between w-full">
                       <div className="flex justify-center items-center gap-2">
-                        <Image
+                        <img
                           src={`/profile.svg`}
                           alt="icon"
                           width={15}
@@ -93,7 +93,7 @@ export default function QuestionList({
                     </div>
                     <div className="flex flex-col items-start justify-start mt-3 gap-2 text-black text-sm">
                       {items.image && (
-                        <Image
+                        <img
                           className={`w-full h-[300px]`}
                           src={items.image}
                           alt="Question image"
