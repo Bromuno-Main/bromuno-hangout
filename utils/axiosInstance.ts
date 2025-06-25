@@ -11,6 +11,7 @@ export const setUnauthorizedHandler = (handler: () => void) => {
 
 const axiosInstance = axios.create({
     // baseURL: BASE_URL,
+
     baseURL:'https://bromuno-hangout-server.onrender.com/api/v1',
     timeout: 40000,
     headers: {
