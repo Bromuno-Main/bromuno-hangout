@@ -38,7 +38,8 @@ export function useFormContext() {
             control: {} as any,
             errors: {},
             register: (() => { }) as any,
-            nextClicked: () => { }
+            nextClicked: () => { },
+            services:[],
         };
     }
     return context;

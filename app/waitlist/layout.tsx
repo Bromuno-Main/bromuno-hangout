@@ -1,4 +1,6 @@
 import { Metadata } from 'next'
+import LoadingOverlay from "../../components/LoadingOverlay";
+import React from "react";
 
 export const metadata: Metadata = {
   title: 'Join the Waitlist | Bromuno Hangout',
@@ -10,5 +12,9 @@ export default function WaitlistLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children;
+  return <>
+
+    <LoadingOverlay/>
+  {children}
+  </>
 }

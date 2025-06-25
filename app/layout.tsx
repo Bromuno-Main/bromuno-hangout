@@ -9,6 +9,7 @@ import { Title } from "../components/title/Title";
 import { StoreProvider } from "../redux/StoreProvider";
 import LoadingOverlay from "../components/LoadingOverlay";
 import AppInitializer from "../components/AppInitializer";
+import {Toaster} from "sonner";
 
 const bigShouldersDisplay = Big_Shoulders_Display({
   subsets: ["latin"],
@@ -39,8 +40,9 @@ export default function RootLayout({
       <body
         className={`${livvic.className} ${bigShouldersDisplay.variable} gap-2 flex w-screen  bg-green  items-center justify-center h-screen flex-col`}
       >
+      <Toaster />
         <NextTopLoader />
-{/* 
+{/*
         <span className="uppercase text-sm opacity-60 text-white hover:opacity-100 duration-300">
           bromuno hangout
         </span> */}

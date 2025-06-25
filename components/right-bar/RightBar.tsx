@@ -44,6 +44,8 @@ function RightBar() {
     }
   };
 
+  const usePathName = usePathname();
+
   return (
     <div className="lg:h-full lg:relative absolute top-0 right-0 left-0 z-20">
       <Tools
@@ -63,7 +65,7 @@ function RightBar() {
         <div className="h-full w-full">
           {/* Desktop right bar */}
           <nav className="sticky lg:min-w-[80px] lg:max-w-[80px] items-center h-full hidden lg:flex flex-col top-0 bottom-0 right-0">
-            
+
               <div className="flex flex-col items-center justify-between w-full h-full py-6">
                 <div className="space-y-4">
                   <Link href="/profile" className="mb-8">
@@ -84,9 +86,9 @@ function RightBar() {
                         <Link
                           key={index}
                           href={item.route}
-                          className={`p-3 rounded-xl transition-colors ${usePathname() === item.route ? "bg-black" : "hover:bg-gray-100"}`}
+                          className={`p-3 rounded-xl transition-colors ${usePathName === item.route ? "bg-black" : "hover:bg-gray-100"}`}
                         >
-                          <Icon className={`w-6 h-6 ${usePathname() === item.route ? "invert" : "text-black"}`} />
+                          <Icon className={`w-6 h-6 ${usePathName=== item.route ? "invert" : "text-black"}`} />
                         </Link>
                       );
                     })}

@@ -80,50 +80,6 @@ const returnCurrentSchema = (activeTab: number): SchemaType => {
 
 
 
-interface FormType {
-    title: Selection | any;
-    setTitle:  React.Dispatch<React.SetStateAction<Selection | any>>;
-    activeTab: number;
-    setActiveTab: React.Dispatch<React.SetStateAction<number>>;
-    services: { title: string; index: number }[];
-    activeService: number;
-    setActiveService: React.Dispatch<React.SetStateAction<number>>;
-    offer: Offer | undefined;
-    setOffer: React.Dispatch<React.SetStateAction<Offer | undefined>>;
-    industry: Selection | any;
-    setIndustry: React.Dispatch<React.SetStateAction<Selection | any>>;
-    country: Selection | any;
-    setCountry: React.Dispatch<React.SetStateAction<Selection | any>>;
-    business: Selection | any;
-    setBusiness: React.Dispatch<React.SetStateAction<Selection | any>>;
-    brief: string;
-    setBrief: React.Dispatch<React.SetStateAction<string>>;
-    work: string;
-    setWork: React.Dispatch<React.SetStateAction<string>>;
-    phone: string;
-    setPhone: React.Dispatch<React.SetStateAction<string>>;
-    email: string;
-    setEmail: React.Dispatch<React.SetStateAction<string>>;
-    loading: boolean;
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-    projectFor: string;
-    name: string;
-    setName:  React.Dispatch<React.SetStateAction<string>>;
-    setProjectFor: React.Dispatch<React.SetStateAction<string>>;
-    nextClicked: ({ onSelected }?: SelectedProp) => void;
-    prevClicked: ({ onSelected }?: SelectedProp) => void;
-    onSubmit: (data: any) => void;
-    onFinalSubmit: () => Promise<void>;
-    // Add form-related methods here
-    register: UseFormRegister<FormValues>;
-    handleSubmit: UseFormHandleSubmit<FormValues>;
-    control: Control<FormValues>;
-    errors: FieldErrors<FormValues>;
-    paymentType: string;
-    setPaymentType: React.Dispatch<React.SetStateAction<string>>;
-    subcriptionType: Subscription | null;
-    setSubscriptionType: React.Dispatch<React.SetStateAction<Subscription|null>>;
-}
 
 // Create a context with a default value
 const FormContext = createContext({
@@ -159,7 +115,8 @@ const FormContext = createContext({
   control: {} as any,
   errors: {} as any,
   register: (() => {}) as any,
-  nextClicked: (props?: SelectedProp) => {}
+  nextClicked: (props?: SelectedProp) => {},
+
 });
 
 export default function FormContextProvider({ children }: FormContextProp) {
@@ -176,6 +133,7 @@ export default function FormContextProvider({ children }: FormContextProp) {
   const [loading, setLoading] = useState(false);
   const [projectFor, setProjectFor] = useState('');
   const [subcriptionType, setSubcriptionType] = useState(null);
+
 
   const {
     register,
@@ -241,7 +199,7 @@ export default function FormContextProvider({ children }: FormContextProp) {
     control,
     errors,
     register,
-    nextClicked
+    nextClicked,
   };
 
   return (

@@ -51,7 +51,7 @@ export default function Gym() {
       </div>
 
       {/* Workout Programs */}
-      <h4 className="text-xl font-bold mt-4">Today's Training</h4>
+      <h4 className="text-xl font-bold mt-4">Today&apos;s Training</h4>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {workoutPrograms.map((program, index) => (
           <div key={index} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">

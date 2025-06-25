@@ -10,9 +10,10 @@ export interface StageProps {
   setStage: (stage: number) => void;
   setFormData: (data: any) => void;
   handleClick?: () => void;
+  loading:boolean;
 }
 
-export function ContactInfo({ formData, setCanMove, handleChange, setStage, setFormData, handleClick }: StageProps) {
+export function ContactInfo({ formData, setCanMove, handleChange, setStage, setFormData, loading,handleClick }: StageProps) {
   const [isFormValid, setIsFormValid] = useState(false);  useEffect(() => {
     const isValid = formData.email && formData.phoneNumber;
     setIsFormValid(!!isValid);
@@ -237,9 +238,9 @@ export function ContactInfo({ formData, setCanMove, handleChange, setStage, setF
           className="h-[39px] w-[131px] rounded-[32px] py-2 px-8 bg-[#FFCD83] text-black hover:text-[#FFCD83] hover:bg-black"
           disabled={!isFormValid}
         >
-          Submit
+          {loading?"Loading...": "Submit"}
         </Button>
-       
+
       </span>
     </section>
   );

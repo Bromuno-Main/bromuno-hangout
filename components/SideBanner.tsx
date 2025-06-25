@@ -5,7 +5,7 @@ import FormBanner from './barners/form-banner';
 
 
 interface SideBannerProps {
-    data?: Offer; // data can be of type Offer or undefined
+    data: Offer|null; // data can be of type Offer or undefined
 }
 
 export default function SideBanner({data}:SideBannerProps) {

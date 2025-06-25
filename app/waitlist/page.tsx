@@ -18,15 +18,15 @@ export default function WaitlistPage() {
             height={64}
             className="mx-auto mb-6 object-cover"
           />
-          <h4 className="text-2xl font-bold mb-4">You're on the list! 🎉</h4>
+          <h4 className="text-2xl font-bold mb-4">You&apos;re on the list! 🎉</h4>
           <p className="text-gray-600 mb-6">
-            Thank you for your interest! We'll notify you as soon as Bromuno Hangout is ready.
-            We're working hard to create something amazing.
+            Thank you for your interest! We&apos;ll notify you as soon as Bromuno Hangout is ready.
+            We&apos;re working hard to create something amazing.
           </p>
         </div>
       </div>
     );
   }
 
-  return <WaitlistForm />;
+  return <WaitlistForm setSubmitted={setSubmitted} />;
 }

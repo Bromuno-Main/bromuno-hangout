@@ -13,14 +13,14 @@ export default function PaymentMethod() {
         setActiveService,
         loading,
         prevClicked,
-        nextClicked,
         offer,
-        services,
-        onFinalSubmit,
+        handleSubmit,
         subcriptionType,
-        setSubscriptionType,
+        setSubcriptionType,
 
     } = useFormContext();
+
+    const services:{ title: string; index: number }[] = [];
 
     const servicePage = (): React.ReactNode => {
 
@@ -42,7 +42,7 @@ export default function PaymentMethod() {
                     >
 
                         {servicesList.map((offer, index) => (
-                            <div onClick={() => setSubscriptionType(offer)} key={index} className={`${subcriptionType == offer ? "border-green-800 border-2" : "border-gray-300 border-1"} relative cursor-pointer  p-4 pb-3  m-2  px-6 flex-1 justify-between py-8 lg:min-h-[350px] overflow-hidden flex flex-col gap-3 rounded-3xl`} >
+                            <div onClick={() => setSubcriptionType(offer)} key={index} className={`${subcriptionType == offer ? "border-green-800 border-2" : "border-gray-300 border-1"} relative cursor-pointer  p-4 pb-3  m-2  px-6 flex-1 justify-between py-8 lg:min-h-[350px] overflow-hidden flex flex-col gap-3 rounded-3xl`} >
                                 <div className={`${subcriptionType == offer ? "bg-green-800" : "bg-transparent"} w-full p-2 absolute top-0 left-0 right-0 h-[70px]`}></div>
                                 <div className="z-10 ">
 
@@ -79,7 +79,7 @@ export default function PaymentMethod() {
                     >
 
                         {subscriptionList.map((offer, index) => (
-                            <div onClick={() => setSubscriptionType(offer)} key={index} className={`${subcriptionType == offer ? "border-green-800 border-2" : "border-gray-300 border-1"} overflow-hidden relative cursor-pointer p-4 pb-3  m-2 px-6  flex-1 justify-between py-8 lg:min-h-[350px] flex flex-col gap-3 rounded-3xl`} >
+                            <div onClick={() => setSubcriptionType(offer)} key={index} className={`${subcriptionType == offer ? "border-green-800 border-2" : "border-gray-300 border-1"} overflow-hidden relative cursor-pointer p-4 pb-3  m-2 px-6  flex-1 justify-between py-8 lg:min-h-[350px] flex flex-col gap-3 rounded-3xl`} >
                                 <div className={`${subcriptionType == offer ? "bg-green-800" : "bg-transparent"} w-full p-2 absolute top-0 left-0 right-0 h-[70px]`}></div>
                                 <div className='z-10'>
                                     <div className='flex w-full justify-between mb-5'>
@@ -120,7 +120,7 @@ export default function PaymentMethod() {
                 <div className='h-[152px] lg:w-[247px] rounded-[16px]'><SideBanner data={offer} /> </div>
                 <div>
                     <h3 className="font-bold lg:text-[48px]">Payment plan</h3>
-                    <p className='text-[16px] leading-[20px] font-normal'>Please select the most convenient payment plan. No worries you're not paying yet, and you can change your decision later.
+                    <p className='text-[16px] leading-[20px] font-normal'>Please select the most convenient payment plan. No worries you&apos;re not paying yet, and you can change your decision later.
                     </p>
                     <a href="#" className='text-[#1FA886] text-[16px] leading-[20px]'>Learn more about payment</a>
                 </div>
@@ -139,7 +139,7 @@ export default function PaymentMethod() {
             </div>
             <div className={`flex gap-2 lg:w-[500px] w-full justify-between px-6 flex-row py-10`}>
                 <button onClick={() => prevClicked()} >Back</button>
-                <Button isLoading={loading} disabled={loading || subcriptionType == null} className="bg-green" onClick={() => onFinalSubmit()} >Submit</Button>
+                <Button isLoading={loading} disabled={loading || subcriptionType == null} className="bg-green" onClick={() => handleSubmit()} >Submit</Button>
             </div>
         </div>
     )

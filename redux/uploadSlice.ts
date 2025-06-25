@@ -14,13 +14,14 @@ export const uploadImage = createAsyncThunk(
 
             const formData = new FormData();
             formData.append("file", image);
-            formData.append("mediaType", "user_image");
 
             const response = await axiosInstance.post("/uploads/", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             });
+
+
 
             return response.data.data.secure_url;
         } catch (error: unknown) {
