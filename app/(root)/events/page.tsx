@@ -33,7 +33,7 @@ export default function Events() {
   ];
 
   return (
-    <div className="w-full h-full gap-4 flex flex-col">
+    <div className="w-full h-full gap-4 flex flex-col p-6">
       {/* Header Section */}
       <div className="flex gap-3 items-center justify-start">
         <p className="text-lg font-bold text-[#188268] border-b-[2px] border-b-[#188268]">

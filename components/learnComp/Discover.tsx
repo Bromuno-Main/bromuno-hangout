@@ -65,7 +65,7 @@ export function Discover() {
         <Answer id={id} answer={showAnswer} setAnswer={setShowAnswer} />
       )}
 
-      <div className="flex lg:flex-row flex-col-reverse justify-start items-start h-full relative">
+      <div className="flex lg:flex-row flex-col-reverse justify-start items-start h-full relative p-6">
         <div className="w-full">
           <div className="flex-1flex justify-between border-b  pb-2 mb-3 items-start lg:pt-2">
             <div onClick={toggleModal}> Ask Questions, Get Expert Answers</div>

@@ -27,7 +27,7 @@ export default function Jobs() {
   ];
 
   return (
-    <div className="w-full h-full gap-4 flex flex-col">
+    <div className="w-full h-full gap-4 p-6 flex flex-col">
       {/* Header Section */}
       <div className="flex gap-3 items-center justify-between">
         <div className="flex gap-3 items-center">

@@ -45,9 +45,12 @@ function RightBar() {
   };
 
   const usePathName = usePathname();
+  const isProfile = usePathName === "/profile"
 
   return (
-    <div className="lg:h-full lg:relative absolute top-0 right-0 left-0 z-20">
+    <>
+    {
+      !isProfile && <div className="lg:h-full lg:relative absolute top-0 right-0 left-0 z-20">
       <Tools
         openTools={tools}
         setOpenTools={setTools}
@@ -148,6 +151,8 @@ function RightBar() {
         </div>
       )}
     </div>
+    }
+    </>
   );
 }
 

@@ -25,7 +25,7 @@ export default function ConversationsPage() {
   }, []);
 
   return (
-    <div className="flex h-full w-full">
+    <div className="flex h-full w-full p-6">
       {(!isMobile || !activeChat) && (
         <ConversationList
           conversations={conversations}

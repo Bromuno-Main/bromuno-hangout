@@ -2,6 +2,13 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { ChevronDown, LucideVerified, Target, X } from 'lucide-react';
+import { ProfileOverviewTab } from './ProfileOverviewTab';
+import { ProfileWorkTab } from './ProfileWorkTab';
+import { ProfilePaymentTab } from './ProfilePaymentTab';
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogOverlay, DialogTitle } from '../ui/dialog';
+import { set } from 'react-hook-form';
+import EditProfileOverview from './EditProfileOverview';
 
 interface UserProfileProps {
   onNavigateBack: () => void;
@@ -9,6 +16,9 @@ interface UserProfileProps {
 
 const UserProfile: React.FC<UserProfileProps> = ({ onNavigateBack }) => {
   const [activeTab, setActiveTab] = React.useState('overview');
+  const [isEditProfileOpen, setIsEditProfileOpen] = React.useState(false);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [sectionToEdit, setSectionToEdit] = React.useState('');
 
   const tabs = [
     { id: 'overview', label: 'Overview' },
@@ -25,107 +35,141 @@ const UserProfile: React.FC<UserProfileProps> = ({ onNavigateBack }) => {
     { label: 'Products', value: '153' }
   ];
 
+ 
+
+  const dropDown = [
+    { label: 'Photo', value: '153' },
+    { label: 'Account Details', value: '153' },
+    { label: 'Work', value: '153' },
+    { label: 'Payment', value: '153' },
+    { label: 'Security', value: '153' },
+  ]
+
+  const handleEditProfile = (option: string) => {
+    setIsDialogOpen(true);
+    setSectionToEdit(option);
+  }
+
   return (
-    <div className="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-      {/* Header with close and edit buttons */}      <div className="flex justify-between items-center p-4">
-        <div className="flex items-center gap-4">
+    <div className="w-full h-[100dvh]  lg:mx-auto bg-gray-50 overflow-hidden flex-col flex items-center overflow-y-scroll scrollbar-hide gap-5 mt-5">
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogOverlay className="fixed inset-0 bg-black/5" />
+        <DialogHeader className='hidden'/>
+        <DialogTitle className='hidden'/>
+        <DialogContent className='max-w-[846px] w-full h-[100vh] lg:h-full lg:max-h-[600px] overflow-y-scroll scrollbar-hide p-0 border-none lg:rounded-2xl'>
+          <EditProfileOverview section={sectionToEdit} />
+          <DialogClose className='absolute top-2 right-2 p-2 rounded-full bg-white hover:bg-gray-200'>
+            <X/>
+          </DialogClose>
+        </DialogContent>
+        <DialogFooter className='hidden'/>
+        
+      </Dialog>
+      {/* Header with close and edit buttons */}      <div className="flex justify-between items-center bg-inherit p-4 w-full shrink-0 sticky top-0 z-10 ">
+        <div className="flex items-center gap-4 ">
           <button 
             onClick={onNavigateBack} 
-            className="text-gray-600 hover:text-gray-800 flex items-center gap-2"
+            className="rounded-full p-0 h-10 w-10 hover:bg-gray-300 bg-white flex items-center justify-center"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            <span>Back</span>
+            <X/>
           </button>
           <h4 className="text-xl font-semibold">Account</h4>
         </div>
-        <div className="flex gap-4">
-          <button className="text-gray-600 hover:text-gray-800">Edit</button>
-          <button className="text-gray-600 hover:text-gray-800">Logout</button>
+        <div className="flex gap-2">
+          
+          <div className='relative'>
+            <button onClick={()=>setIsEditProfileOpen(true)} className="text-gray-600  hover:text-[16px] hover:bg-gray-50 flex items-center justify-center gap-1 group ">
+            Edit 
+            <ChevronDown color='gray' className='group-hover:font-black size-[18px] group-hover:size-5'/>
+            
+          </button>
+            {/* Edit profile dropdown */}
+      
+            {isEditProfileOpen && (
+             <>
+              <span className='fixed w-full h-full inset-0  bg-transparent cursor-pointer transition-all duration-500' onClick={()=>setIsEditProfileOpen(false)}/>
+              <span  className="absolute top-10 z-10 right-10 w-[208px] h-[222px] py-[14px] border-[1px]  bg-white shadow-lg rounded-[18px]">
+                {dropDown.map((item, index) => (
+                  
+                    <span key={index} onClick={()=>handleEditProfile(item.label)} className="flex h-[38px] p-2 justify-start gap-3 items-center hover:bg-gray-100  border-b rounded cursor-pointer ">
+                    <span className='h-5 w-5 bg-black rounded-full'/>
+                    <span className="text-sm font-semibold">{item.label}</span>
+                  
+                  </span>
+                ))}
+            </span>
+             </>
+            )}
+          </div>
+          <button className="text-gray-600 hover:text-gray-800 hover:bg-gray-300 rounded-full">Logout</button>
         </div>
       </div>
 
-      {/* Profile Banner */}
-      <div className="relative h-48 bg-gradient-to-r from-red-100 to-pink-100">
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
+      
+      
+
+     <div className=' overflow-hidden rounded-2xl h-[259px] w-full max-w-4xl relative shrink-0'>
+      <Image src={"/profileBg.jpg"} width={673} height={1200} alt='bggradient' className='inset-0 h-full w-full absolute object-cover'/>
+       {/* Profile Banner */}
+      <div className="relative flex flex-col gap-2 items-center justify-center h-full bg-red-700/70">
+        
+        <div className='absolute top-5 left-5 bg-[#146C57]  text-sm  py-[6px] px-3 gap-2.5 flex items-center justify-center rounded-full'>
+          <Target size={18} color='#aff4c6' className='text-[#aff4c6]'/>
+          <span className="text-white text-xs" >Available</span>
+        </div>
+        <div className="relative  w-fit">
           <div className="relative">
             <Image
               src="/casual-group-meeting.jpeg"
               alt="Profile"
-              width={120}
-              height={120}
+              width={100}
+              height={100}
               className="rounded-full border-4 border-white"
             />
-            <span className="absolute bottom-2 right-2 w-4 h-4 bg-green-500 border-2 border-white rounded-full" />
+            
           </div>
         </div>
+        {/* Profile Info */}
+      <div className=" text-center ">
+        <h1 className="text-2xl font-bold text-white">Yungbld</h1>
+        <p className=" text-white">@ynbld</p>
+        <p className="mt-2 text-white">Nairobi, Kenya</p>
+      </div>
       </div>
 
-      {/* Profile Info */}
-      <div className="pt-16 pb-8 text-center">
-        <h1 className="text-2xl font-bold">Yungbld</h1>
-        <p className="text-gray-600">@ynbld</p>
-        <p className="mt-2">Nairobi, Kenya</p>
-      </div>
+      
+     </div>
 
-      {/* Navigation Tabs */}
-      <div className="flex border-b">
+      <div className=' max-w-[534px] w-full mb-[22px] shrink-0'>
+        {/* Navigation Tabs */}
+      <div className="flex gap-4 w-fit">
         {tabs.map(tab => (
-          <button
+          <span
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`flex-1 py-3 ${
+            className={`cursor-pointer p-3 ${
               activeTab === tab.id
-                ? 'border-b-2 border-red-500 text-red-500'
+                ? 'border-b-2 border-red-500 font-black text-red-500'
                 : 'text-gray-600'
             }`}
           >
             {tab.label}
-          </button>
+          </span>
         ))}
       </div>
 
       {/* Content Area */}
       <div className="p-6">
         {activeTab === 'overview' && (
-          <div className="space-y-6">
-            <div className="prose max-w-none">
-              <p className="text-gray-600">
-                Hello, I am Young. I am a project manager and design enthusiast. I love
-                managing product and I am hoping to collaborate with your
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-2">Tithan</h3>
-              <div className="w-full h-2 bg-gray-200 rounded">
-                <div className="w-[13%] h-full bg-red-300 rounded" />
-              </div>
-              <p className="text-right text-sm text-gray-600">13%</p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4 flex items-center gap-2">
-                Verified <span className="text-red-500">●</span>
-              </h3>
-              <p className="text-gray-600">Project Manager, Video Editor,</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, index) => (
-                <div key={index} className="flex justify-between p-3 bg-gray-50 rounded">
-                  <span className="text-gray-600">{stat.label}</span>
-                  <span className="font-semibold">{stat.value}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-4 p-2 bg-red-50 rounded text-sm text-center text-red-600">
-              Your eyes only
-            </div>
-          </div>
+          <ProfileOverviewTab />
         )}
+        {activeTab === 'work' && (
+          <ProfileWorkTab/>
+        )}
+        {activeTab === 'payment' && (
+          <ProfilePaymentTab/>
+        )}
+      </div>
       </div>
     </div>  );
 };

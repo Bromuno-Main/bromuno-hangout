@@ -91,7 +91,7 @@ export const Profile: React.FC<ProfileProps> = ({ isOpen, isPage = false }) => {
                             { id: 'work', label: 'Work' },
                             { id: 'payment', label: 'Payment & Subscription' }
                         ].map(tab => (
-                            <button
+                            <span
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`px-2 py-1 border-b-2 transition-colors hover:bg-transparent rounded-none bg-transparent ${
@@ -101,7 +101,7 @@ export const Profile: React.FC<ProfileProps> = ({ isOpen, isPage = false }) => {
                                 }`}
                             >
                                 {tab.label}
-                            </button>
+                            </span>
                         ))}
                     </nav>{/* Tab Content */}
                     <div className="mt-6">

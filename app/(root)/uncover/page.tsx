@@ -32,7 +32,7 @@ export default function Uncover() {
   ];
 
   return (
-    <div className="w-full h-full gap-4 flex flex-col">
+    <div className="w-full h-full gap-4 flex flex-col p-6">
       {/* Header Section */}
       <div className="flex gap-3 items-center justify-between">
         <div className="flex gap-3 items-center">

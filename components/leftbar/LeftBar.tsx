@@ -10,6 +10,8 @@ import { MoreHorizontal } from "lucide-react";
 function LeftBar() {
   const [navWidth, setNavWidth] = useState(false);
   const pathname = usePathname();
+  const isProfile = pathname === "/profile"
+
 
   const handleMouseEnter = () => {
     setNavWidth(true);
@@ -21,6 +23,7 @@ function LeftBar() {
 
   return (
     <>
+      { !isProfile && <>
       <nav
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -134,6 +137,7 @@ function LeftBar() {
           </div>
         </div>
       </nav>
+      </> }
     </>
   );
 }

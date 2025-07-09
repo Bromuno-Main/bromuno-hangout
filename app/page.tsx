@@ -13,7 +13,7 @@ export default function Home() {
     <>
     
       
-        <div className="h-[300vh]    flex flex-col justify-start items-start">
+        <div className="h-[300vh] flex flex-col justify-start items-start">
 
           <HomePage />
           

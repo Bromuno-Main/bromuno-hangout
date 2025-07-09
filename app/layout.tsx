@@ -53,9 +53,9 @@ export default function RootLayout({
             <LoadingOverlay />
             <FormContextProvider>
               <LeftBar />
-              <div className="h-full relative scrollbar-hide flex flex-col flex-1 px-4 bg-gray-50 overflow-hidden overflow-y-scroll pt-[100px] lg:pt-0">
+              <div className="h-full relative scrollbar-hide flex flex-col flex-1 px-4 bg-gray-50 overflow-hidden overflow-y-scroll ">
                 {/* <Title className="hidden lg:block" /> */}
-                <div className="flex-1 py-2">{children}</div>
+                <div className="flex-1">{children}</div>
               </div>
 
               <RightBar />

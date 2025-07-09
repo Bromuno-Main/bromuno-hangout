@@ -48,7 +48,7 @@ const sampleEvents: Event[] = [
 
 export default function Calendar() {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full p-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div>

@@ -11,11 +11,7 @@ const ProfilePage = () => {
     router.back();
   };
 
-  return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
-      <UserProfile onNavigateBack={handleNavigateBack} />
-    </div>
-  );
+  return <UserProfile onNavigateBack={handleNavigateBack} />
 };
 
 export default ProfilePage;
