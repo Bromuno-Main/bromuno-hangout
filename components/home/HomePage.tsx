@@ -197,8 +197,8 @@ export default function HomePage() {
             {rumbleEvents.map((event, index) => (
               <div key={index} className="border rounded-lg p-4 hover:shadow-sm transition-shadow">
                 <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h4 className="font-medium">{event.title}</h4>
+                  <div className="flex-1">
+                    <h4 className="font-medium flex-wrap">{event.title}</h4>
                     <p className="text-sm text-gray-500">{event.type}</p>
                   </div>
                   <span className={`text-xs px-2 py-1 rounded-full ${
@@ -234,8 +234,8 @@ export default function HomePage() {
             {gymWorkouts.map((workout, index) => (
               <div key={index} className="border rounded-lg p-4 hover:shadow-sm transition-shadow">
                 <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h4 className="font-medium">{workout.title}</h4>
+                  <div className="flex-1">
+                    <h4 className="font-medium  text-wrap">{workout.title}</h4>
                     <div className="flex items-center gap-2 text-sm text-gray-500">
                       <span>{workout.type}</span>
                       <span>•</span>
@@ -268,16 +268,16 @@ export default function HomePage() {
           </div>
           <div className="space-y-3">
             {recentJobs.map((job, index) => (
-              <button key={index} className="w-full border rounded-lg p-3 hover:bg-gray-50 text-left">
+              <div key={index} className="w-full border rounded-lg p-3 hover:bg-gray-50 cursor-pointer text-left">
                 <div className="flex justify-between items-start">
-                  <div>
-                    <h4 className="font-medium">{job.role}</h4>
+                  <div className="flex-1">
+                    <h4 className="font-medium text-wrap">{job.role}</h4>
                     <p className="text-sm text-gray-500">{job.company}</p>
                   </div>
-                  <span className="text-xs text-gray-500">{job.posted}</span>
+                  <span className="text-xs text-gray-500 ">{job.posted}</span>
                 </div>
                 <p className="text-sm text-[#188268] mt-1">{job.salary}</p>
-              </button>
+              </div>
             ))}
           </div>
         </div>
