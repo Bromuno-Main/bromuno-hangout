@@ -68,7 +68,7 @@ export function Discover() {
       <div className="flex lg:flex-row flex-col-reverse justify-start items-start h-full relative p-6">
         <div className="w-full">
           <div className="flex-1flex justify-between border-b  pb-2 mb-3 items-start lg:pt-2">
-            <div onClick={toggleModal}> Ask Questions, Get Expert Answers</div>
+            <div onClick={toggleModal} > Ask Questions, Get Expert Answers</div>
           </div>
 
           <div className="lg:w-1/2 w-full  lg:max-w-screen-sm lg:pl-[2rem] lg:pb-10 justify-end lg:min-w-[340px] lg:min-h-[80vh] lg:sticky right-3 top-[4vh] lg:hidden flex flex-col gap-4">

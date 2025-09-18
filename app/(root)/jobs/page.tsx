@@ -1,30 +1,57 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Button } from '../../../components/ui/Button';
+import axios from 'axios';
+import axiosInstance from '../../../utils/axiosInstance';
+import { JobInterface } from '../../../types/Jobs';
+
+
 
 export default function Jobs() {
-  const jobListings = [
-    {
-      title: "Senior Frontend Developer",
-      company: "TechCorp",
-      location: "Remote",
-      type: "Full-time",
-      salary: "$100k - $150k",
-      description: "We're looking for an experienced frontend developer...",
-      logo: "/company1.svg"
-    },
-    {
-      title: "Backend Engineer",
-      company: "DataSystems",
-      location: "Hybrid",
-      type: "Full-time",
-      salary: "$90k - $130k",
-      description: "Join our backend team to build scalable systems...",
-      logo: "/company2.svg"
+  const [jobListings, setJobListings] = useState<JobInterface[]>([]);
+
+  // fetch jobs
+  //erooroo
+  useEffect(() => {
+
+    const getJobs = async () => {
+      try {
+        const res = await axiosInstance.get("/jobs")
+        console.log(res.data)
+        setJobListings(res.data)
+      } catch (error) {
+        console.log("Error gettting jobs:: ", error)
+      }
     }
-  ];
+
+    getJobs()
+
+  }, [])
+
+
+  // const jobListings = [
+  //   {
+  //     title: "Senior Frontend Developer",
+  //     company: "TechCorp",
+  //     location: "Remote",
+  //     type: "Full-time",
+  //     salary: "$100k - $150k",
+  //     description: "We're looking for an experienced frontend developer...",
+  //     logo: "/company1.svg"
+  //   },
+  //   {
+  //     title: "Backend Engineer",
+  //     company: "DataSystems",
+  //     location: "Hybrid",
+  //     type: "Full-time",
+  //     salary: "$90k - $130k",
+  //     description: "Join our backend team to build scalable systems...",
+  //     logo: "/company2.svg"
+  //   }
+  // ];
+
 
   return (
     <div className="w-full h-full gap-4 p-6 flex flex-col">
@@ -36,15 +63,15 @@ export default function Jobs() {
           </p>
           <p className="text-lg font-bold">Jobs</p>
         </div>
-        <Button className="bg-[#188268] hover:bg-[#156B55]">
+        <Button className="bg-[#188268] text-white hover:bg-[#156B55]">
           Post a Job
         </Button>
       </div>
 
       {/* Search & Filter */}
       <div className="flex gap-4 flex-wrap">
-        <input 
-          type="text" 
+        <input
+          type="text"
           placeholder="Search jobs..."
           className="flex-1 min-w-[200px] p-2 border rounded-md"
         />
@@ -64,18 +91,16 @@ export default function Jobs() {
 
       {/* Job Listings */}
       <div className="space-y-4">
-        {jobListings.map((job, index) => (
-          <div key={index} className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+        {jobListings.map((job) => (
+          <div key={job?._id} className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 relative bg-[#E4FBEC] rounded-lg overflow-hidden flex-shrink-0">
-                {job.logo && (
-                  <Image
-                    src={job.logo}
-                    alt={job.company}
-                    fill
-                    className="object-cover"
-                  />
-                )}
+                <Image
+                  src={"/profile.svg"}
+                  alt={job.company}
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="flex-1">
                 <h3 className="font-bold text-lg">{job.title}</h3>
@@ -86,10 +111,10 @@ export default function Jobs() {
                   <span>•</span>
                   <span>{job.type}</span>
                 </div>
-                <p className="text-[#188268] font-semibold mt-1">{job.salary}</p>
+                <p className="text-[#188268] font-semibold mt-1">{job?.salaryRange}</p>
                 <p className="mt-2 text-gray-600">{job.description}</p>
               </div>
-              <Button className="bg-[#188268] hover:bg-[#156B55]">
+              <Button className="bg-[#188268] hover:bg-[#156B55] text-white">
                 Apply Now
               </Button>
             </div>
