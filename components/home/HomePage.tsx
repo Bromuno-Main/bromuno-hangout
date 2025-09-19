@@ -62,8 +62,8 @@ export default function HomePage() {
 
 
   return (
-    <div className=" bg-white  my-1 min-h-screen w-full flex flex-col">
-      <section className="flex flex-col gap-8 w-full rounded-2xl h-[290px] p-8">
+    <div className=" bg-white h-full w-full flex flex-col overflow-hidden overflow-y-scroll scrollbar-hide ">
+      <section className="flex flex-shrink-0 flex-col gap-8 w-full rounded-2xl h-[290px] p-8">
         {/* HEADER */}
         <div className="flex flex-col gap-[0.38rem] ">
           <h4>Hello June,</h4>
@@ -94,16 +94,21 @@ export default function HomePage() {
       </section>
 
       {/* TASKS SCHEDULE JOBS NOTES */}
-      <section className="flex flex-1 ">
+      <section className="flex flex-1 px-6 flex-shrink-0">
         <div className="w-[65%] ">
           <div className="border-b border-[#ffffff] flex items-center justify-center flex-col py-[15px] px-[20px]">
-            <div className="flex w-full">
+            <div className="flex w-full flex-shrink-0">
               <Button className="font-bold rounded-full">Tasks</Button>
               <Button className="font-bold rounded-full bg-transparent">Tasks</Button>
               <Button className="font-bold rounded-full bg-transparent">Tasks</Button>
               <Button className="font-bold rounded-full bg-transparent">Tasks</Button>
             </div>
-            <div className="flex w-full flex-col gap-2.5 px-[20px] py-[15px]">
+            <div className="flex w-full flex-col gap-2.5 px-[20px] py-[15px] flex-shrink-0">
+              <div className="h-[289px] bg-[#fafafa] rounded-2xl p-4 gap-2.5"></div>
+              <div className="h-[289px] bg-[#fafafa] rounded-2xl p-4 gap-2.5"></div>
+              <div className="h-[289px] bg-[#fafafa] rounded-2xl p-4 gap-2.5"></div>
+              <div className="h-[289px] bg-[#fafafa] rounded-2xl p-4 gap-2.5"></div>
+              <div className="h-[289px] bg-[#fafafa] rounded-2xl p-4 gap-2.5"></div>
               <div className="h-[289px] bg-[#fafafa] rounded-2xl p-4 gap-2.5"></div>
             </div>
           </div>
@@ -126,6 +131,7 @@ export default function HomePage() {
               <p className="font-normal leading-[100%] tracking-normal text-[15px]">New order assigned</p>
             </div>
           </div>
+
         </div>
       </section>
     </div>

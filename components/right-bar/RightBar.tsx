@@ -49,109 +49,109 @@ function RightBar() {
 
   return (
     <>
-    {
-      !isProfile && <div className="lg:h-full lg:relative absolute top-0 right-0 left-0 z-20">
-      <Tools
-        openTools={tools}
-        setOpenTools={setTools}
-        section={section}
-        setSection={setSection}
-      />
-      <MobileChat
-        setMobileChat={setMobilechat}
-        mobileChat={mobileChat}
-        section={chatSection}
-        setSection={setChatSection}
-      />
-      <PopUp popUp={popUp} setPopUp={setPopUp} />
-      {menu ? (
-        <div className="h-full w-full">
-          {/* Desktop right bar */}
-          <nav className="sticky lg:min-w-[80px] lg:max-w-[80px] items-center h-full hidden lg:flex flex-col top-0 bottom-0 right-0">
+      {
+        !isProfile && <div className="lg:h-full lg:relative absolute top-0 right-0 left-0 z-20">
+          <Tools
+            openTools={tools}
+            setOpenTools={setTools}
+            section={section}
+            setSection={setSection}
+          />
+          <MobileChat
+            setMobileChat={setMobilechat}
+            mobileChat={mobileChat}
+            section={chatSection}
+            setSection={setChatSection}
+          />
+          <PopUp popUp={popUp} setPopUp={setPopUp} />
+          {menu ? (
+            <div className="h-full w-full border-l bg-white rlative">
+              {/* Desktop right bar */}
+              <nav className="sticky lg:min-w-[80px] lg:max-w-[80px] items-center h-full hidden lg:flex flex-col top-0 bottom-0 right-0">
 
-              <div className="flex flex-col items-center justify-between w-full h-full py-6">
-                <div className="space-y-4">
-                  <Link href="/profile" className="mb-8">
-                    <div className="w-10 h-10 rounded-full overflow-hidden">
-                      <Image
-                        src="/profile.svg"
-                        alt="Profile"
-                        width={40}
-                        height={40}
-                        className="object-cover"
-                      />
+                <div className="flex flex-col items-center justify-between w-full h-full py-6">
+                  <div className="space-y-4">
+                    <Link href="/profile" className="mb-8">
+                      <div className="w-10 h-10 rounded-full overflow-hidden">
+                        <Image
+                          src="/profile.svg"
+                          alt="Profile"
+                          width={40}
+                          height={40}
+                          className="object-cover"
+                        />
+                      </div>
+                    </Link>
+                    <div className="flex flex-col items-center space-y-4">
+                      {navItems.map((item, index) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={index}
+                            href={item.route}
+                            className={`p-3 rounded-xl transition-colors ${usePathName === item.route ? "bg-black" : "hover:bg-gray-100"}`}
+                          >
+                            <Icon className={`w-6 h-6 ${usePathName === item.route ? "invert" : "text-black"}`} />
+                          </Link>
+                        );
+                      })}
                     </div>
-                  </Link>
-                  <div className="flex flex-col items-center space-y-4">
-                    {navItems.map((item, index) => {
-                      const Icon = item.icon;
-                      return (
-                        <Link
-                          key={index}
-                          href={item.route}
-                          className={`p-3 rounded-xl transition-colors ${usePathName === item.route ? "bg-black" : "hover:bg-gray-100"}`}
-                        >
-                          <Icon className={`w-6 h-6 ${usePathName=== item.route ? "invert" : "text-black"}`} />
-                        </Link>
-                      );
-                    })}
                   </div>
                 </div>
-              </div>
-              <div>
-                <button
-                  onClick={() => handleTools("notifications")}
-                  className="p-3 rounded-xl hover:bg-gray-100 transition-colors"
-                >
-                  <Menu className="w-6 h-6 text-gray-600" />
-                </button>
-              </div>
-          </nav>
+                <div>
+                  <button
+                    onClick={() => handleTools("notifications")}
+                    className="p-3 rounded-xl hover:bg-gray-100 transition-colors"
+                  >
+                    <Menu className="w-6 h-6 text-gray-600" />
+                  </button>
+                </div>
+              </nav>
 
-          {/* Mobile right bar */}
-          <section className="lg:hidden flex items-center justify-between bg-white px-3">
-            <div
-              onClick={() => setPopUp(true)}
-              className="h-full gap-2 items-center justify-center flex"
-            >
-              <Title /> <ChevronDown />
-            </div>
-            <div className="flex items-center justify-between gap-4">
-              <Link href="/chat" className="flex items-center justify-center">
-                <MessageCircleIcon />
-              </Link>
-              <button onClick={() => setMenu(false)}>
-                <Menu />
-              </button>
-            </div>
-          </section>
-        </div>
-      ) : (
-        // Profile section when menu is closed
-        <div>
-          <section className="text-black w-full h-full fixed left-0 top-0 p-3 z-50 lg:hidden flex flex-col bg-white">
-            <div className="flex flex-col items-center justify-between w-full h-full ">
-              <div className="w-full h-[33px] justify-between items-center flex pr-2">
-                <button
-                  onClick={() => setMenu(true)}
-                  className="size-6 justify-items-center flex items-center bg-white"
+              {/* Mobile right bar */}
+              <section className="lg:hidden flex items-center justify-between bg-white px-3">
+                <div
+                  onClick={() => setPopUp(true)}
+                  className="h-full gap-2 items-center justify-center flex"
                 >
-                  <Image
-                    src="/closeIcon.svg"
-                    alt="icon"
-                    width={10}
-                    height={10}
-                    className="w-[14.14px] h-[14.14px] cursor-pointer"
-                  />
-                </button>
-              </div>
-              <Profile />
+                  <Title /> <ChevronDown />
+                </div>
+                <div className="flex items-center justify-between gap-4">
+                  <Link href="/chat" className="flex items-center justify-center">
+                    <MessageCircleIcon />
+                  </Link>
+                  <button onClick={() => setMenu(false)}>
+                    <Menu />
+                  </button>
+                </div>
+              </section>
             </div>
-          </section>
+          ) : (
+            // Profile section when menu is closed
+            <div>
+              <section className="text-black w-full h-full fixed left-0 top-0 p-3 z-50 lg:hidden flex flex-col bg-white">
+                <div className="flex flex-col items-center justify-between w-full h-full ">
+                  <div className="w-full h-[33px] justify-between items-center flex pr-2">
+                    <button
+                      onClick={() => setMenu(true)}
+                      className="size-6 justify-items-center flex items-center bg-white"
+                    >
+                      <Image
+                        src="/closeIcon.svg"
+                        alt="icon"
+                        width={10}
+                        height={10}
+                        className="w-[14.14px] h-[14.14px] cursor-pointer"
+                      />
+                    </button>
+                  </div>
+                  <Profile />
+                </div>
+              </section>
+            </div>
+          )}
         </div>
-      )}
-    </div>
-    }
+      }
     </>
   );
 }

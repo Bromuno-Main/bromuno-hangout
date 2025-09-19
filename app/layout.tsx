@@ -9,7 +9,7 @@ import { Title } from "../components/title/Title";
 import { StoreProvider } from "../redux/StoreProvider";
 import LoadingOverlay from "../components/LoadingOverlay";
 import AppInitializer from "../components/AppInitializer";
-import {Toaster} from "sonner";
+import { Toaster } from "sonner";
 
 const bigShouldersDisplay = Big_Shoulders_Display({
   subsets: ["latin"],
@@ -40,25 +40,27 @@ export default function RootLayout({
       <body
         className={`${livvic.className} ${bigShouldersDisplay.variable} gap-2 flex w-screen  bg-green  items-center justify-center h-screen flex-col`}
       >
-      <Toaster />
+        <Toaster />
         <NextTopLoader />
-{/*
+        {/*
         <span className="uppercase text-sm opacity-60 text-white hover:opacity-100 duration-300">
           bromuno hangout
         </span> */}
 
-        <main className="relative flex bg-white  w-full h-full  flex-1 max-w-screen-3xl overflow-clip overflow-y-scroll scrollbar-hide">
+        <main className="relative flex bg-white  w-full h-full items-center justify-center flex-1 max-w-screen-3xl overflow-hidden ">
           <StoreProvider>
             <AppInitializer />
             <LoadingOverlay />
             <FormContextProvider>
               <LeftBar />
-              <div className="h-full relative scrollbar-hide flex flex-col flex-1 px-4 bg-gray-50 overflow-hidden overflow-y-scroll ">
-                {/* <Title className="hidden lg:block" /> */}
-                <div className="flex-1">{children}</div>
+              <div className="h-full scrollbar-hide items-center justify-center flex flex-1 py-2 overflow-hidden">
+                <div className="h-full w-full relative scrollbar-hide items-center justify-center flex  rounded-2xl bg-gray-50 overflow-hidden border">
+                  {/* <Title className="hidden lg:block" /> */}
+                  <div className="flex-1 h-full">{children}</div>
+                  <RightBar />
+                </div>
               </div>
 
-              <RightBar />
             </FormContextProvider>
           </StoreProvider>
         </main>
