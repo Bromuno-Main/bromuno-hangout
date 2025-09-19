@@ -4,8 +4,8 @@ import { Discover } from "../../../components/learnComp/Discover"
 
 export default function Page() {
   return (
-    <div>
-      <Discover/>
+    <div className="h-full overflow-hidden overflow-y-scroll scrollbar-hide">
+      <Discover />
     </div>
   )
 }

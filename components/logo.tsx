@@ -7,7 +7,7 @@ const Logo = () => {
 
     return (
         <>
-            <div className="size-6 ">
+            <div className="size-6">
                 <Link href="/" className="">
                     <Image
                         src="/logo.svg"
